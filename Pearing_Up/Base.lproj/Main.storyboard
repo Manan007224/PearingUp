@@ -314,11 +314,6 @@
                                             <outlet property="postFruit" destination="0Fa-HT-6kF" id="mov-85-elo"/>
                                             <outlet property="postImage" destination="w6Y-EI-SiO" id="vhA-J3-nzi"/>
                                             <outlet property="postTitle" destination="6uP-xR-iEC" id="JYW-Wh-XX7"/>
-                                            <outlet property="post_city" destination="aGl-1b-way" id="Iwe-MI-Ehb"/>
-                                            <outlet property="post_description" destination="9h0-z7-ocl" id="7bb-bq-Gfd"/>
-                                            <outlet property="post_fruit" destination="0Fa-HT-6kF" id="Gaf-fp-sz2"/>
-                                            <outlet property="post_image" destination="w6Y-EI-SiO" id="wSh-PV-0c2"/>
-                                            <outlet property="post_title" destination="6uP-xR-iEC" id="FiX-P4-M08"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -327,6 +322,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="6I8-ix-tY0"/>
                     </view>
+                    <connections>
+                        <outlet property="bookmarked_posts" destination="k0C-eF-uFw" id="GGU-Gp-uXt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8e0-4b-Did" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
