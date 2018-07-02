@@ -31,13 +31,16 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         super.viewDidLoad()
         bookmarked_posts.dataSource = self
         get_bookmarks(url: bookmarks_url)
-        myGroup.notify(queue: .main) {
-            self.get_allPosts() { data in
-                print(data)
-            }
+        get_allPosts() { data in
+            
         }
-        update_data()
+        myGroup.notify(queue: .main) {
+            //self.update_data()
+            print("All Done")
+        }
+        
     }
+    
     
     
     func update_data() {
@@ -45,31 +48,35 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     }
     
     func get_allPosts(completed: @escaping (String) -> Void) {
+        self.myGroup.enter()
         print("Reached allPosts function")
         for pst in temp_posts {
           let p_url : URL = URL(string: "https://pearingup.herokuapp.com/getpost/\(pst)")!
-            self.request_posts(url: p_url) { data in
-                print(data)
-                completed("Done with get_all Posts finally")
-                print("Coming out now")
-            }
+          self.request_posts(url: p_url)
         }
-       
+        //completed("Completed get_allPosts")
+        self.myGroup.leave()
     }
     
     
-    func request_posts(url : URL, completion :@escaping (String) -> Void) {
+    func request_posts(url : URL) {
         print("Reached inside request_post")
+            self.myGroup.enter()
             Alamofire.request(url).responseJSON {
                 response in
                 if(response.result.isSuccess) {
                    let temp : JSON = JSON(response.result.value!)
                     print("Success in get-posts route")
-                    completion("Inside request")
+                    self.update_data()
+                    self.myGroup.leave()
+                    //completion("Inside request")
+                    
                 }
                 else {
                     print(response.result.error!)
-                    completion("Inside request_posts")
+                    self.update_data()
+                    self.myGroup.leave()
+                    //completion("Inside request_posts")
                 }
             }
     }
