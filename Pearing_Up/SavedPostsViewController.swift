@@ -30,47 +30,48 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     override func viewDidLoad() {
         super.viewDidLoad()
         bookmarked_posts.dataSource = self
-        
         get_bookmarks(url: bookmarks_url)
-        
-        get_allPosts()
-        
         myGroup.notify(queue: .main) {
-            print("Came out of here")
-        }
-    }
-    
-    func get_allPosts() {
-        self.myGroup.enter()
-        let posts_group = DispatchGroup()
-        print("Reached allPosts function")
-        for pst in temp_posts {
-            posts_group.enter()
-            let p_url : URL = URL(string: "https://pearingup.herokuapp.com/getpost/\(pst)")!
-            request_posts(url: p_url) { data in
+            self.get_allPosts() { data in
                 print(data)
-                posts_group.leave()
             }
         }
-        print("Left allPosts func")
-        self.myGroup.leave()
+        update_data()
+    }
+    
+    
+    func update_data() {
+        print("JUST_SHOW")
+    }
+    
+    func get_allPosts(completed: @escaping (String) -> Void) {
+        print("Reached allPosts function")
+        for pst in temp_posts {
+          let p_url : URL = URL(string: "https://pearingup.herokuapp.com/getpost/\(pst)")!
+            self.request_posts(url: p_url) { data in
+                print(data)
+                completed("Done with get_all Posts finally")
+                print("Coming out now")
+            }
+        }
+       
     }
     
     
     func request_posts(url : URL, completion :@escaping (String) -> Void) {
         print("Reached inside request_post")
-        Alamofire.request(url, method: .get).responseJSON {
-            response in
-            if(response.result.isSuccess) {
-                let temp : JSON = JSON(response.result.value!)
-                print("Success in get-posts route")
-                completion("Success")
+            Alamofire.request(url).responseJSON {
+                response in
+                if(response.result.isSuccess) {
+                   let temp : JSON = JSON(response.result.value!)
+                    print("Success in get-posts route")
+                    completion("Inside request")
+                }
+                else {
+                    print(response.result.error!)
+                    completion("Inside request_posts")
+                }
             }
-            else {
-                print(response.result.error!)
-                completion("error")
-            }
-        }
     }
     
     
