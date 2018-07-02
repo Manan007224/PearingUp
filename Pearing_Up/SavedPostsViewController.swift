@@ -25,45 +25,46 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     
     @IBOutlet weak var bookmarked_posts: UICollectionView!
     
+     let myGroup = DispatchGroup()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         bookmarked_posts.dataSource = self
-        get_bookmarks(url: bookmarks_url) { response in
-            let all_posts = response["result"].array
-            for posts in all_posts! {
-                //print(posts)
-                self.posts_name.append(String(describing: posts))
-            }
-            print(self.posts_name.count)
-        }
-        update_data() { data in
-            print(data)
-        }
         
+        get_bookmarks(url: bookmarks_url)
+        
+        get_allPosts()
+        
+        myGroup.notify(queue: .main) {
+            print("Came out of here")
+        }
     }
-    func update_data(completion : (String) -> Void) {
-        print("Here")
-        for post in self.posts_name {
-            let PostURl : URL = URL(string: "https://pearingup.herokuapp.com/getpost/\(post)")!
-            print("Post = ", post)
-            self.get_allPosts(url: PostURl) { resp in
-                print("Received Response")
-                let city = resp["title"].string
-                self.posts_city.append(city!)
+    
+    func get_allPosts() {
+        self.myGroup.enter()
+        let posts_group = DispatchGroup()
+        print("Reached allPosts function")
+        for pst in temp_posts {
+            posts_group.enter()
+            let p_url : URL = URL(string: "https://pearingup.herokuapp.com/getpost/\(pst)")!
+            request_posts(url: p_url) { data in
+                print(data)
+                posts_group.leave()
             }
         }
-        completion("Done")
+        print("Left allPosts func")
+        self.myGroup.leave()
     }
-
     
-    func get_allPosts(url: URL, completion : @escaping (JSON) -> Void) {
+    
+    func request_posts(url : URL, completion :@escaping (String) -> Void) {
+        print("Reached inside request_post")
         Alamofire.request(url, method: .get).responseJSON {
             response in
             if(response.result.isSuccess) {
                 let temp : JSON = JSON(response.result.value!)
                 print("Success in get-posts route")
-                completion(temp)
+                completion("Success")
             }
             else {
                 print(response.result.error!)
@@ -72,9 +73,8 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         }
     }
     
- 
     
-    func get_bookmarks(url: URL, completion : @escaping (JSON) -> Void) {
+    func request_Bookmarks(url: URL, completion : @escaping (JSON) -> Void) {
         Alamofire.request(url, method: .get).responseJSON {
             response in
             if(response.result.isSuccess) {
@@ -88,6 +88,13 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
                 completion(response.result.error! as! JSON)
             }
         }
+    }
+ 
+    
+    func get_bookmarks(url: URL) {
+        self.myGroup.enter()
+        print("Came at get_bookmarks")
+        self.myGroup.leave()
     }
     
     
@@ -105,11 +112,6 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         saved_posts.postTitle.text! = tArray[indexPath.item]
         return saved_posts
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        print(indexPath.row)
-//    }
-    
     
     
     func displayAlert(message: String){
