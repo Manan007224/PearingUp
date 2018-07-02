@@ -14,7 +14,11 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     
     let bookmarks_url : URL = URL(string: "https://pearingup.herokuapp.com/manan/savedposts")!
     let posts_url : URL = URL(string: "https://pearingup.herokuapp.com/getpost/apple_post")!
-    var posts_city : [String] = []
+    var postsTitles : [String] = []
+    var postAdditionalMsgs : [String] = []
+    var postFruits: [String] = []
+    var postCities : [String] = []
+    var postImages : [UIImage] = []
     let tArray = ["A", "B", "C", "D", "E"]
     var posts_name : [String]  = []
     let temp_posts = ["apple_post", "banana_post"]
@@ -35,7 +39,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
             
         }
         myGroup.notify(queue: .main) {
-            //self.update_data()
+            self.update_data()
             print("All Done")
         }
         
@@ -44,43 +48,57 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     
     
     func update_data() {
-        print("JUST_SHOW")
+        bookmarked_posts.reloadData()
     }
     
     func get_allPosts(completed: @escaping (String) -> Void) {
         self.myGroup.enter()
         print("Reached allPosts function")
         for pst in temp_posts {
-          let p_url : URL = URL(string: "https://pearingup.herokuapp.com/getpost/\(pst)")!
+          let p_url : URL = URL(string: "http://localhost:5000/getpost/temp123_post")!
           self.request_posts(url: p_url)
         }
         //completed("Completed get_allPosts")
         self.myGroup.leave()
     }
     
-    
     func request_posts(url : URL) {
         print("Reached inside request_post")
             self.myGroup.enter()
-            Alamofire.request(url).responseJSON {
+            Alamofire.request(url, method: .get).responseString {
                 response in
                 if(response.result.isSuccess) {
                    let temp : JSON = JSON(response.result.value!)
                     print("Success in get-posts route")
-                    self.update_data()
+//                  print(response.data!)
+//                    let title = temp["title"].string
+//                    var img_data = temp["image"]["img"]["data"].array
+//                    var arr : [UInt32] = []
+//                    for ar in img_data! {
+//                        let temp_str = String(describing: ar)
+//                        let to_throw = UInt32(temp_str)
+//                        arr.append(to_throw!)
+//                    }
+//                    //print(img_data?.count)
+//                    print(arr.count)
+//                    let imgData = Data(buffer: UnsafeBufferPointer(start: arr, count: (arr.count)))
+//                    print(imgData)
+                    self.postsTitles.append("A")
+                    self.postAdditionalMsgs.append("A")
+                    self.postFruits.append("A")
+                    self.postCities.append("Vancouver")
+                    print(response.data!)
+                    let postImg = UIImage(data: response.data!)
+                    //let postimg = UIImage(data: imgData)
+                    self.postImages.append(postImg!)
                     self.myGroup.leave()
-                    //completion("Inside request")
-                    
                 }
                 else {
                     print(response.result.error!)
-                    self.update_data()
                     self.myGroup.leave()
-                    //completion("Inside request_posts")
                 }
             }
     }
-    
     
     func request_Bookmarks(url: URL, completion : @escaping (JSON) -> Void) {
         Alamofire.request(url, method: .get).responseJSON {
@@ -107,17 +125,17 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return tArray.count
+        return postCities.count
     }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let saved_posts = collectionView.dequeueReusableCell(withReuseIdentifier: "saved_posts_cell", for: indexPath) as! CollectionViewCell
-        saved_posts.postImage.image = tImage[indexPath.row]
-        saved_posts.postCity.text! = tCity[indexPath.item]
-        saved_posts.postFruit.text! = tFruits[indexPath.item]
-        saved_posts.postDescription.text! = tDescription[indexPath.item]
-        saved_posts.postTitle.text! = tArray[indexPath.item]
+        saved_posts.postImage.image = postImages[indexPath.row]
+        saved_posts.postCity.text! = postCities[indexPath.item]
+        saved_posts.postFruit.text! = postFruits[indexPath.item]
+        saved_posts.postDescription.text! = postAdditionalMsgs[indexPath.item]
+        saved_posts.postTitle.text! = postsTitles[indexPath.item]
         return saved_posts
     }
     
