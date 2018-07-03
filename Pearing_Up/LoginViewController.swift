@@ -88,7 +88,13 @@ class LoginViewController: UIViewController {
                         
                     }
                     
+<<<<<<< HEAD
                     self.performSegue(withIdentifier: "bksegue", sender: self)
+=======
+                    self.performSegue(withIdentifier: "goToLanding", sender: self)
+                    
+                
+>>>>>>> 44c15e9d4a0f8619000c45f31f089667432cb9f0
                 }
                 else {
                     print("Error Occurred")

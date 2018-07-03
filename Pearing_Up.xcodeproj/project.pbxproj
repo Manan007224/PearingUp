@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		41B7479520EB02B200BA6915 /* SignUpViewControllerUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B7479420EB02B200BA6915 /* SignUpViewControllerUITest.swift */; };
+		41B7479720EB303100BA6915 /* LoginViewControllerUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B7479620EB303100BA6915 /* LoginViewControllerUITest.swift */; };
 		5B5D3A35067BB15365B8A39E /* Pods_Pearing_Up.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80891CEF7889EB75F0E2F1FD /* Pods_Pearing_Up.framework */; };
 		9164945C20E7507C00F5467D /* SignUpInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9164945B20E7507C00F5467D /* SignUpInfoController.swift */; };
 		9164948820E7C8F700F5467D /* SavedPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9164948720E7C8F700F5467D /* SavedPostsViewController.swift */; };
@@ -36,6 +37,7 @@
 		41B7478A20EB02A100BA6915 /* Pearing_UpUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Pearing_UpUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		41B7478E20EB02A100BA6915 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41B7479420EB02B200BA6915 /* SignUpViewControllerUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpViewControllerUITest.swift; path = ../../../SignUpViewControllerUITest.swift; sourceTree = "<group>"; };
+		41B7479620EB303100BA6915 /* LoginViewControllerUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerUITest.swift; sourceTree = "<group>"; };
 		62A4F78399698EE9745AD9A0 /* Pods-Pearing_Up.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pearing_Up.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pearing_Up/Pods-Pearing_Up.release.xcconfig"; sourceTree = "<group>"; };
 		80891CEF7889EB75F0E2F1FD /* Pods_Pearing_Up.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pearing_Up.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9164945B20E7507C00F5467D /* SignUpInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpInfoController.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 			children = (
 				41B7479420EB02B200BA6915 /* SignUpViewControllerUITest.swift */,
 				41B7478E20EB02A100BA6915 /* Info.plist */,
+				41B7479620EB303100BA6915 /* LoginViewControllerUITest.swift */,
 			);
 			path = Pearing_UpUITests;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41B7479720EB303100BA6915 /* LoginViewControllerUITest.swift in Sources */,
 				41B7479520EB02B200BA6915 /* SignUpViewControllerUITest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
