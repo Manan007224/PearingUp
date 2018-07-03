@@ -117,8 +117,8 @@ class SignUpViewController: UIViewController {
         let alert_toDisplay = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
         
         alert_toDisplay.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
-            self.email_holder.text = "email"
-            self.pwd_holder.text = "password"
+            //self.email_holder.text = "email"
+            //self.pwd_holder.text = "password"
         }))
         self.present(alert_toDisplay, animated: true, completion: nil)
     }

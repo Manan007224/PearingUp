@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		41B7479520EB02B200BA6915 /* SignUpViewControllerUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B7479420EB02B200BA6915 /* SignUpViewControllerUITest.swift */; };
+		41B7479720EB303100BA6915 /* LoginViewControllerUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B7479620EB303100BA6915 /* LoginViewControllerUITest.swift */; };
 		5B5D3A35067BB15365B8A39E /* Pods_Pearing_Up.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80891CEF7889EB75F0E2F1FD /* Pods_Pearing_Up.framework */; };
 		9164945C20E7507C00F5467D /* SignUpInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9164945B20E7507C00F5467D /* SignUpInfoController.swift */; };
 		9164948820E7C8F700F5467D /* SavedPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9164948720E7C8F700F5467D /* SavedPostsViewController.swift */; };
@@ -20,7 +21,6 @@
 		91E774DC20D638740030121E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E774DB20D638740030121E /* ViewController.swift */; };
 		91E774DF20D638740030121E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91E774DD20D638740030121E /* Main.storyboard */; };
 		91E774E120D638740030121E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91E774E020D638740030121E /* Assets.xcassets */; };
-		91E774E420D638740030121E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91E774E220D638740030121E /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +37,7 @@
 		41B7478A20EB02A100BA6915 /* Pearing_UpUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Pearing_UpUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		41B7478E20EB02A100BA6915 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41B7479420EB02B200BA6915 /* SignUpViewControllerUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpViewControllerUITest.swift; path = ../../../SignUpViewControllerUITest.swift; sourceTree = "<group>"; };
+		41B7479620EB303100BA6915 /* LoginViewControllerUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerUITest.swift; sourceTree = "<group>"; };
 		62A4F78399698EE9745AD9A0 /* Pods-Pearing_Up.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pearing_Up.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pearing_Up/Pods-Pearing_Up.release.xcconfig"; sourceTree = "<group>"; };
 		80891CEF7889EB75F0E2F1FD /* Pods_Pearing_Up.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pearing_Up.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9164945B20E7507C00F5467D /* SignUpInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpInfoController.swift; sourceTree = "<group>"; };
@@ -51,7 +52,6 @@
 		91E774DB20D638740030121E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		91E774DE20D638740030121E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		91E774E020D638740030121E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		91E774E320D638740030121E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		91E774E520D638740030121E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ACBE827427E60BA5ED6A8E60 /* Pods-Pearing_Up.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pearing_Up.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pearing_Up/Pods-Pearing_Up.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -80,6 +80,7 @@
 			children = (
 				41B7479420EB02B200BA6915 /* SignUpViewControllerUITest.swift */,
 				41B7478E20EB02A100BA6915 /* Info.plist */,
+				41B7479620EB303100BA6915 /* LoginViewControllerUITest.swift */,
 			);
 			path = Pearing_UpUITests;
 			sourceTree = "<group>";
@@ -126,7 +127,6 @@
 				916EA22420D7B71300C1085D /* SignUpViewController.swift */,
 				916EA22220D7B6D900C1085D /* LoginViewController.swift */,
 				91E774E020D638740030121E /* Assets.xcassets */,
-				91E774E220D638740030121E /* LaunchScreen.storyboard */,
 				91E774E520D638740030121E /* Info.plist */,
 			);
 			path = Pearing_Up;
@@ -234,7 +234,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				91E774E420D638740030121E /* LaunchScreen.storyboard in Resources */,
 				91E774E120D638740030121E /* Assets.xcassets in Resources */,
 				91E774DF20D638740030121E /* Main.storyboard in Resources */,
 			);
@@ -290,6 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41B7479720EB303100BA6915 /* LoginViewControllerUITest.swift in Sources */,
 				41B7479520EB02B200BA6915 /* SignUpViewControllerUITest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -327,14 +327,6 @@
 				91E774DE20D638740030121E /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		91E774E220D638740030121E /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				91E774E320D638740030121E /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
