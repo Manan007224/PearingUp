@@ -88,7 +88,9 @@ class LoginViewController: UIViewController {
                         
                     }
                     
-                    self.performSegue(withIdentifier: "ProfileSegue", sender: self)
+                    self.performSegue(withIdentifier: "goToLanding", sender: self)
+                    
+                
                 }
                 else {
                     print("Error Occurred")
