@@ -41,9 +41,9 @@ class SignUpViewController: UIViewController {
     
     @IBAction func signup_click(_ sender: Any) {
         
-        if(email_holder.text == "" || pwd_holder.text == ""){
+        if(email_holder.text == "" || pwd_holder.text == "" || username_holder.text == ""){
             print("All fields required")
-            displayAlert(message: "Email or Password is Empty. Please fill in again")
+            displayAlert(message: "Please fill in all fields")
             return
         }
         
