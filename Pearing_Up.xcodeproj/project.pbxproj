@@ -20,7 +20,6 @@
 		91E774DC20D638740030121E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E774DB20D638740030121E /* ViewController.swift */; };
 		91E774DF20D638740030121E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91E774DD20D638740030121E /* Main.storyboard */; };
 		91E774E120D638740030121E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91E774E020D638740030121E /* Assets.xcassets */; };
-		91E774E420D638740030121E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91E774E220D638740030121E /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,7 +50,6 @@
 		91E774DB20D638740030121E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		91E774DE20D638740030121E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		91E774E020D638740030121E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		91E774E320D638740030121E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		91E774E520D638740030121E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ACBE827427E60BA5ED6A8E60 /* Pods-Pearing_Up.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pearing_Up.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pearing_Up/Pods-Pearing_Up.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -126,7 +124,6 @@
 				916EA22420D7B71300C1085D /* SignUpViewController.swift */,
 				916EA22220D7B6D900C1085D /* LoginViewController.swift */,
 				91E774E020D638740030121E /* Assets.xcassets */,
-				91E774E220D638740030121E /* LaunchScreen.storyboard */,
 				91E774E520D638740030121E /* Info.plist */,
 			);
 			path = Pearing_Up;
@@ -234,7 +231,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				91E774E420D638740030121E /* LaunchScreen.storyboard in Resources */,
 				91E774E120D638740030121E /* Assets.xcassets in Resources */,
 				91E774DF20D638740030121E /* Main.storyboard in Resources */,
 			);
@@ -327,14 +323,6 @@
 				91E774DE20D638740030121E /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		91E774E220D638740030121E /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				91E774E320D638740030121E /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JLg-Qn-Fr0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JLg-Qn-Fr0">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="AppleSDGothicNeo.ttc">
+            <string>AppleSDGothicNeo-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -338,6 +343,7 @@
                     <connections>
                         <outlet property="email_holder" destination="Xz9-8Q-dfX" id="uKS-5w-ZPN"/>
                         <outlet property="pwd_holder" destination="L47-bz-DS7" id="vf2-fu-oeJ"/>
+                        <segue destination="T7x-ly-ZLS" kind="show" identifier="bksegue" id="fHp-T4-yyl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rLT-Xp-dp8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -410,11 +416,6 @@
                                             <outlet property="postFruit" destination="0Fa-HT-6kF" id="mov-85-elo"/>
                                             <outlet property="postImage" destination="w6Y-EI-SiO" id="vhA-J3-nzi"/>
                                             <outlet property="postTitle" destination="6uP-xR-iEC" id="JYW-Wh-XX7"/>
-                                            <outlet property="post_city" destination="aGl-1b-way" id="Iwe-MI-Ehb"/>
-                                            <outlet property="post_description" destination="9h0-z7-ocl" id="7bb-bq-Gfd"/>
-                                            <outlet property="post_fruit" destination="0Fa-HT-6kF" id="Gaf-fp-sz2"/>
-                                            <outlet property="post_image" destination="w6Y-EI-SiO" id="wSh-PV-0c2"/>
-                                            <outlet property="post_title" destination="6uP-xR-iEC" id="FiX-P4-M08"/>
                                             <segue destination="jjy-3E-Ljd" kind="show" id="ILV-tI-h8y"/>
                                         </connections>
                                     </collectionViewCell>
@@ -424,10 +425,10 @@
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6I8-ix-tY0"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" selectedImage="search-30" id="hQO-eR-8RS"/>
                     <connections>
                         <outlet property="bookmarked_posts" destination="k0C-eF-uFw" id="GGU-Gp-uXt"/>
                     </connections>
-                    <tabBarItem key="tabBarItem" title="Item" selectedImage="search-30" id="hQO-eR-8RS"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8e0-4b-Did" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -590,7 +591,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="REE-cP-T27">
-                                <rect key="frame" x="97" y="657" width="181" height="65"/>
+                                <rect key="frame" x="97" y="597" width="181" height="65"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <state key="normal" title="Bookmarks"/>
@@ -603,6 +604,9 @@
                         <viewLayoutGuide key="safeArea" id="QhE-Ub-5U2"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" selectedImage="user-30" id="evZ-Qb-ic0"/>
+                    <connections>
+                        <segue destination="e3t-rz-pqt" kind="show" identifier="bookmarkslist" id="MJ8-Bq-H8o"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h9E-XF-Dmw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -733,6 +737,8 @@
         <image name="user-30" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="fHp-T4-yyl"/>
+        <segue reference="MJ8-Bq-H8o"/>
         <segue reference="ah8-Pd-8H0"/>
     </inferredMetricsTieBreakers>
 </document>
