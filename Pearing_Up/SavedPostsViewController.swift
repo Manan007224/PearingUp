@@ -55,7 +55,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         self.myGroup.enter()
         print("Reached allPosts function")
         for pst in temp_posts {
-          let p_url : URL = URL(string: "http://localhost:5000/getpost/temp123_post")!
+          let p_url : URL = URL(string: "http://localhost:5000/getpost/try_post")!
           self.request_posts(url: p_url)
         }
         //completed("Completed get_allPosts")
@@ -71,7 +71,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
                    let temp : JSON = JSON(response.result.value!)
                     print("Success in get-posts route")
 //                  print(response.data!)
-//                    let title = temp["title"].string
+//                  let title = temp["title"].string
 //                    var img_data = temp["image"]["img"]["data"].array
 //                    var arr : [UInt32] = []
 //                    for ar in img_data! {
@@ -79,17 +79,15 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
 //                        let to_throw = UInt32(temp_str)
 //                        arr.append(to_throw!)
 //                    }
-//                    //print(img_data?.count)
+                    //print(img_data?.count)
 //                    print(arr.count)
-//                    let imgData = Data(buffer: UnsafeBufferPointer(start: arr, count: (arr.count)))
-//                    print(imgData)
+//                  let imgData = Data(buffer: UnsafeBufferPointer(start: arr, count: (arr.count)))
+//                    print(imgDaxta)
                     self.postsTitles.append("A")
                     self.postAdditionalMsgs.append("A")
                     self.postFruits.append("A")
                     self.postCities.append("Vancouver")
-                    print(response.data!)
                     let postImg = UIImage(data: response.data!)
-                    //let postimg = UIImage(data: imgData)
                     self.postImages.append(postImg!)
                     self.myGroup.leave()
                 }
