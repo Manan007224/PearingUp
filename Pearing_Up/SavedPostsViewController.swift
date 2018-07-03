@@ -29,9 +29,10 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     
     @IBOutlet weak var bookmarked_posts: UICollectionView!
     
-     let myGroup = DispatchGroup()
+    let myGroup = DispatchGroup()
     
     override func viewDidLoad() {
+        print("yolo")
         super.viewDidLoad()
         bookmarked_posts.dataSource = self
         get_bookmarks(url: bookmarks_url)
@@ -151,12 +152,18 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let saved_posts = collectionView.dequeueReusableCell(withReuseIdentifier: "saved_posts_cell", for: indexPath) as! CollectionViewCell
-        saved_posts.postImage.image = postImages[indexPath.row]
-        saved_posts.postCity.text! = postCities[indexPath.item]
-        saved_posts.postFruit.text! = postFruits[indexPath.item]
-        saved_posts.postDescription.text! = postAdditionalMsgs[indexPath.item]
-        saved_posts.postTitle.text! = postsTitles[indexPath.item]
+        let saved_posts = collectionView.dequeueReusableCell(withReuseIdentifier: "saved_posts_cell", for: indexPath) as! SavedPostsCell
+        saved_posts.post_image.image = postImages[indexPath.row]
+        saved_posts.post_city.text! = postCities[indexPath.item]
+        saved_posts.post_fruit.text! = postFruits[indexPath.item]
+        saved_posts.post_description.text! = postAdditionalMsgs[indexPath.item]
+        saved_posts.post_title.text! = postsTitles[indexPath.item]
+        
+     //   saved_posts.postImage.image = postImages[indexPath.row]
+//        saved_posts.postCity.text! = postCities[indexPath.item]
+  //      saved_posts.postFruit.text! = postFruits[indexPath.item]
+//        saved_posts.postDescription.text! = postAdditionalMsgs[indexPath.item]
+  //      saved_posts.postTitle.text! = postsTitles[indexPath.item]
         return saved_posts
     }
     
@@ -170,3 +177,11 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     }
 
 }
+
+
+
+
+
+
+
+

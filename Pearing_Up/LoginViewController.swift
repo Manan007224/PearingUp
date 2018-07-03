@@ -5,7 +5,7 @@
 //  Created by Manan Maniyar on 2018-06-18.
 //  Copyright © 2018 Manan Maniyar. All rights reserved.
 //
-
+// lst updated
 import UIKit
 import Alamofire
 import SwiftyJSON
@@ -88,13 +88,10 @@ class LoginViewController: UIViewController {
                         
                     }
                     
-<<<<<<< HEAD
-                    self.performSegue(withIdentifier: "bksegue", sender: self)
-=======
-                    self.performSegue(withIdentifier: "goToLanding", sender: self)
+
+                    //self.performSegue(withIdentifier: "bksegue", sender: self)
+                 self.performSegue(withIdentifier: "goToLanding", sender: self)
                     
-                
->>>>>>> 44c15e9d4a0f8619000c45f31f089667432cb9f0
                 }
                 else {
                     print("Error Occurred")
