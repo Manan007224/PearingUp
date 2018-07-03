@@ -73,22 +73,28 @@ class LoginViewController: UIViewController {
                     // If the User is not found, errCode == 400
                     // If there is any server side error, errCode == 302
                     
-                    if(temp["errCode"].exists()){
-                        if(temp["errCode"] == 400){
+                    if(temp["code"].exists()){
+                        if(temp["code"] == 400){
                             self.displayAlert(message: "User with this email_id is not found. Please enter the credentials again")
                         }
                         
-                        else if(temp["errCode"] == 409){
+                        else if(temp["code"] == 409){
                             self.displayAlert(message: "The entered password is incorrect. Please enter the password again")
                         }
                         
-                        else if(temp["errCode"] == 302){
+                        else if(temp["code"] == 302){
                             self.displayAlert(message: "Server-Side error. Please contact Manan Maniyar")
                         }
                         
                     }
                     
-                    self.performSegue(withIdentifier: "ProfileSegue", sender: self)
+<<<<<<< HEAD
+                    self.performSegue(withIdentifier: "bksegue", sender: self)
+=======
+                    self.performSegue(withIdentifier: "goToLanding", sender: self)
+                    
+                
+>>>>>>> 44c15e9d4a0f8619000c45f31f089667432cb9f0
                 }
                 else {
                     print("Error Occurred")

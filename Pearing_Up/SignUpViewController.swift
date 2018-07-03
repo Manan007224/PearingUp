@@ -41,9 +41,9 @@ class SignUpViewController: UIViewController {
     
     @IBAction func signup_click(_ sender: Any) {
         
-        if(email_holder.text == "" || pwd_holder.text == ""){
+        if(email_holder.text == "" || pwd_holder.text == "" || username_holder.text == ""){
             print("All fields required")
-            displayAlert(message: "Email or Password is Empty. Please fill in again")
+            displayAlert(message: "Please fill in all fields")
             return
         }
         
@@ -117,8 +117,8 @@ class SignUpViewController: UIViewController {
         let alert_toDisplay = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
         
         alert_toDisplay.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
-            self.email_holder.text = "email"
-            self.pwd_holder.text = "password"
+            //self.email_holder.text = "email"
+            //self.pwd_holder.text = "password"
         }))
         self.present(alert_toDisplay, animated: true, completion: nil)
     }
