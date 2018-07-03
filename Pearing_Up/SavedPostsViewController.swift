@@ -55,7 +55,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         self.myGroup.enter()
         print("Reached allPosts function")
         for pst in temp_posts {
-          let p_url : URL = URL(string: "http://localhost:5000/getpost/try_post")!
+          let p_url : URL = URL(string: "https://pearingup.herokuapp.com/getpost/apple_post")!
           self.request_posts(url: p_url)
         }
         //completed("Completed get_allPosts")
@@ -97,6 +97,26 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
                 }
             }
     }
+    
+    
+    func request_postsData(url: URL) {
+        self.myGroup.enter()
+        Alamofire.request(url, method: .get).responseString {
+            response in
+            if(response.result.isSuccess) {
+                let temp: JSON = JSON(response.result.value!)
+                self.postsTitles.append(temp["title"].string!)
+                self.postFruits.append(temp["fruits"].string!)
+                self.postAdditionalMsgs.append(temp["description"].string!)
+                
+            }
+            else {
+                print("Error")
+                self.myGroup.leave()
+            }
+        }
+    }
+    
     
     func request_Bookmarks(url: URL, completion : @escaping (JSON) -> Void) {
         Alamofire.request(url, method: .get).responseJSON {
