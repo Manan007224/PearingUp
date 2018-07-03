@@ -33,7 +33,7 @@ class ExpandedPostViewController: UIViewController {
         if segue.identifier == "applyToPost" {
             
             let destination = segue.destination as! SendRequestViewController
-            destination.receiver = owner
+            destination.receiverName = owner
         }
     }
     /*

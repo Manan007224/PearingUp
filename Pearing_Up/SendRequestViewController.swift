@@ -12,9 +12,9 @@ import SwiftyJSON
 
 class SendRequestViewController: UIViewController {
     
-    let message_url = "https://pearingup.herokuapp.com/sentRequest"
-    var receiver = "receiver"
-    var sender  = "gosh"
+    let message_url = String("https://pearingup.herokuapp.com/sentRequest")
+    var receiverName = String("receiver")
+    var senderName = String("gosh")
     @IBOutlet weak var messageUI: UITextView!
     @IBOutlet weak var lastDateUI: UIDatePicker!
     @IBOutlet weak var firstDateUI: UIDatePicker!
@@ -39,8 +39,8 @@ class SendRequestViewController: UIViewController {
             displayAlert(message: "Second Date must be after the first.")
         }
         else {
-            let message = "I am free from: " + dateToString(date: firstDate) + "\nTo: " + dateToString(date: secondDate) + "\n" + messageUI.text
-            let url = message_url + "/:" + sender + "/:" + receiver
+            let message = ("I am free from: " + dateToString(date: firstDate) + "\nTo: " + dateToString(date: secondDate) + "\n" + messageUI.text)
+            let url = (String(message_url) + "/" + String(senderName) + "/" + String(receiverName))
             
             serverRequest(url: url, params: ["add_msg" : message])
         }
@@ -56,6 +56,8 @@ class SendRequestViewController: UIViewController {
                 
                 if(temp["code"] == 302 || temp["code"] == 400 || temp["code"] == 409){
                     self.displayAlert(message: String(describing: temp["result"]))
+                    print("Error Happened, url is:" + url)
+
                     return
                 }
                 
