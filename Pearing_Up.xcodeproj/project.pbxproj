@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		410FD31020EC086C007A5637 /* SendRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410FD30F20EC086C007A5637 /* SendRequestViewController.swift */; };
+		410FD31220EC2C9F007A5637 /* ExpandedPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410FD31120EC2C9F007A5637 /* ExpandedPostViewController.swift */; };
 		41B7479520EB02B200BA6915 /* SignUpViewControllerUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B7479420EB02B200BA6915 /* SignUpViewControllerUITest.swift */; };
 		41B7479720EB303100BA6915 /* LoginViewControllerUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B7479620EB303100BA6915 /* LoginViewControllerUITest.swift */; };
 		5B5D3A35067BB15365B8A39E /* Pods_Pearing_Up.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80891CEF7889EB75F0E2F1FD /* Pods_Pearing_Up.framework */; };
@@ -36,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		410FD30F20EC086C007A5637 /* SendRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendRequestViewController.swift; sourceTree = "<group>"; };
+		410FD31120EC2C9F007A5637 /* ExpandedPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandedPostViewController.swift; sourceTree = "<group>"; };
 		41B7478A20EB02A100BA6915 /* Pearing_UpUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Pearing_UpUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		41B7478E20EB02A100BA6915 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41B7479420EB02B200BA6915 /* SignUpViewControllerUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpViewControllerUITest.swift; path = ../../../SignUpViewControllerUITest.swift; sourceTree = "<group>"; };
@@ -134,6 +138,8 @@
 				728A7F0820EBC62D0051F353 /* tabBarViewController.swift */,
 				7267F0F820EBE03C002243F1 /* postTableViewCell.swift */,
 				7267F0FC20EBE45C002243F1 /* postingsTableViewController.swift */,
+				410FD30F20EC086C007A5637 /* SendRequestViewController.swift */,
+				410FD31120EC2C9F007A5637 /* ExpandedPostViewController.swift */,
 			);
 			path = Pearing_Up;
 			sourceTree = "<group>";
@@ -312,9 +318,11 @@
 				916EA22720D7B75100C1085D /* ProfileViewController.swift in Sources */,
 				916EA22520D7B71300C1085D /* SignUpViewController.swift in Sources */,
 				91E774DA20D638740030121E /* AppDelegate.swift in Sources */,
+				410FD31020EC086C007A5637 /* SendRequestViewController.swift in Sources */,
 				9164945C20E7507C00F5467D /* SignUpInfoController.swift in Sources */,
 				7267F0F920EBE03C002243F1 /* postTableViewCell.swift in Sources */,
 				7267F0FD20EBE45C002243F1 /* postingsTableViewController.swift in Sources */,
+				410FD31220EC2C9F007A5637 /* ExpandedPostViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -100,6 +100,25 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
             }
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        self.performSegue(withIdentifier: "contentVideoSegue", sender: indexPath)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "expandPost" {
+            if let collectionCell: SavedPostsCell = sender as? SavedPostsCell {
+                if let collectionView: UICollectionView = collectionCell.superview as? UICollectionView {
+                    if let destination = segue.destination as? ExpandedPostViewController {
+                        // Pass some data to YourViewController
+                        // collectionView.tag will give your selected tableView index
+                        destination.owner = "manan"
+                    }
+                }
+            }
+        }
+    }
     
 //    func request_postsData(url: URL) {
 //        self.myGroup.enter()

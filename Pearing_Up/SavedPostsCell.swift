@@ -17,6 +17,8 @@ class SavedPostsCell: UICollectionViewCell {
     @IBOutlet weak var post_fruit: UILabel!
     @IBOutlet weak var post_city: UILabel!
     
+   // @IBAction
+    
 }
 
 
