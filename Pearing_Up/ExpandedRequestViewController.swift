@@ -26,6 +26,7 @@ class ExpandedRequestViewController: UIViewController {
     override func viewDidLayoutSubviews(){
         super.viewDidLayoutSubviews()
         descriptionUI.sizeToFit()
+
     }
 
     override func didReceiveMemoryWarning() {

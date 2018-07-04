@@ -11,12 +11,53 @@ import Alamofire
 import SwiftyJSON
 
 class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
+    
+    let myGroup = DispatchGroup()
+    
+    
+    func get_RequestData(name: String, completion: @escaping (String) -> Void) {
+        self.myGroup.enter()
+        populate(uname: name)
+        self.myGroup.leave()
+    }
+    
+    func populate(uname : String)
+    {
+        self.myGroup.enter()
+        let url = "https://pearingup.herokuapp.com/" + uname + "/getRequests"
+        Alamofire.request(url, method: .get).responseJSON {
+            response in
+            if(response.result.isSuccess) {
+                let json : JSON = JSON(response.result.value!)
+                //print(json)
+                let requested_people = json["result"].array
+                //print(result)
+                
+                for people in requested_people! {
+                    self.nameList.append(people["username"].string!)
+                    self.descriptionList.append(people["add_msg"].string!)
+                }
+                self.myGroup.leave()
+                
+            } else {
+                print("Inbox View Controller Error")
+                self.myGroup.leave()
+            }
+        }
+    }
+    
+    func update_data() {
+        print("Came at update_Data()")
+        self.inboxTableView.reloadData()
+    }
+    
+    
     //populate this array with names of senders
-    let nameList = ["User1", "User2", "User3", "User4", "User5"]
+    var nameList : [String] = []
     
     //populate this array with attached messages
-    let descriptionList = ["Hello", "I am a test" , "Hey" ,"Let me come over" , "I want to pick your apples. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."]
+    var descriptionList : [String] = []
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
@@ -34,12 +75,25 @@ class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return(cell)
     }
     
+    @IBOutlet weak var inboxTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.inboxTableView.dataSource = self
+        self.inboxTableView.delegate = self
+        //populate(uname : "manan")
+        self.get_RequestData(name: User.Data.username) { data in
+            print("Came here")
+        }
+        myGroup.notify(queue: .main) {
+            self.update_data()
+        }
+        
         // Do any additional setup after loading the view.
     }
-
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -61,15 +115,5 @@ class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
