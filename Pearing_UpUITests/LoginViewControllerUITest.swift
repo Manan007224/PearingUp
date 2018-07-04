@@ -23,7 +23,7 @@ class LoginViewControllerUITest: XCTestCase {
         app.launch()
 
         // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-        app.buttons["LOG IN"].tap()
+        
     }
     
     override func tearDown() {
@@ -32,15 +32,13 @@ class LoginViewControllerUITest: XCTestCase {
     }
     
     func testCorrectLogin() {
-        app.navigationBars["Pearing_Up.LoginView"].buttons["Back"].tap()
-        app.buttons["SIGN UP"].tap()
-        SignUpViewControllerUITest().testCorrectSignUp()
-        
-        app.textFields["htsang@sfu.ca"].tap()
-        app.typeText("ilovetrees78@sfu.ca")
-        app.secureTextFields["Password"].tap()
-        app.typeText("tree3")
         app.buttons["LOG IN"].tap()
+        app.textFields["htsang@sfu.ca"].tap()
+        app.typeText("yosh@sfu.ca")
+        app.secureTextFields["Password"].tap()
+        app.typeText("abc")
+        app.buttons["LOG IN"].tap()
+        
     }
     
 }

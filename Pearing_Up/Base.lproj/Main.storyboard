@@ -190,6 +190,7 @@
                         <viewLayoutGuide key="safeArea" id="5FL-pY-YZP"/>
                     </view>
                     <connections>
+                        <outlet property="confirm_pwd_holder" destination="C7c-eh-VjR" id="gdl-z3-3zJ"/>
                         <outlet property="email_holder" destination="7K5-5r-lrq" id="YW9-jV-eA9"/>
                         <outlet property="pwd_holder" destination="vYn-b8-0Ux" id="mDN-sf-Ht2"/>
                         <outlet property="username_holder" destination="CyA-Vn-aX1" id="fqb-AA-MOh"/>
@@ -532,46 +533,7 @@
                                         <string key="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
                                         <attributes>
                                             <font key="NSFont" size="17" name="HelveticaNeue"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
-                                                <tabStops>
-                                                    <textTab alignment="left" location="28">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="56">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="84">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="112">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="140">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="168">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="196">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="224">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="252">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="280">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="308">
-                                                        <options/>
-                                                    </textTab>
-                                                    <textTab alignment="left" location="336">
-                                                        <options/>
-                                                    </textTab>
-                                                </tabStops>
-                                            </paragraphStyle>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
@@ -1007,11 +969,12 @@
         <image name="user-30" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="id3-Q5-TIk"/>
         <segue reference="N5p-k9-s4t"/>
         <segue reference="orN-1e-Kdb"/>
         <segue reference="vzz-P9-Tgw"/>
         <segue reference="U0U-y2-7XZ"/>
         <segue reference="q2g-qN-pJH"/>
-        <segue reference="QfL-a8-EuT"/>
+        <segue reference="mBS-82-qjM"/>
     </inferredMetricsTieBreakers>
 </document>
