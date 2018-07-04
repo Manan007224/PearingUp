@@ -7,9 +7,12 @@
 //
 
 class User {
-    struct data {
-        static var email = ""
-        static var username = ""
+    struct Data {
+        static var email : String = ""
+        static var username : String = ""
+        static var fullName : String = ""
+        static var address : String = ""
+        static var city : String = ""
     }
 
 }
