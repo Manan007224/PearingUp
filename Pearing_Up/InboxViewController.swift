@@ -25,7 +25,7 @@ class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func populate(uname : String)
     {
         self.myGroup.enter()
-        let url = "https://pearingup.herokuapp.com/manan/getRequests" //eventually use user that's logged in
+        let url = "https://pearingup.herokuapp.com/" + uname + "/getRequests"
         Alamofire.request(url, method: .get).responseJSON {
             response in
             if(response.result.isSuccess) {
@@ -82,7 +82,7 @@ class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.inboxTableView.dataSource = self
         self.inboxTableView.delegate = self
         //populate(uname : "manan")
-        self.get_RequestData(name: "manan") { data in
+        self.get_RequestData(name: User.Data.username) { data in
             print("Came here")
         }
         myGroup.notify(queue: .main) {
