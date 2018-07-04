@@ -135,9 +135,6 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
 //        }
 //    }
     
-    
-    
-    
     func request_Bookmarks(url: URL, completion : @escaping (JSON) -> Void) {
         Alamofire.request(url, method: .get).responseJSON {
             response in
