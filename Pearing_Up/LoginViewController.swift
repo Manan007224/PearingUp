@@ -89,8 +89,9 @@ class LoginViewController: UIViewController {
                     }
                     
 
-                    //self.performSegue(withIdentifier: "bksegue", sender: self)
-                 self.performSegue(withIdentifier: "goToLanding", sender: self)
+                    User.data.email = self.email_holder.text!
+                    //User.data.username = GET REQUEST USING EMAIL TO GET USERNAME
+                    self.performSegue(withIdentifier: "goToLanding", sender: self)
                     
                 }
                 else {

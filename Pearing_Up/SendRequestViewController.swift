@@ -61,7 +61,7 @@ class SendRequestViewController: UIViewController {
                     return
                 }
                 
-                self.performSegue(withIdentifier: "SignupInfo", sender: self)
+                self.performSegue(withIdentifier: "messageSent", sender: self)
             }
             else {
                 print("Error Happened, url is:" + url)
