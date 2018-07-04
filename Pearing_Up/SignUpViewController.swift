@@ -29,6 +29,8 @@ class SignUpViewController: UIViewController {
     let signup_url = "https://pearingup.herokuapp.com/signup"
     @IBOutlet weak var signup_label: UILabel!
     @IBOutlet weak var pwd_holder: UITextField!
+    @IBOutlet weak var confirm_pwd_holder: UITextField!
+    
     @IBOutlet weak var email_holder: UITextField!
     @IBOutlet weak var username_holder: UITextField!
     override func viewDidLoad() {
@@ -41,13 +43,13 @@ class SignUpViewController: UIViewController {
     
     @IBAction func signup_click(_ sender: Any) {
         
-        if(email_holder.text == "" || pwd_holder.text == "" || username_holder.text == ""){
+        if(email_holder.text! == "" || pwd_holder.text! == "" || username_holder.text! == "" || confirm_pwd_holder.text! == ""){
             print("All fields required")
             displayAlert(message: "Please fill in all fields")
             return
         }
         
-        if(valid_email(emailString: email_holder.text!)){
+        if(valid_email(emailString: email_holder.text!) && (confirm_pwd_holder.text! == pwd_holder.text!)){
             let signup_params: [String:String] = ["username": username_holder.text!, "email": email_holder.text!, "password": pwd_holder.text!]
             signup(url: signup_url, params: signup_params)
         }
