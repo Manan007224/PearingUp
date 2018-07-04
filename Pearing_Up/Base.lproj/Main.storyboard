@@ -570,6 +570,7 @@
                     <connections>
                         <outlet property="descriptionUI" destination="UTR-ah-WlX" id="0Xf-9C-vMa"/>
                         <outlet property="nameUI" destination="smy-Pc-sku" id="D0V-s4-reo"/>
+                        <segue destination="rBV-QC-hUM" kind="show" identifier="acceptRequest" id="F78-8O-rt0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qGO-hz-8e9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -998,8 +999,9 @@
     <inferredMetricsTieBreakers>
         <segue reference="id3-Q5-TIk"/>
         <segue reference="N5p-k9-s4t"/>
-        <segue reference="orN-1e-Kdb"/>
-        <segue reference="vzz-P9-Tgw"/>
+        <segue reference="F78-8O-rt0"/>
+        <segue reference="ILV-tI-h8y"/>
+        <segue reference="1Qn-Tn-TJS"/>
         <segue reference="U0U-y2-7XZ"/>
         <segue reference="q2g-qN-pJH"/>
         <segue reference="mBS-82-qjM"/>
