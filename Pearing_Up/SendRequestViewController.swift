@@ -12,9 +12,8 @@ import SwiftyJSON
 
 class SendRequestViewController: UIViewController {
     
-    let message_url = String("https://pearingup.herokuapp.com/sentRequest")
-    var receiverName = String("receiver")
-    var senderName = String("gosh")
+    let message_url : String = "https://pearingup.herokuapp.com/sentRequest"
+    var receiverName : String = "receiver"
     @IBOutlet weak var messageUI: UITextView!
     @IBOutlet weak var lastDateUI: UIDatePicker!
     @IBOutlet weak var firstDateUI: UIDatePicker!
@@ -40,7 +39,7 @@ class SendRequestViewController: UIViewController {
         }
         else {
             let message = ("I am free from: " + dateToString(date: firstDate) + "\nTo: " + dateToString(date: secondDate) + "\n" + messageUI.text)
-            let url = (String(message_url) + "/" + String(senderName) + "/" + String(receiverName))
+            let url = (message_url + "/" + User.Data.username + "/" + receiverName)
             
             serverRequest(url: url, params: ["add_msg" : message])
         }
