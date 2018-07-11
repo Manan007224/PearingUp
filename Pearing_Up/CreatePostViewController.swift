@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class MakePostViewController: UIViewController {
     
@@ -57,7 +58,7 @@ class MakePostViewController: UIViewController {
         }
         else{
             //make params dictionary n call makepost
-            let info_params : [String: String] = ["expected_yield":ExpectedYield.text! ,"fruits":ProduceName.text!]
+            let info_params : [String: String] = ["fruits":ProduceName.text!]
             let username = "manan"
             
             let user_params : [String: Any] = ["owner":username, "info":info_params, "additional_msg": postdescriptionText.text!,"title":titleText.text!]
