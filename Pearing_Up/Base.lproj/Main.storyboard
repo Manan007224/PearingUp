@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ecl-L6-vIy">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -1006,7 +1006,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8O0-ww-kPt">
                                 <rect key="frame" x="20" y="635" width="374" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.73333333329999995" green="0.89411764709999997" blue="0.48627450979999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.73333333333333328" green="0.84705882352941175" blue="0.47843137254901957" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Create Post">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1019,10 +1019,10 @@
                                     <action selector="ApplyToPostingClicked:" destination="jjy-3E-Ljd" eventType="touchUpInside" id="hpf-o6-XtD"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O7T-P1-u3c">
-                                <rect key="frame" x="302" y="396" width="92" height="60"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O7T-P1-u3c">
+                                <rect key="frame" x="334" y="396" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="+" image="plus"/>
                                 <connections>
                                     <action selector="addImage:" destination="NtM-6g-L8n" eventType="touchUpInside" id="PUq-Br-ySK"/>
                                     <action selector="addImg:" destination="89S-0Z-MGj" eventType="touchUpInside" id="U3x-oi-fwL"/>
@@ -1094,6 +1094,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.73333333329999995" green="0.84705882349999995" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.0" green="0.51898276805877686" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
                         <segue destination="e3t-rz-pqt" kind="relationship" relationship="viewControllers" id="1fb-X6-0S9"/>
@@ -1113,16 +1119,17 @@
         <image name="green pear" width="2607" height="2607"/>
         <image name="new post-30" width="30" height="30"/>
         <image name="pear transparent square" width="2607" height="2607"/>
+        <image name="plus" width="512" height="512"/>
         <image name="search-30" width="30" height="30"/>
         <image name="speech-30" width="30" height="30"/>
         <image name="user-30" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="DUk-Iq-ayq"/>
-        <segue reference="6vh-go-YMI"/>
-        <segue reference="AbJ-ml-xA4"/>
+        <segue reference="fil-c6-bul"/>
+        <segue reference="svv-oN-27X"/>
+        <segue reference="ZD5-nr-XXM"/>
         <segue reference="ILV-tI-h8y"/>
-        <segue reference="vzz-P9-Tgw"/>
+        <segue reference="1fb-X6-0S9"/>
         <segue reference="U0U-y2-7XZ"/>
         <segue reference="q2g-qN-pJH"/>
         <segue reference="mBS-82-qjM"/>
