@@ -15,6 +15,7 @@
 		417FA09C20ECA81000C19780 /* ExpandedRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417FA09B20ECA81000C19780 /* ExpandedRequestViewController.swift */; };
 		417FA0A020ECAEC100C19780 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417FA09F20ECAEC100C19780 /* User.swift */; };
 		41B7479720EB303100BA6915 /* LoginViewControllerUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B7479620EB303100BA6915 /* LoginViewControllerUITest.swift */; };
+		41F06C4320F58A0B0038F9B0 /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F06C4220F58A0B0038F9B0 /* CreatePostViewController.swift */; };
 		5B5D3A35067BB15365B8A39E /* Pods_Pearing_Up.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80891CEF7889EB75F0E2F1FD /* Pods_Pearing_Up.framework */; };
 		7267F0F920EBE03C002243F1 /* postTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7267F0F820EBE03C002243F1 /* postTableViewCell.swift */; };
 		7267F0FD20EBE45C002243F1 /* postingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7267F0FC20EBE45C002243F1 /* postingsTableViewController.swift */; };
@@ -52,6 +53,7 @@
 		41B7478A20EB02A100BA6915 /* Pearing_UpUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Pearing_UpUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		41B7478E20EB02A100BA6915 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41B7479620EB303100BA6915 /* LoginViewControllerUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerUITest.swift; sourceTree = "<group>"; };
+		41F06C4220F58A0B0038F9B0 /* CreatePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewController.swift; sourceTree = "<group>"; };
 		62A4F78399698EE9745AD9A0 /* Pods-Pearing_Up.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pearing_Up.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pearing_Up/Pods-Pearing_Up.release.xcconfig"; sourceTree = "<group>"; };
 		7267F0F820EBE03C002243F1 /* postTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = postTableViewCell.swift; sourceTree = "<group>"; };
 		7267F0FC20EBE45C002243F1 /* postingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = postingsTableViewController.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				417FA09B20ECA81000C19780 /* ExpandedRequestViewController.swift */,
 				1310F2EF20EC65B7003A6591 /* InboxTableViewCell.swift */,
 				417FA09F20ECAEC100C19780 /* User.swift */,
+				41F06C4220F58A0B0038F9B0 /* CreatePostViewController.swift */,
 			);
 			path = Pearing_Up;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 				417FA0A020ECAEC100C19780 /* User.swift in Sources */,
 				7267F0F920EBE03C002243F1 /* postTableViewCell.swift in Sources */,
 				7267F0FD20EBE45C002243F1 /* postingsTableViewController.swift in Sources */,
+				41F06C4320F58A0B0038F9B0 /* CreatePostViewController.swift in Sources */,
 				410FD31220EC2C9F007A5637 /* ExpandedPostViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
