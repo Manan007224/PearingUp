@@ -34,32 +34,30 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     override func viewDidLoad() {
         print("yolo")
         super.viewDidLoad()
-        bookmarked_posts.dataSource = self
+        //bookmarked_posts.dataSource = self
         get_bookmarks(url: bookmarks_url)
         get_allPosts() { data in
-            
+            print("completion all_posts")
         }
-        
-//        get_allDetails() { data in
+//      get_allDetails() { data in
 //
-//        }
+//      }
         myGroup.notify(queue: .main) {
             self.update_data()
-            print("All Done")
         }
         
     }
     
     func update_data() {
-        print("Reached this Function")
-        bookmarked_posts.reloadData()
+        self.bookmarked_posts.dataSource = self
+        //bookmarked_posts.reloadData()
+        print("Data Reloaded")
     }
     
     func get_allPosts(completed: @escaping (String) -> Void) {
         self.myGroup.enter()
-        print("Reached allPosts function")
         for pst in temp_posts {
-          let p_url : URL = URL(string: "https://pearingup.herokuapp.com/getpost/apple_post")!
+          let p_url : URL = URL(string: "https://pearingup.herokuapp.com/getpost/manan_post123")!
           self.request_posts(url: p_url)
         }
         self.myGroup.leave()
@@ -67,9 +65,8 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     
     func get_allDetails(completed: @escaping (String) -> Void) {
         self.myGroup.enter()
-        print("Reached Get all Details")
         for pst in temp_posts {
-              let p_url : URL = URL(string: "https://pearingup.herokuapp.com/getpost/getPostsData/apple_post")!
+              let p_url : URL = URL(string: "https://pearingup.herokuapp.com/getpost/getPostsData/manan_post123")!
               self.request_posts(url: p_url)
         }
         self.myGroup.leave()
@@ -77,20 +74,18 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     
     
     func request_posts(url : URL) {
-        print("Reached inside request_post")
             self.myGroup.enter()
             Alamofire.request(url, method: .get).responseString {
                 response in
                 if(response.result.isSuccess) {
                    let temp : JSON = JSON(response.result.value!)
-                    print("Success in get-posts route")
                     self.postsTitles.append("A")
                     self.postAdditionalMsgs.append("A")
                     self.postFruits.append("A")
                     self.postCities.append("Vancouver")
-                    print(response.data!)
                     let postImg = UIImage(data: response.data!)
                     self.postImages.append(postImg!)
+                    //self.bookmarked_posts.reloadData()
                     self.myGroup.leave()
                 }
                 else {
@@ -140,7 +135,6 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
 //        }
 //    }
     
-    
     func request_Bookmarks(url: URL, completion : @escaping (JSON) -> Void) {
         Alamofire.request(url, method: .get).responseJSON {
             response in
@@ -172,21 +166,15 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let saved_posts = collectionView.dequeueReusableCell(withReuseIdentifier: "saved_posts_cell", for: indexPath) as! SavedPostsCell
+        
         saved_posts.post_image.image = postImages[indexPath.row]
         saved_posts.post_city.text! = postCities[indexPath.item]
         saved_posts.post_fruit.text! = postFruits[indexPath.item]
         saved_posts.post_description.text! = postAdditionalMsgs[indexPath.item]
         saved_posts.post_title.text! = postsTitles[indexPath.item]
-        
-     //   saved_posts.postImage.image = postImages[indexPath.row]
-//        saved_posts.postCity.text! = postCities[indexPath.item]
-  //      saved_posts.postFruit.text! = postFruits[indexPath.item]
-//        saved_posts.postDescription.text! = postAdditionalMsgs[indexPath.item]
-  //      saved_posts.postTitle.text! = postsTitles[indexPath.item]
         return saved_posts
     }
-    
-    
+ 
     func displayAlert(message: String){
         let alert_toDisplay = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
         alert_toDisplay.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
@@ -196,11 +184,3 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     }
 
 }
-
-
-
-
-
-
-
-

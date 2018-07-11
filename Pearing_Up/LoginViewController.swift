@@ -29,6 +29,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var pwd_holder: UITextField!
     @IBOutlet weak var email_holder: UITextField!
     let login_url = "https://pearingup.herokuapp.com/login"
+    let profile_url = "http://pearingup.herokuapp.com/Profile/"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,10 +88,14 @@ class LoginViewController: UIViewController {
                         }
                         
                     }
-                    
+        
 
-                    //self.performSegue(withIdentifier: "bksegue", sender: self)
-                 self.performSegue(withIdentifier: "goToLanding", sender: self)
+                    User.Data.email = self.email_holder.text!
+                    if(temp["result"].exists()){
+                        User.Data.username = temp["result"].rawString()!
+                        self.userSetUp()
+                    }
+                    self.performSegue(withIdentifier: "goToLanding", sender: self)
                     
                 }
                 else {
@@ -105,6 +110,25 @@ class LoginViewController: UIViewController {
             return
         }
         
+    }
+    
+    func userSetUp() {
+        let url = profile_url + User.Data.username
+        Alamofire.request(url, method: .get).responseJSON{
+            response in
+            if response.result.isSuccess {
+                let profile : JSON = JSON(response.result.value!)
+                if(profile["full_name"].exists()) {
+                    User.Data.fullName = profile["full_name"].rawString()!
+                }
+                if(profile["location"].exists()) {
+                    User.Data.address = profile["location"].rawString()!
+                }
+                if(profile["city"].exists()) {
+                    User.Data.city = profile["city"].rawString()!
+                }
+            }
+        }
     }
     
     func valid_email(emailString: String) -> Bool {
@@ -132,8 +156,8 @@ class LoginViewController: UIViewController {
         let alert_toDisplay = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
         
         alert_toDisplay.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
-            self.email_holder.text = "email"
-            self.pwd_holder.text = "password"
+            //self.email_holder.text = "email"
+            //self.pwd_holder.text = "password"
         }))
         self.present(alert_toDisplay, animated: true, completion: nil)
     }

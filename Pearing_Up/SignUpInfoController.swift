@@ -42,22 +42,27 @@ class SignUpInfoController: UIViewController {
     func signup_info(url: URL, params:[String:String]){
         
         // Pass the request to the server here
-        
-        Alamofire.request(url, method: .post, parameters: params).responseJSON{
-            response in
-            if(response.result.isSuccess) {
-                let temp : JSON  = JSON(response.result.value!)
-                print(temp)
-                
-                if(temp["code"] == 302 || temp["code"] == 400 || temp["code"] == 409) {
-                    self.displayAlert(message: String(describing: temp["result"]))
+        if(user_address.text! == "" || user_city.text! == "" || user_name.text! == ""){
+            displayAlert(message: "Please fill in all fields")
+            return
+        }
+        else {
+            Alamofire.request(url, method: .post, parameters: params).responseJSON{
+                response in
+                if(response.result.isSuccess) {
+                    let temp : JSON  = JSON(response.result.value!)
+                    print(temp)
+                    
+                    if(temp["code"] == 302 || temp["code"] == 400 || temp["code"] == 409) {
+                        self.displayAlert(message: String(describing: temp["result"]))
+                    }
+                    
+                    self.performSegue(withIdentifier: "SingupToLogin", sender: self)
                 }
-                
-                self.performSegue(withIdentifier: "SingupToLogin", sender: self)
-            }
-            else {
-                print("Error")
-                print(response.error ?? "None")
+                else {
+                    print("Error")
+                    print(response.error ?? "None")
+                }
             }
         }
     }
@@ -68,9 +73,9 @@ class SignUpInfoController: UIViewController {
         let alert_toDisplay = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
         
         alert_toDisplay.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
-            self.user_city.text = "city"
-            self.user_address.text = "Location"
-            self.user_name.text = "Full Name"
+            //self.user_city.text = "city"
+            //self.user_address.text = "Location"
+            //self.user_name.text = "Full Name"
         }))
         self.present(alert_toDisplay, animated: true, completion: nil)
     }
