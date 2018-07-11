@@ -13,12 +13,13 @@ class MakePostViewController: UIViewController {
     
     // var imgData: NSData!
     var img : UIImage?
+  
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleText: UITextView!
-    @IBOutlet weak var postdescriptionText: UITextView!
+    @IBOutlet weak var postdescriptionText: UITextField!
     @IBOutlet weak var ProduceName: UITextField!
-    @IBOutlet weak var ExpectedYield: UITextField!
     @IBOutlet weak var location: UITextField!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
