@@ -99,11 +99,10 @@ class MakePostViewController: UIViewController {
         }
     }
     
-    
-    @IBAction func addImage(_ sender: Any) {
+    @IBAction func addImg(_ sender: Any) {
         print("yollllll")
         let imagePickerController = UIImagePickerController()
-        imagePickerController.delegate = self
+        //imagePickerController.delegate = self
         
         let actionSheet = UIAlertController(title: "Photo Source", message: "Choose a Source", preferredStyle: .actionSheet)
         actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: {(action:UIAlertAction) in
@@ -127,6 +126,8 @@ class MakePostViewController: UIViewController {
         
         self.present(actionSheet, animated:true, completion: nil)
     }
+    
+
     
 //    @IBAction func addImg(_ sender: Any) {
 //        print("yollllll")
