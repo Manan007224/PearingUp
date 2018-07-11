@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="AppleSDGothicNeo.ttc">
+            <string>AppleSDGothicNeo-Bold</string>
+            <string>AppleSDGothicNeo-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -542,7 +548,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qGO-hz-8e9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2729" y="2935"/>
+            <point key="canvasLocation" x="1880" y="3042"/>
         </scene>
         <!--Expanded Post View Controller-->
         <scene sceneID="8gd-84-wDb">
@@ -692,6 +698,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="sendMessage:" destination="UwV-Qf-ZFd" eventType="touchUpInside" id="Xvs-eR-kOc"/>
+                                    <segue destination="T7x-ly-ZLS" kind="show" id="AbJ-ml-xA4"/>
                                 </connections>
                             </button>
                             <view alpha="0.64999997615814209" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8kR-y5-Py8">
@@ -736,7 +743,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3yZ-AZ-lR4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3378" y="3647"/>
+            <point key="canvasLocation" x="3538" y="3651"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="x6O-lY-biJ">
@@ -790,6 +797,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h9E-XF-Dmw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3537.68115942029" y="1091.5760869565217"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="mQJ-d4-epk">
+            <objects>
+                <viewController id="hbR-Kj-2zu" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9A2-Gd-3jF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="zoV-NT-LJ2"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WSD-is-DbX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4500" y="1101"/>
         </scene>
         <!--Saved View Controller-->
         <scene sceneID="1Ac-sz-mT4">
@@ -896,6 +918,7 @@
         <image name="user-30" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="AbJ-ml-xA4"/>
         <segue reference="ILV-tI-h8y"/>
         <segue reference="vzz-P9-Tgw"/>
         <segue reference="U0U-y2-7XZ"/>
