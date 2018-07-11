@@ -985,6 +985,14 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O7T-P1-u3c">
+                                <rect key="frame" x="20" y="464" width="374" height="252"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="addImage:" destination="NtM-6g-L8n" eventType="touchUpInside" id="PUq-Br-ySK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <viewLayoutGuide key="safeArea" id="NrI-m0-CUg"/>
@@ -992,6 +1000,7 @@
                     <tabBarItem key="tabBarItem" title="New Post" image="new post-30" id="nZt-sS-mfr"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fs4-7r-M6z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="NtM-6g-L8n" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3537.68115942029" y="-121.46739130434784"/>
         </scene>
@@ -1121,7 +1130,7 @@
         <image name="user-30" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xQx-fm-Xb8"/>
+        <segue reference="K00-bQ-X3V"/>
         <segue reference="DUk-Iq-ayq"/>
         <segue reference="6vh-go-YMI"/>
         <segue reference="AbJ-ml-xA4"/>
