@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ecl-L6-vIy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="89S-0Z-MGj">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="AppleSDGothicNeo.ttc">
-            <string>AppleSDGothicNeo-Bold</string>
-            <string>AppleSDGothicNeo-Regular</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -963,7 +957,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IbR-1N-pbh">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IbR-1N-pbh">
                                 <rect key="frame" x="20" y="98" width="374" height="358"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -972,16 +966,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Write a title..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="say-LG-K0s" customClass="CreatePostViewController">
-                                <rect key="frame" x="20" y="476" width="374" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="titleText:" destination="657-Vz-WyF" eventType="editingDidEnd" id="7dW-c3-DNy"/>
-                                </connections>
-                            </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Write a description..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qr5-qp-Txx">
                                 <rect key="frame" x="20" y="514" width="374" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1016,7 +1000,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="ApplyToPostingClicked:" destination="jjy-3E-Ljd" eventType="touchUpInside" id="hpf-o6-XtD"/>
+                                    <action selector="CreatePost:" destination="89S-0Z-MGj" eventType="touchUpInside" id="g4r-F6-iW7"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O7T-P1-u3c">
@@ -1028,11 +1012,25 @@
                                     <action selector="addImg:" destination="89S-0Z-MGj" eventType="touchUpInside" id="U3x-oi-fwL"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Write a title..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gWg-x8-QyW">
+                                <rect key="frame" x="20" y="476" width="374" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <viewLayoutGuide key="safeArea" id="NrI-m0-CUg"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="New Post" image="new post-30" id="nZt-sS-mfr"/>
+                    <connections>
+                        <outlet property="descriptionTextView" destination="qr5-qp-Txx" id="IaO-tg-mpd"/>
+                        <outlet property="fruitTextView" destination="CCs-ha-kPG" id="bl1-dA-v0d"/>
+                        <outlet property="imageView" destination="IbR-1N-pbh" id="scY-0Y-78Y"/>
+                        <outlet property="locationTextView" destination="U9t-fe-eWw" id="qja-ef-oI5"/>
+                        <outlet property="titleTextView" destination="gWg-x8-QyW" id="fYD-nN-iKq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fs4-7r-M6z" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="NtM-6g-L8n" userLabel="Exit" sceneMemberID="exit"/>
@@ -1074,15 +1072,10 @@
                         <viewLayoutGuide key="safeArea" id="iQ7-of-0i0"/>
                     </view>
                     <connections>
-                        <outlet property="ProduceName" destination="CCs-ha-kPG" id="wBU-Da-v4W"/>
                         <outlet property="imageView" destination="V2s-fk-9wQ" id="Zkw-ac-fIt"/>
-                        <outlet property="location" destination="U9t-fe-eWw" id="Ynh-bY-bs5"/>
-                        <outlet property="postdescriptionText" destination="qr5-qp-Txx" id="d5S-4p-MUS"/>
-                        <outlet property="titleText" destination="say-LG-K0s" id="Afj-u9-BN9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JY7-AL-TCP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="657-Vz-WyF" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4318.840579710145" y="-119.0217391304348"/>
         </scene>
@@ -1125,13 +1118,13 @@
         <image name="user-30" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fil-c6-bul"/>
+        <segue reference="DUk-Iq-ayq"/>
         <segue reference="svv-oN-27X"/>
         <segue reference="ZD5-nr-XXM"/>
         <segue reference="ILV-tI-h8y"/>
         <segue reference="1fb-X6-0S9"/>
         <segue reference="U0U-y2-7XZ"/>
         <segue reference="q2g-qN-pJH"/>
-        <segue reference="mBS-82-qjM"/>
+        <segue reference="nZi-Zf-xsI"/>
     </inferredMetricsTieBreakers>
 </document>
