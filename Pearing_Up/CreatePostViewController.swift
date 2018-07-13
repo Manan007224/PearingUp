@@ -66,7 +66,7 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
             return
         }
         else{
-            //make params dictionary n call makepost
+            //UPLOAD PICTURE
             let url_image = "https://pearingup.herokuapp.com/upload/"
             
             let image_params: [String: Any] = ["file" : imageView.image!]
@@ -79,7 +79,7 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
             
             let user_params : [String: Any] = ["owner":username, "info":info_params, "additional_msg": descriptionTextView.text!,"title":titleTextView.text!]
             
-            // get username
+            //UPLOAD POST
             let url_post = "https://pearingup.herokuapp.com/uploadPostDetails/" + id
             print(url_post)
             makePost(url: url_post, params: user_params)
@@ -87,7 +87,7 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     
-    //
+    //Completion handler to retrieve json response data
     func uploadData(url : String, params : [String : Any], completion: @escaping (JSON) -> Void){
         Alamofire.request(url, method: .post, parameters: params).responseJSON{
             response in
@@ -188,16 +188,5 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+
 }
