@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="AppleSDGothicNeo.ttc">
-            <string>AppleSDGothicNeo-Bold</string>
-            <string>AppleSDGothicNeo-Regular</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -480,13 +474,14 @@
                         <viewLayoutGuide key="safeArea" id="6I8-ix-tY0"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Explore" image="search-30" landscapeImage="search-30" id="hQO-eR-8RS"/>
+                    <navigationItem key="navigationItem" id="7Q6-wD-wGu"/>
                     <connections>
                         <outlet property="bookmarked_posts" destination="k0C-eF-uFw" id="GGU-Gp-uXt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8e0-4b-Did" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1912" y="951"/>
+            <point key="canvasLocation" x="683" y="951"/>
         </scene>
         <!--Expanded Request View Controller-->
         <scene sceneID="U1Q-7F-7cf">
@@ -497,7 +492,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G1E-cT-L2q">
-                                <rect key="frame" x="20" y="641" width="177" height="32"/>
+                                <rect key="frame" x="20" y="678" width="177" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.73333333329999995" green="0.89411764709999997" blue="0.48627450979999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Accept">
@@ -551,7 +546,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oRf-mg-XTL">
-                                <rect key="frame" x="217" y="641" width="177" height="32"/>
+                                <rect key="frame" x="217" y="678" width="177" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Decline">
@@ -601,7 +596,7 @@
                                             <color key="titleColor" red="0.51944217410000004" green="0.77020542510000001" blue="0.35725247710000002" alpha="0.64000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
                                         <connections>
-                                            <segue destination="e3t-rz-pqt" kind="show" id="vzz-P9-Tgw"/>
+                                            <segue destination="e3t-rz-pqt" kind="show" id="Zws-NX-V0I"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -659,7 +654,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kkQ-NN-Zla" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="754" y="951"/>
+            <point key="canvasLocation" x="-475" y="951"/>
         </scene>
         <!--Send Request View Controller-->
         <scene sceneID="ty9-Y2-afl">
@@ -725,7 +720,6 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="sendMessage:" destination="UwV-Qf-ZFd" eventType="touchUpInside" id="Xvs-eR-kOc"/>
-                                    <segue destination="T7x-ly-ZLS" kind="show" id="AbJ-ml-xA4"/>
                                 </connections>
                             </button>
                             <view alpha="0.64999997615814209" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8kR-y5-Py8">
@@ -770,7 +764,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3yZ-AZ-lR4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-470" y="951"/>
+            <point key="canvasLocation" x="-1700" y="951"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="x6O-lY-biJ">
@@ -796,7 +790,6 @@
                                 </state>
                                 <connections>
                                     <action selector="gotobookmarks:" destination="T7x-ly-ZLS" eventType="touchUpInside" id="vvK-64-HD5"/>
-                                    <segue destination="e3t-rz-pqt" kind="show" identifier="bookmarkslist" id="1Qn-Tn-TJS"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vXU-zB-R28">
@@ -881,6 +874,15 @@
                     <view key="view" contentMode="scaleToFill" id="i94-VY-wpq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Messaging System Goes Here" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vKM-5S-ysf">
+                                <rect key="frame" x="127" y="353" width="287" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="4Gx-si-cgn"/>
@@ -890,13 +892,13 @@
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qTN-FK-izu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="left" id="VWA-dg-O3q">
+                <swipeGestureRecognizer direction="right" id="VWA-dg-O3q">
                     <connections>
                         <segue destination="rBV-QC-hUM" kind="show" id="1Ae-QY-D3E"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="5628" y="2663"/>
+            <point key="canvasLocation" x="5627.536231884058" y="2662.5"/>
         </scene>
         <!--Item-->
         <scene sceneID="pzS-GX-Vy6">
@@ -982,7 +984,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pl6-9f-gZL" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="right" id="lxC-tQ-GEc">
+                <swipeGestureRecognizer direction="left" id="lxC-tQ-GEc">
                     <connections>
                         <segue destination="x6d-PZ-yBg" kind="show" id="k3r-5W-sJW"/>
                     </connections>
@@ -1078,6 +1080,25 @@
             </objects>
             <point key="canvasLocation" x="3158" y="45"/>
         </scene>
+        <!--Item-->
+        <scene sceneID="mC2-wh-oKp">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="RRd-C6-gK0" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="RFx-yc-Ayb"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WAE-00-dlB">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7WH-ZU-SZK">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="e3t-rz-pqt" kind="relationship" relationship="rootViewController" id="Gt5-ag-1hF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xrJ-0j-dXT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1912" y="976"/>
+        </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="5Lr-ls-7M1">
             <objects>
@@ -1094,7 +1115,7 @@
                         </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
-                        <segue destination="e3t-rz-pqt" kind="relationship" relationship="viewControllers" id="1fb-X6-0S9"/>
+                        <segue destination="RRd-C6-gK0" kind="relationship" relationship="viewControllers" id="R9Z-qa-Yau"/>
                         <segue destination="skj-eO-Pi3" kind="relationship" relationship="viewControllers" id="xvS-xp-wOa"/>
                         <segue destination="89S-0Z-MGj" kind="relationship" relationship="viewControllers" id="fil-c6-bul"/>
                         <segue destination="4zI-lJ-voS" kind="relationship" relationship="viewControllers" id="bzz-km-9hB"/>
@@ -1117,10 +1138,9 @@
         <image name="user-30" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6vh-go-YMI"/>
-        <segue reference="ZD5-nr-XXM"/>
-        <segue reference="orN-1e-Kdb"/>
-        <segue reference="1Qn-Tn-TJS"/>
+        <segue reference="1Ae-QY-D3E"/>
+        <segue reference="ILV-tI-h8y"/>
+        <segue reference="Zws-NX-V0I"/>
         <segue reference="ah8-Pd-8H0"/>
         <segue reference="Qi0-SO-NHl"/>
         <segue reference="QfL-a8-EuT"/>

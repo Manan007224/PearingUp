@@ -45,7 +45,8 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         myGroup.notify(queue: .main) {
             self.update_data()
         }
-        
+        self.tabBarController?.tabBar.isHidden = false
+
     }
     
     func update_data() {

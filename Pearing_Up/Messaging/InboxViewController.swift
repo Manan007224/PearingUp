@@ -88,6 +88,8 @@ class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDat
         myGroup.notify(queue: .main) {
             self.update_data()
         }
+        self.tabBarController?.tabBar.isHidden = false
+
         
         // Do any additional setup after loading the view.
     }

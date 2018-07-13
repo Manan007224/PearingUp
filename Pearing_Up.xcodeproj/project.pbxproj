@@ -93,6 +93,56 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4197900620F84A4900DD6282 /* Explore */ = {
+			isa = PBXGroup;
+			children = (
+				410FD31120EC2C9F007A5637 /* ExpandedPostViewController.swift */,
+				410FD30F20EC086C007A5637 /* SendRequestViewController.swift */,
+				7267F0FC20EBE45C002243F1 /* postingsTableViewController.swift */,
+				9164948920E7C9A900F5467D /* SavedPostsCell.swift */,
+				9164948720E7C8F700F5467D /* SavedPostsViewController.swift */,
+			);
+			path = Explore;
+			sourceTree = "<group>";
+		};
+		4197900720F84A6D00DD6282 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				91E774DB20D638740030121E /* ViewController.swift */,
+				9164945B20E7507C00F5467D /* SignUpInfoController.swift */,
+				916EA22420D7B71300C1085D /* SignUpViewController.swift */,
+				916EA22220D7B6D900C1085D /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		4197900820F84A9400DD6282 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				916EA22620D7B75100C1085D /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		4197900920F84AA400DD6282 /* Create Post */ = {
+			isa = PBXGroup;
+			children = (
+				7267F0F820EBE03C002243F1 /* postTableViewCell.swift */,
+				41F06C4220F58A0B0038F9B0 /* CreatePostViewController.swift */,
+			);
+			path = "Create Post";
+			sourceTree = "<group>";
+		};
+		4197900A20F84AB700DD6282 /* Messaging */ = {
+			isa = PBXGroup;
+			children = (
+				417FA09B20ECA81000C19780 /* ExpandedRequestViewController.swift */,
+				1310F2ED20EC62C3003A6591 /* InboxViewController.swift */,
+				1310F2EF20EC65B7003A6591 /* InboxTableViewCell.swift */,
+			);
+			path = Messaging;
+			sourceTree = "<group>";
+		};
 		41B7478B20EB02A100BA6915 /* Pearing_UpUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -134,27 +184,17 @@
 		91E774D820D638740030121E /* Pearing_Up */ = {
 			isa = PBXGroup;
 			children = (
-				91E774D920D638740030121E /* AppDelegate.swift */,
-				91E774DB20D638740030121E /* ViewController.swift */,
-				9164948720E7C8F700F5467D /* SavedPostsViewController.swift */,
-				9164948920E7C9A900F5467D /* SavedPostsCell.swift */,
-				9164945B20E7507C00F5467D /* SignUpInfoController.swift */,
 				91E774DD20D638740030121E /* Main.storyboard */,
-				916EA22620D7B75100C1085D /* ProfileViewController.swift */,
-				916EA22420D7B71300C1085D /* SignUpViewController.swift */,
-				916EA22220D7B6D900C1085D /* LoginViewController.swift */,
+				417FA09F20ECAEC100C19780 /* User.swift */,
+				4197900A20F84AB700DD6282 /* Messaging */,
+				4197900920F84AA400DD6282 /* Create Post */,
+				4197900820F84A9400DD6282 /* Profile */,
+				4197900720F84A6D00DD6282 /* Login */,
+				4197900620F84A4900DD6282 /* Explore */,
+				91E774D920D638740030121E /* AppDelegate.swift */,
 				91E774E020D638740030121E /* Assets.xcassets */,
 				91E774E520D638740030121E /* Info.plist */,
 				728A7F0820EBC62D0051F353 /* tabBarViewController.swift */,
-				7267F0F820EBE03C002243F1 /* postTableViewCell.swift */,
-				7267F0FC20EBE45C002243F1 /* postingsTableViewController.swift */,
-				410FD30F20EC086C007A5637 /* SendRequestViewController.swift */,
-				410FD31120EC2C9F007A5637 /* ExpandedPostViewController.swift */,
-				1310F2ED20EC62C3003A6591 /* InboxViewController.swift */,
-				417FA09B20ECA81000C19780 /* ExpandedRequestViewController.swift */,
-				1310F2EF20EC65B7003A6591 /* InboxTableViewCell.swift */,
-				417FA09F20ECAEC100C19780 /* User.swift */,
-				41F06C4220F58A0B0038F9B0 /* CreatePostViewController.swift */,
 			);
 			path = Pearing_Up;
 			sourceTree = "<group>";

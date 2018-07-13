@@ -26,7 +26,7 @@ class ExpandedRequestViewController: UIViewController {
     override func viewDidLayoutSubviews(){
         super.viewDidLayoutSubviews()
         descriptionUI.sizeToFit()
-
+        self.tabBarController?.tabBar.isHidden = true
     }
 
     override func didReceiveMemoryWarning() {
