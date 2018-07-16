@@ -10,12 +10,21 @@ import UIKit
 
 class SavedPostsCell: UICollectionViewCell {
     
-
     @IBOutlet weak var post_image: UIImageView!
+    
     @IBOutlet weak var post_title: UILabel!
+    
     @IBOutlet weak var post_description: UILabel!
+    
     @IBOutlet weak var post_fruit: UILabel!
+    
     @IBOutlet weak var post_city: UILabel!
+    
+    // @IBOutlet weak var post_image: UIImageView!
+    //@IBOutlet weak var post_title: UILabel!
+    //@IBOutlet weak var post_description: UILabel!
+    //@IBOutlet weak var post_fruit: UILabel!
+    //@IBOutlet weak var post_city: UILabel!
     
    // @IBAction
     

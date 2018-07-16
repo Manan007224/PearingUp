@@ -66,22 +66,26 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
             if( response.result.isSuccess){
                 let temp : JSON = JSON(response.result.value!)
                 let posts : JSON = temp["Posts"]
-               
+                print(posts)
+                //print(info["fruits"])
+                
                 self.postCount = posts.count
                 print(self.postCount )
                 print("=== postcoutn")
                 for i in 0...self.postCount{
                     var post : PostObject = PostObject.init()
+                                    let info : JSON = posts[i]["info"]
                     post.title = posts[i]["title"].stringValue
                     post.additional_msg = posts[i]["additional_msg"].stringValue
                     post.id = posts[i]["id"].stringValue
                     post.img_id = posts[i]["img_id"].stringValue
                     post.owner = posts[i]["owner"].stringValue
+                    post.fruit = info["fruits"].stringValue
                     
-                   
                     self.allposts.append(post)
-                    
                 }
+                
+
                 /*
                  var additional_msg : String = ""
                  var id : String = ""
@@ -92,6 +96,20 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
                 //let image_url : URL = URL(string: "https://pearingup.herokuapp.com/getpost" + title)!
                 //getimage(url_image)
                // self.prepareArrays()
+                self.myGroup.leave()
+                
+                self.myGroup.enter()
+                
+                print("fucn collectionview")
+                for i in 0...self.postCount {
+                    
+                    self.postTitles.append( self.allposts[i].title )
+                    self.postAdditionalMsgs.append(self.allposts[i].additional_msg )
+                    self.postFruits.append( self.allposts[i].fruit )
+
+                    print(self.postTitles[i])
+                }
+                
                 self.myGroup.leave()
             }
             else{
@@ -108,7 +126,6 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         Alamofire.request(url, method: .get).responseJSON {
              response in
              if(response.result.isSuccess) {
-
                  self.myGroup.leave()
              }
              else {
@@ -127,17 +144,10 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     }
     
     func prepareArrays(){
-        self.myGroup.enter()
-        print("fucn collectionview")
-        for i in 0...2 {
-            postTitles.append( self.allposts[i].title )
-            postAdditionalMsgs.append(self.allposts[i].additional_msg)
-            print(postTitles[i])
-            
-            //postFruits.append(self.allposts[i].fruit)
-        }
+       // self.myGroup.enter()
+       
         
-        self.myGroup.leave()
+      //  self.myGroup.leave()
     }
     
     
@@ -155,10 +165,14 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
                     if let destination = segue.destination as? ExpandedPostViewController {
                         // Pass some data to YourViewController
                         // collectionView.tag will give your selected tableView index
-                        destination.owner = "manan"
+                        destination.owner = User.Data.username
                         
-                        destination.titl = tArray[1]
-                        destination.desc = tDescription[1]
+                        print("``````````")
+                        //print(sender.se)
+                        
+                        destination.titl = postTitles[0]
+                        destination.desc = postAdditionalMsgs[0]
+                        destination.fruitnme = postFruits[0]
                         
                         
                         // pass the values to destination
@@ -223,8 +237,8 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         let saved_posts = collectionView.dequeueReusableCell(withReuseIdentifier: "saved_posts_cell", for: indexPath) as! SavedPostsCell
 
         
-        saved_posts.post_image.image = postImages[indexPath.row]
-        saved_posts.post_city.text! = postCities[indexPath.item]
+      //  saved_posts.post_image.image = postImages[indexPath.row]
+       // saved_posts.post_city.text! = postCities[indexPath.item]
         saved_posts.post_fruit.text! = postFruits[indexPath.item]
         saved_posts.post_description.text! = postAdditionalMsgs[indexPath.item]
         saved_posts.post_title.text! = postTitles[indexPath.item]
