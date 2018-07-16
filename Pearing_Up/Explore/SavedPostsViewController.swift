@@ -17,11 +17,15 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     
     let bookmarks_url : URL = URL(string: "https://pearingup.herokuapp.com/manan/savedposts")!
     let posts_url : URL = URL(string: "https://pearingup.herokuapp.com/getpost/apple_post")!
-    var postsTitles : [String] = []
+    var postTitles : [String] = []
     var postAdditionalMsgs : [String] = []
     var postFruits: [String] = []
     var postCities : [String] = []
     var postImages : [UIImage] = []
+    var postCount : Int = 0
+    var allposts : [PostObject] = []
+    
+    
     let tArray = ["A", "B", "C", "D", "E"]
     var posts_name : [String]  = []
     let temp_posts = ["apple_post", "banana_post"]
@@ -31,58 +35,69 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     let tCity = ["Vancouver", "Burnaby", "Surrey", "Coquitlam", "Richmond"]
     
     @IBOutlet weak var bookmarked_posts: UICollectionView!
-    
+   
     let myGroup = DispatchGroup()
     
     override func viewDidLoad() {
        // print("yolo")
         super.viewDidLoad()
-        /*
-        bookmarked_posts.dataSource = self
-        get_bookmarks(url: bookmarks_url)
         
-        get_allPosts() { data in
-            print("completion all_posts")
-        }
-//      get_allDetails() { data in
-
-//      }
-
-        */
         let all_titles_url : URL = URL(string: "https://pearingup.herokuapp.com/allPosts")!
         get_titles(url: all_titles_url)
         
         myGroup.notify(queue: .main) {
+            print("before update")
             self.update_data()
         }
         self.tabBarController?.tabBar.isHidden = false
         
     }
+    /*
+     get post data
+     get post image
+     put in an array
+     
+     */
     func get_titles(url: URL){
+        
         self.myGroup.enter()
-
         Alamofire.request(url, method: .get).responseJSON { response in
             
             if( response.result.isSuccess){
                 let temp : JSON = JSON(response.result.value!)
                 let posts : JSON = temp["Posts"]
-                let title: String = posts[0]["title"].stringValue
-                print(title)
-                
+               
+                self.postCount = posts.count
+                print(self.postCount )
+                print("=== postcoutn")
+                for i in 0...self.postCount{
+                    var post : PostObject = PostObject.init()
+                    post.title = posts[i]["title"].stringValue
+                    post.additional_msg = posts[i]["additional_msg"].stringValue
+                    post.id = posts[i]["id"].stringValue
+                    post.img_id = posts[i]["img_id"].stringValue
+                    post.owner = posts[i]["owner"].stringValue
+                    
+                   
+                    self.allposts.append(post)
+                    
+                }
+                /*
+                 var additional_msg : String = ""
+                 var id : String = ""
+                 var img_id: String = ""
+                 var owner : String = ""
+                 var title : String = "" */
                 
                 //let image_url : URL = URL(string: "https://pearingup.herokuapp.com/getpost" + title)!
-       
                 //getimage(url_image)
-                //print(posts[0]["owner"])
-              //  var sJson = JSONSerialization.JSONObjectWithData(temp["Posts"], options: .MutableContainers) as NSArray
-                //var post : PostObject = PostObject.init()
+               // self.prepareArrays()
                 self.myGroup.leave()
             }
             else{
                 print(response.result.error!)
                 self.myGroup.leave()
             }
-            
         }
     }
     
@@ -106,33 +121,27 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     
     func update_data() {
         self.bookmarked_posts.dataSource = self
+        
         //bookmarked_posts.reloadData()
         print("Data Reloaded")
     }
     
-    func get_allPosts(completed: @escaping (String) -> Void) {
+    func prepareArrays(){
         self.myGroup.enter()
-        for pst in temp_posts {
-            //
-            //
-          let p_url : URL = URL(string: "https://pearingup.herokuapp.com/getpost/manan_post123")!
-        //  self.request_posts(url: p_url)
-        }
-        self.myGroup.leave()
-    }
-    
-    func get_allDetails(completed: @escaping (String) -> Void) {
-        self.myGroup.enter()
-        for pst in temp_posts {
-              let p_url : URL = URL(string: "https://pearingup.herokuapp.com/getpost/getPostsData/manan_post123")!
-             // self.request_posts(url: p_url)
+        print("fucn collectionview")
+        for i in 0...2 {
+            postTitles.append( self.allposts[i].title )
+            postAdditionalMsgs.append(self.allposts[i].additional_msg)
+            print(postTitles[i])
+            
+            //postFruits.append(self.allposts[i].fruit)
         }
         
         self.myGroup.leave()
-        
     }
     
-   
+    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         self.performSegue(withIdentifier: "contentVideoSegue", sender: indexPath)
@@ -153,7 +162,6 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
                         
                         
                         // pass the values to destination
-                    
                     }
                 }
             }
@@ -205,18 +213,21 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     
     ////////////////////////////
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return postCities.count
+        // originally was postTitle.count
+        
+        return postTitles.count
     }
-    
+
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let saved_posts = collectionView.dequeueReusableCell(withReuseIdentifier: "saved_posts_cell", for: indexPath) as! SavedPostsCell
+
         
         saved_posts.post_image.image = postImages[indexPath.row]
         saved_posts.post_city.text! = postCities[indexPath.item]
         saved_posts.post_fruit.text! = postFruits[indexPath.item]
         saved_posts.post_description.text! = postAdditionalMsgs[indexPath.item]
-        saved_posts.post_title.text! = postsTitles[indexPath.item]
+        saved_posts.post_title.text! = postTitles[indexPath.item]
         return saved_posts
     }
  

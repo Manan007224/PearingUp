@@ -16,4 +16,6 @@ class PostObject {
          var owner : String = ""
          var title : String = ""
          var pickers : [String] = [""]
+    
+         var fruit : String = ""
 }
