@@ -19,6 +19,7 @@
 		5B5D3A35067BB15365B8A39E /* Pods_Pearing_Up.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80891CEF7889EB75F0E2F1FD /* Pods_Pearing_Up.framework */; };
 		7267F0F920EBE03C002243F1 /* postTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7267F0F820EBE03C002243F1 /* postTableViewCell.swift */; };
 		7267F0FD20EBE45C002243F1 /* postingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7267F0FC20EBE45C002243F1 /* postingsTableViewController.swift */; };
+		727C1B0B20FC73240033A53C /* PostObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727C1B0A20FC73240033A53C /* PostObject.swift */; };
 		728A7F0920EBC62D0051F353 /* tabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728A7F0820EBC62D0051F353 /* tabBarViewController.swift */; };
 		9164945C20E7507C00F5467D /* SignUpInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9164945B20E7507C00F5467D /* SignUpInfoController.swift */; };
 		9164948820E7C8F700F5467D /* SavedPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9164948720E7C8F700F5467D /* SavedPostsViewController.swift */; };
@@ -57,6 +58,7 @@
 		62A4F78399698EE9745AD9A0 /* Pods-Pearing_Up.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pearing_Up.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pearing_Up/Pods-Pearing_Up.release.xcconfig"; sourceTree = "<group>"; };
 		7267F0F820EBE03C002243F1 /* postTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = postTableViewCell.swift; sourceTree = "<group>"; };
 		7267F0FC20EBE45C002243F1 /* postingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = postingsTableViewController.swift; sourceTree = "<group>"; };
+		727C1B0A20FC73240033A53C /* PostObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostObject.swift; sourceTree = "<group>"; };
 		728A7F0820EBC62D0051F353 /* tabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tabBarViewController.swift; sourceTree = "<group>"; };
 		80891CEF7889EB75F0E2F1FD /* Pods_Pearing_Up.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pearing_Up.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9164945B20E7507C00F5467D /* SignUpInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpInfoController.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				91E774DD20D638740030121E /* Main.storyboard */,
+				727C1B0A20FC73240033A53C /* PostObject.swift */,
 				417FA09F20ECAEC100C19780 /* User.swift */,
 				4197900A20F84AB700DD6282 /* Messaging */,
 				4197900920F84AA400DD6282 /* Create Post */,
@@ -365,6 +368,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				727C1B0B20FC73240033A53C /* PostObject.swift in Sources */,
 				916EA22320D7B6D900C1085D /* LoginViewController.swift in Sources */,
 				9164948820E7C8F700F5467D /* SavedPostsViewController.swift in Sources */,
 				91E774DC20D638740030121E /* ViewController.swift in Sources */,

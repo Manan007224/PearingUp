@@ -86,10 +86,8 @@ class LoginViewController: UIViewController {
                         else if(temp["code"] == 302){
                             self.displayAlert(message: "Server-Side error. Please contact Manan Maniyar")
                         }
-                        
                     }
-        
-
+                    
                     User.Data.email = self.email_holder.text!
                     if(temp["result"].exists()){
                         User.Data.username = temp["result"].rawString()!

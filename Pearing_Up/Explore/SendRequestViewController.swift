@@ -41,7 +41,7 @@ class SendRequestViewController: UIViewController {
             let message = ("I am free from: " + dateToString(date: firstDate) + "\nTo: " + dateToString(date: secondDate) + "\n" + messageUI.text)
             let url = (message_url + "/" + User.Data.username + "/" + receiverName)
             
-            serverRequest(url: url, params: ["add_msg" : message])
+            serverRequest(url: url, params: ["add_msg" : message])// also need to pass the dates
         }
     }
     
