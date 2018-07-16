@@ -11,12 +11,27 @@ import UIKit
 class ExpandedPostViewController: UIViewController {
 
     var owner = "owner"
+    var titl: String!
+    var desc: String!
+    var loca: String!
+    var fruitnme: String!
+    
+    @IBOutlet weak var titleText: UILabel!
+    @IBOutlet weak var fruitimage: UIImageView!
+    @IBOutlet weak var MakeAppointmentButton: UIButton!
+    @IBOutlet weak var descriptionText: UILabel!
+    @IBOutlet weak var location: UILabel!
+    @IBOutlet weak var fruitname: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = true
         // Do any additional setup after loading the view.
+        
+        descriptionText.text = desc
+        titleText.text = titl
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -25,7 +40,7 @@ class ExpandedPostViewController: UIViewController {
     
     @IBAction func ApplyToPostingClicked(_ sender: Any)
         {
-           //     self.performSegue(withIdentifier: "applyToPost", sender: self)
+                self.performSegue(withIdentifier: "applyToPost", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -33,7 +48,11 @@ class ExpandedPostViewController: UIViewController {
         if segue.identifier == "applyToPost" {
             
             let destination = segue.destination as! SendRequestViewController
-            destination.receiverName = owner
+            owner = destination.receiverName
+            descriptionText.text = destination.description
+            titleText.text = destination.title
+         //   location.text = destination.location
+        
         }
     }
     /*

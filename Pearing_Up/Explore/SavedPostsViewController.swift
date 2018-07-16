@@ -5,6 +5,9 @@
 //  Created by Manan Maniyar on 2018-06-30.
 //  Copyright © 2018 Manan Maniyar. All rights reserved.
 //
+/*
+ data that is received
+ */
 
 import UIKit
 import Alamofire
@@ -32,22 +35,74 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     let myGroup = DispatchGroup()
     
     override func viewDidLoad() {
-        print("yolo")
+       // print("yolo")
         super.viewDidLoad()
-        //bookmarked_posts.dataSource = self
+        /*
+        bookmarked_posts.dataSource = self
         get_bookmarks(url: bookmarks_url)
+        
         get_allPosts() { data in
             print("completion all_posts")
         }
 //      get_allDetails() { data in
-//
+
 //      }
+
+        */
+        let all_titles_url : URL = URL(string: "https://pearingup.herokuapp.com/allPosts")!
+        get_titles(url: all_titles_url)
+        
         myGroup.notify(queue: .main) {
             self.update_data()
         }
         self.tabBarController?.tabBar.isHidden = false
-
+        
     }
+    func get_titles(url: URL){
+        self.myGroup.enter()
+
+        Alamofire.request(url, method: .get).responseJSON { response in
+            
+            if( response.result.isSuccess){
+                let temp : JSON = JSON(response.result.value!)
+                let posts : JSON = temp["Posts"]
+                let title: String = posts[0]["title"].stringValue
+                print(title)
+                
+                
+                //let image_url : URL = URL(string: "https://pearingup.herokuapp.com/getpost" + title)!
+       
+                //getimage(url_image)
+                //print(posts[0]["owner"])
+              //  var sJson = JSONSerialization.JSONObjectWithData(temp["Posts"], options: .MutableContainers) as NSArray
+                //var post : PostObject = PostObject.init()
+                self.myGroup.leave()
+            }
+            else{
+                print(response.result.error!)
+                self.myGroup.leave()
+            }
+            
+        }
+    }
+    
+    
+     func getimage(url : URL) {
+         self.myGroup.enter()
+        
+        Alamofire.request(url, method: .get).responseJSON {
+             response in
+             if(response.result.isSuccess) {
+
+                 self.myGroup.leave()
+             }
+             else {
+                 print(response.result.error!)
+                 self.myGroup.leave()
+             }
+         }
+     }
+ 
     
     func update_data() {
         self.bookmarked_posts.dataSource = self
@@ -58,8 +113,10 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     func get_allPosts(completed: @escaping (String) -> Void) {
         self.myGroup.enter()
         for pst in temp_posts {
+            //
+            //
           let p_url : URL = URL(string: "https://pearingup.herokuapp.com/getpost/manan_post123")!
-          self.request_posts(url: p_url)
+        //  self.request_posts(url: p_url)
         }
         self.myGroup.leave()
     }
@@ -68,40 +125,20 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         self.myGroup.enter()
         for pst in temp_posts {
               let p_url : URL = URL(string: "https://pearingup.herokuapp.com/getpost/getPostsData/manan_post123")!
-              self.request_posts(url: p_url)
+             // self.request_posts(url: p_url)
         }
+        
         self.myGroup.leave()
+        
     }
     
-    
-    func request_posts(url : URL) {
-            self.myGroup.enter()
-            Alamofire.request(url, method: .get).responseString {
-                response in
-                if(response.result.isSuccess) {
-                   let temp : JSON = JSON(response.result.value!)
-                    self.postsTitles.append("A")
-                    self.postAdditionalMsgs.append("A")
-                    self.postFruits.append("A")
-                    self.postCities.append("Vancouver")
-                    let postImg = UIImage(data: response.data!)
-                    self.postImages.append(postImg!)
-                    //self.bookmarked_posts.reloadData()
-                    self.myGroup.leave()
-                }
-                else {
-                    print(response.result.error!)
-                    self.myGroup.leave()
-                }
-            }
-    }
-    
+   
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         self.performSegue(withIdentifier: "contentVideoSegue", sender: indexPath)
         
     }
-    
+    // passes data to next controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "expandPost" {
             if let collectionCell: SavedPostsCell = sender as? SavedPostsCell {
@@ -110,6 +147,13 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
                         // Pass some data to YourViewController
                         // collectionView.tag will give your selected tableView index
                         destination.owner = "manan"
+                        
+                        destination.titl = tArray[1]
+                        destination.desc = tDescription[1]
+                        
+                        
+                        // pass the values to destination
+                    
                     }
                 }
             }
@@ -151,7 +195,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
             }
         }
     }
- 
+    
     
     func get_bookmarks(url: URL) {
         self.myGroup.enter()
@@ -159,7 +203,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         self.myGroup.leave()
     }
     
-    
+    ////////////////////////////
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return postCities.count
     }
@@ -185,3 +229,51 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     }
 
 }
+/*
+ 
+ /*
+ var dic : [String: Any]
+ dic = ["code": 200, "Posts":{ ["pickers" : [], "id": "1234567", "info" : [ "id": "1234567", "fruits": "apples" ], "msg" : "yoloway i got cool", "title": "butts", "owner": "saad" ] as [String : Any];
+ 
+ ["pickers" : [], "id": "3456", "info" : [ "id": "3456", "fruits": "banaa" ], "msg" : "hi there i got cool", "title": "legs", "owner": "manan" ] as [String : Any]
+ } ]
+ */
+ 
+ 
+ /*
+ Alamofire.request(url, method: .get).responseString {
+ response in
+ if(response.result.isSuccess) {
+ //    let temp : Data = JSON(response.result.value!)
+ let dacc : Data = Data(response.result.value!)
+ 
+ //let temp : JSON = JSON(response.result.value!
+ 
+ var sJson = JSONSerialization.JSONObjectWithData(temp, options: .MutableContainers) as NSArray
+ print(sJson)
+ 
+ /*
+ print("    \n    \n        ")
+ print(temp)
+ var alll = temp["Posts"]
+ print("print alll     \n   \n")
+ print(alll)
+ 
+ var titl = alll["title"]
+ print("printing title  \n")
+ print(titl)
+ */
+ 
+ //     self.postsTitles.append(temp["title"])
+ //   self.postAdditionalMsgs.append(temp["additional_msg"])
+ //  var imgid = temp["img_id"]
+ 
+ self.myGroup.leave()
+ }
+ else {
+ print(response.result.error!)
+ self.myGroup.leave()
+ }
+ }*/
+ 
+ */
