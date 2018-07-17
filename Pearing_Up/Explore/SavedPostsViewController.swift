@@ -24,40 +24,30 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     var postImages : [UIImage] = []
     var postCount : Int = 0
     var allposts : [PostObject] = []
+    var booleann : Int = 1
     
-    
-    let tArray = ["A", "B", "C", "D", "E"]
-    var posts_name : [String]  = []
-    let temp_posts = ["apple_post", "banana_post"]
-    let tImage = [UIImage(named: "tree"), UIImage(named: "tree1"), UIImage(named: "tree2"), UIImage(named: "tree2"), UIImage(named: "tree")]
-    let tDescription = ["A", "B", "C", "D", "E"]
-    let tFruits = ["Apples", "Bananas", "Kiwi", "Oranges", "Pineapple"]
-    let tCity = ["Vancouver", "Burnaby", "Surrey", "Coquitlam", "Richmond"]
-    
-    @IBOutlet weak var bookmarked_posts: UICollectionView!
-   
+    @IBOutlet weak var saved_posts: UICollectionView!
     let myGroup = DispatchGroup()
+    
     
     override func viewDidLoad() {
        // print("yolo")
         super.viewDidLoad()
+        print("boolean value:")
+        print(booleann)
         
         let all_titles_url : URL = URL(string: "https://pearingup.herokuapp.com/allPosts")!
-        get_titles(url: all_titles_url)
         
+        get_titles(url: all_titles_url)
         myGroup.notify(queue: .main) {
             print("before update")
             self.update_data()
         }
         self.tabBarController?.tabBar.isHidden = false
-        
     }
-    /*
-     get post data
-     get post image
-     put in an array
-     
-     */
+    
+    
+    
     func get_titles(url: URL){
         
         self.myGroup.enter()
@@ -72,9 +62,12 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
                 self.postCount = posts.count
                 print(self.postCount )
                 print("=== postcoutn")
-                for i in 0...self.postCount{
+                
+                for i in 0...(self.postCount-1){
+                    print("-----hello-----")
                     var post : PostObject = PostObject.init()
-                                    let info : JSON = posts[i]["info"]
+                    let info : JSON = posts[i]["info"]
+                    print(posts[i]["title"].stringValue )
                     post.title = posts[i]["title"].stringValue
                     post.additional_msg = posts[i]["additional_msg"].stringValue
                     post.id = posts[i]["id"].stringValue
@@ -83,9 +76,8 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
                     post.fruit = info["fruits"].stringValue
                     
                     self.allposts.append(post)
+                  //  self.booleann = 55
                 }
-                
-
                 /*
                  var additional_msg : String = ""
                  var id : String = ""
@@ -97,17 +89,15 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
                 //getimage(url_image)
                // self.prepareArrays()
                 self.myGroup.leave()
-                
                 self.myGroup.enter()
                 
-                print("fucn collectionview")
-                for i in 0...self.postCount {
+                for i in 0...(self.postCount-1) {
                     
                     self.postTitles.append( self.allposts[i].title )
                     self.postAdditionalMsgs.append(self.allposts[i].additional_msg )
                     self.postFruits.append( self.allposts[i].fruit )
 
-                    print(self.postTitles[i])
+                    //print(self.postTitles[i])
                 }
                 
                 self.myGroup.leave()
@@ -137,45 +127,35 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
  
     
     func update_data() {
-        self.bookmarked_posts.dataSource = self
         
+        self.saved_posts.dataSource = self
         //bookmarked_posts.reloadData()
         print("Data Reloaded")
     }
-    
-    func prepareArrays(){
-       // self.myGroup.enter()
-       
-        
-      //  self.myGroup.leave()
-    }
-    
     
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         self.performSegue(withIdentifier: "contentVideoSegue", sender: indexPath)
-        
     }
+    
     // passes data to next controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "expandPost" {
             if let collectionCell: SavedPostsCell = sender as? SavedPostsCell {
                 if let collectionView: UICollectionView = collectionCell.superview as? UICollectionView {
+                   
                     if let destination = segue.destination as? ExpandedPostViewController {
                         // Pass some data to YourViewController
                         // collectionView.tag will give your selected tableView index
                         destination.owner = User.Data.username
                         
-                        print("``````````")
-                        //print(sender.se)
-                        
-                        destination.titl = postTitles[0]
-                        destination.desc = postAdditionalMsgs[0]
-                        destination.fruitnme = postFruits[0]
-                        
-                        
-                        // pass the values to destination
+                        if let selectedindexpath = collectionView.indexPathsForSelectedItems?.first {
+                            
+                            destination.titl = postTitles[selectedindexpath.row]
+                            destination.desc = postAdditionalMsgs[selectedindexpath.row]
+                            destination.fruitnme = postFruits[selectedindexpath.row]
+                        }
                     }
                 }
             }
@@ -202,34 +182,12 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
 //        }
 //    }
     
-    func request_Bookmarks(url: URL, completion : @escaping (JSON) -> Void) {
-        Alamofire.request(url, method: .get).responseJSON {
-            response in
-            if(response.result.isSuccess) {
-                let temp : JSON = JSON(response.result.value!)
-                print("Success in the get-saved-posts route")
-                //print(response.result!)
-                completion(temp)
-            }
-            else {
-                print("Error happened")
-                completion(response.result.error! as! JSON)
-            }
-        }
-    }
-    
-    
-    func get_bookmarks(url: URL) {
-        self.myGroup.enter()
-        print("Came at get_bookmarks")
-        self.myGroup.leave()
-    }
-    
+
     ////////////////////////////
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // originally was postTitle.count
         
-        return postTitles.count
+        return allposts.count
     }
 
     
@@ -239,6 +197,8 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         
       //  saved_posts.post_image.image = postImages[indexPath.row]
        // saved_posts.post_city.text! = postCities[indexPath.item]
+      //  print(postFruits.count,  " ",  postAdditionalMsgs.count,  "  ",  postTitles.count )
+        
         saved_posts.post_fruit.text! = postFruits[indexPath.item]
         saved_posts.post_description.text! = postAdditionalMsgs[indexPath.item]
         saved_posts.post_title.text! = postTitles[indexPath.item]

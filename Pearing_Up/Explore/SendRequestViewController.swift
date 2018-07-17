@@ -12,6 +12,12 @@ import SwiftyJSON
 
 class SendRequestViewController: UIViewController {
     
+    var owner = ""
+    var titl: String!
+    var desc: String!
+    var loca: String!
+    var fruitnme: String!
+    
     let message_url : String = "https://pearingup.herokuapp.com/sentRequest"
     var receiverName : String = "receiver"
     @IBOutlet weak var messageUI: UITextView!
@@ -29,7 +35,21 @@ class SendRequestViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    @IBAction func back_to_expandview(_ sender: Any) {
+        self.performSegue(withIdentifier: "sendrequest_to_expandview", sender: self)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        if segue.identifier == "sendrequest_to_expandview" {
+            
+            let expandview  = segue.destination as! ExpandedPostViewController
+            expandview.desc = self.desc
+            expandview.titl = self.titl
+            expandview.fruitnme = self.fruitnme
+        }
+    }
+    
     @IBAction func sendMessage(_ sender: Any) {
         let firstDate = firstDateUI.date
         let secondDate = lastDateUI.date
@@ -94,4 +114,14 @@ class SendRequestViewController: UIViewController {
         self.present(alert_toDisplay, animated: true, completion: nil)
     }
     
+    
+    
+    
+    
+    
 }
+
+
+
+
+
