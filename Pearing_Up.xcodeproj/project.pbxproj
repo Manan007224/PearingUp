@@ -21,6 +21,9 @@
 		7267F0FD20EBE45C002243F1 /* postingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7267F0FC20EBE45C002243F1 /* postingsTableViewController.swift */; };
 		727C1B0B20FC73240033A53C /* PostObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727C1B0A20FC73240033A53C /* PostObject.swift */; };
 		728A7F0920EBC62D0051F353 /* tabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728A7F0820EBC62D0051F353 /* tabBarViewController.swift */; };
+		72E9028820FDCDAA00573BE9 /* bookmarkedPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E9028720FDCDAA00573BE9 /* bookmarkedPostCell.swift */; };
+		72E9028A20FDCDE200573BE9 /* bookmarkedPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E9028920FDCDE200573BE9 /* bookmarkedPostsViewController.swift */; };
+		72E9028C20FDD5EF00573BE9 /* ExpandedBookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E9028B20FDD5EF00573BE9 /* ExpandedBookmarkViewController.swift */; };
 		9164945C20E7507C00F5467D /* SignUpInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9164945B20E7507C00F5467D /* SignUpInfoController.swift */; };
 		9164948820E7C8F700F5467D /* SavedPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9164948720E7C8F700F5467D /* SavedPostsViewController.swift */; };
 		9164948A20E7C9A900F5467D /* SavedPostsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9164948920E7C9A900F5467D /* SavedPostsCell.swift */; };
@@ -60,6 +63,9 @@
 		7267F0FC20EBE45C002243F1 /* postingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = postingsTableViewController.swift; sourceTree = "<group>"; };
 		727C1B0A20FC73240033A53C /* PostObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostObject.swift; sourceTree = "<group>"; };
 		728A7F0820EBC62D0051F353 /* tabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tabBarViewController.swift; sourceTree = "<group>"; };
+		72E9028720FDCDAA00573BE9 /* bookmarkedPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bookmarkedPostCell.swift; sourceTree = "<group>"; };
+		72E9028920FDCDE200573BE9 /* bookmarkedPostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bookmarkedPostsViewController.swift; sourceTree = "<group>"; };
+		72E9028B20FDD5EF00573BE9 /* ExpandedBookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandedBookmarkViewController.swift; sourceTree = "<group>"; };
 		80891CEF7889EB75F0E2F1FD /* Pods_Pearing_Up.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pearing_Up.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9164945B20E7507C00F5467D /* SignUpInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpInfoController.swift; sourceTree = "<group>"; };
 		9164948720E7C8F700F5467D /* SavedPostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPostsViewController.swift; sourceTree = "<group>"; };
@@ -155,6 +161,16 @@
 			path = Pearing_UpUITests;
 			sourceTree = "<group>";
 		};
+		72E9028620FDCD4300573BE9 /* Bookmarks */ = {
+			isa = PBXGroup;
+			children = (
+				72E9028720FDCDAA00573BE9 /* bookmarkedPostCell.swift */,
+				72E9028920FDCDE200573BE9 /* bookmarkedPostsViewController.swift */,
+				72E9028B20FDD5EF00573BE9 /* ExpandedBookmarkViewController.swift */,
+			);
+			path = Bookmarks;
+			sourceTree = "<group>";
+		};
 		8C16309FC7909EF1A5A0DEA0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,6 +202,7 @@
 		91E774D820D638740030121E /* Pearing_Up */ = {
 			isa = PBXGroup;
 			children = (
+				72E9028620FDCD4300573BE9 /* Bookmarks */,
 				91E774DD20D638740030121E /* Main.storyboard */,
 				727C1B0A20FC73240033A53C /* PostObject.swift */,
 				417FA09F20ECAEC100C19780 /* User.swift */,
@@ -376,17 +393,20 @@
 				9164948A20E7C9A900F5467D /* SavedPostsCell.swift in Sources */,
 				916EA22720D7B75100C1085D /* ProfileViewController.swift in Sources */,
 				916EA22520D7B71300C1085D /* SignUpViewController.swift in Sources */,
+				72E9028820FDCDAA00573BE9 /* bookmarkedPostCell.swift in Sources */,
 				417FA09C20ECA81000C19780 /* ExpandedRequestViewController.swift in Sources */,
 				1310F2EE20EC62C3003A6591 /* InboxViewController.swift in Sources */,
 				1310F2F020EC65B7003A6591 /* InboxTableViewCell.swift in Sources */,
 				91E774DA20D638740030121E /* AppDelegate.swift in Sources */,
 				410FD31020EC086C007A5637 /* SendRequestViewController.swift in Sources */,
 				9164945C20E7507C00F5467D /* SignUpInfoController.swift in Sources */,
+				72E9028C20FDD5EF00573BE9 /* ExpandedBookmarkViewController.swift in Sources */,
 				417FA0A020ECAEC100C19780 /* User.swift in Sources */,
 				7267F0F920EBE03C002243F1 /* postTableViewCell.swift in Sources */,
 				7267F0FD20EBE45C002243F1 /* postingsTableViewController.swift in Sources */,
 				41F06C4320F58A0B0038F9B0 /* CreatePostViewController.swift in Sources */,
 				410FD31220EC2C9F007A5637 /* ExpandedPostViewController.swift in Sources */,
+				72E9028A20FDCDE200573BE9 /* bookmarkedPostsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
