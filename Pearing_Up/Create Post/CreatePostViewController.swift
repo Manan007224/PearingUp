@@ -23,6 +23,8 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var locationTextView: UITextField!
     @IBOutlet weak var fruitPickerView: UIPickerView!
     
+    let url = "https://pearingup.herokuapp.com/"
+    
     let fruit = ["Almond" , "Apple" , "Apricot", "Avocado", "Blood Orange", "Cherry", "Citron", "Feijoa", "Fig", "Grapefruit", "Hardy Citrus","Jujube", "Kaffir Lime", "Kiwi", "Kumquat","Lemon", "Lime","Loquat", "Mandarin Orange", "Medlar", "Mulberry", "Navel Orange", "Nectarine", "Olive", "Pawpaw", "Peach", "Pear", "Persimmon", "Plum", "Pomegranate","Quince" , "Sour Orange"]
     
     var pickedFruit = ""
@@ -100,9 +102,17 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
             //UPLOAD PICTURE
             let url_image = "https://pearingup.herokuapp.com/upload/"
             
-            let image_params: [String: Any] = ["file" : imageView.image!]
+            let data = UIImageJPEGRepresentation(imageView.image! , 1.0)
+
             
-            makePost(url: url_image, params: image_params)
+            requestWith(endUrl: url_image, imageData: data, parameters: [:]) { response in
+                let temp : JSON = response as! JSON
+                
+                if (temp["id"].exists()){
+                    self.id = temp["id"].string!
+                }
+            }
+            
             print(url_image)
             let info_params : [String: String] = ["fruits":pickedFruit]
             print(pickedFruit)
@@ -157,6 +167,42 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
             
         }
         self.myGroup.leave()
+    }
+    
+    func requestWith(endUrl: String, imageData: Data?, parameters: [String : Any], onCompletion: ((JSON?) -> Void)? = nil, onError: ((Error?) -> Void)? = nil){
+        
+        //let url = "http://google.com" /* your API url */
+        
+        let headers: HTTPHeaders = [
+            /* "Authorization": "your_access_token",  in case you need authorization header */
+            "Content-type": "multipart/form-data"
+        ]
+        
+        Alamofire.upload(multipartFormData: { (multipartFormData) in
+            for (key, value) in parameters {
+                multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key as String)
+            }
+            
+            if let data = imageData{
+                multipartFormData.append(data, withName: "image", fileName: "image.png", mimeType: "image/png")
+            }
+            
+        }, usingThreshold: UInt64.init(), to: url, method: .post, headers: headers) { (result) in
+            switch result{
+            case .success(let upload, _, _):
+                upload.responseJSON { response in
+                    print("Succesfully uploaded")
+                    if let err = response.error{
+                        onError?(err)
+                        return
+                    }
+                    onCompletion?(response.result.value! as? JSON)
+                }
+            case .failure(let error):
+                print("Error in upload: \(error.localizedDescription)")
+                onError?(error)
+            }
+        }
     }
     
     @IBAction func addImg(_ sender: Any) {
