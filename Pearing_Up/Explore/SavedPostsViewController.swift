@@ -37,14 +37,52 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         print(booleann)
         
         let all_titles_url : URL = URL(string: "https://pearingup.herokuapp.com/allPosts")!
-        
         get_titles(url: all_titles_url)
+        
         myGroup.notify(queue: .main) {
             print("before update")
             self.update_data()
         }
         self.tabBarController?.tabBar.isHidden = false
     }
+    
+    
+    func getimage(title: String) -> String?{
+        var imgdata : String = ""
+        
+        self.myGroup.enter()
+        let urlstring = "https://pearingup.herokuapp.com/getpost/" + title
+        print(urlstring)
+        let image_url : URL = URL(string: urlstring)!
+  
+        Alamofire.request(image_url, method: .get).responseString {
+            response in
+            if(response.result.isSuccess) {
+                //let temp : String = String(response.result.value!)
+                print("get image function")
+                //print(temp)
+                
+                //let posting = uiimage(response.data!
+                /*
+                 let temp : JSON = JSON(response.result.value!)
+                 let posts : JSON = temp["Posts"]
+                 print(posts)
+                 */
+                //print(response.data!)
+                self.myGroup.leave()
+            }
+            else {
+                print(response.result.error!)
+                self.myGroup.leave()
+            }
+        }
+        if(imgdata == nil){
+            print("yolololololol datta")
+        }
+        return imgdata
+        
+    }
+    
     
     
     
@@ -60,20 +98,26 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
                 //print(info["fruits"])
                 
                 self.postCount = posts.count
-                print(self.postCount )
-                print("=== postcoutn")
+            //    print(self.postCount )
+            //    print("=== postcoutn")
                 
                 for i in 0...(self.postCount-1){
-                    print("-----hello-----")
+                   // print("-----hello-----")
                     var post : PostObject = PostObject.init()
                     let info : JSON = posts[i]["info"]
-                    print(posts[i]["title"].stringValue )
+                 //   print(posts[i]["title"].stringValue )
                     post.title = posts[i]["title"].stringValue
                     post.additional_msg = posts[i]["additional_msg"].stringValue
                     post.id = posts[i]["id"].stringValue
                     post.img_id = posts[i]["img_id"].stringValue
                     post.owner = posts[i]["owner"].stringValue
                     post.fruit = info["fruits"].stringValue
+                    
+                    var imgdata  = self.getimage( title: posts[i]["title"].stringValue )
+                    if ( imgdata == nil ){
+                        print("yoo dayta is nil")
+                    }
+                    //  post.img =  UIImage(data: imgdata! , scale: 1.0 )!
                     
                     self.allposts.append(post)
                   //  self.booleann = 55
@@ -96,34 +140,22 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
                     self.postTitles.append( self.allposts[i].title )
                     self.postAdditionalMsgs.append(self.allposts[i].additional_msg )
                     self.postFruits.append( self.allposts[i].fruit )
-
+                  //  var img = UIImage(data: self.allposts[i].imgdata)
+                    //self.postImages.append( img! )
+                    self.postImages.append( self.allposts[i].img )
+                    
                     //print(self.postTitles[i])
                 }
                 
                 self.myGroup.leave()
             }
             else{
-                print(response.result.error!)
+               /// print(response.result.error!)
                 self.myGroup.leave()
             }
         }
     }
     
-    
-     func getimage(url : URL) {
-         self.myGroup.enter()
-        
-        Alamofire.request(url, method: .get).responseJSON {
-             response in
-             if(response.result.isSuccess) {
-                 self.myGroup.leave()
-             }
-             else {
-                 print(response.result.error!)
-                 self.myGroup.leave()
-             }
-         }
-     }
  
     
     func update_data() {
@@ -202,6 +234,9 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         saved_posts.post_fruit.text! = postFruits[indexPath.item]
         saved_posts.post_description.text! = postAdditionalMsgs[indexPath.item]
         saved_posts.post_title.text! = postTitles[indexPath.item]
+        saved_posts.post_image.image = postImages[indexPath.item]
+        
+        
         return saved_posts
     }
  
