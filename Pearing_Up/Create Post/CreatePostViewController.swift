@@ -20,7 +20,7 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var locationTextView: UITextField!
     @IBOutlet weak var fruitPickerView: UIPickerView!
     
-    var fileLocation : String = ""
+    var fileLocation : NSURL!
     var id : String = ""
     let url = "https://pearingup.herokuapp.com/"
     
@@ -95,7 +95,8 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
         }
         else{
             //UPLOAD PICTURE
-            upload_data() { responseId in
+            let imageData = UIImageJPEGRepresentation(self.imageView.image!, 0.2)!
+            upload_data(imageData : imageData) { responseId in
                 self.id = responseId.string!
                 
                 print("https://pearingup.herokuapp.com/upload/")
@@ -157,14 +158,14 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
         self.myGroup.leave()
     }
     
-    func upload_data(completionHandler : @escaping (JSON)->()){
+    func upload_data(imageData : Data, completionHandler : @escaping (JSON)->()){
         
         self.myGroup.enter()
         
         print("Came in here")
         
         Alamofire.upload(multipartFormData: { (multipartFormData) in
-            multipartFormData.append(Data(), withName: "file", fileName: self.fileLocation, mimeType: "image/png")
+            multipartFormData.append(imageData, withName: "file", fileName: "tree.jpg", mimeType: "image/png")
         }, to:"http://pearingup.herokuapp.com/upload")
         { (result) in
             switch result {
@@ -225,7 +226,8 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
     
     func imagePickerController( _ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
         print("pic")
-        fileLocation = UIImagePickerControllerImageURL
+        fileLocation = info[UIImagePickerControllerImageURL] as! NSURL
+        print(fileLocation)
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
         imageView.image = chosenImage //4
         dismiss(animated:true, completion: nil) //5
