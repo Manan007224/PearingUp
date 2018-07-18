@@ -48,9 +48,7 @@ class bookmarkedPostsViewController: UIViewController, UICollectionViewDataSourc
                 }
                
             //    bookmarkedTitles =
-                
-                
-                
+        
             } else{
                 print(response.result.error!)
                 self.myGroup.leave()
