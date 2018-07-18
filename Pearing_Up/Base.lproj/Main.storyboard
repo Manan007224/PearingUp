@@ -599,11 +599,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <view alpha="0.64999997615814209" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xt2-6U-8G1">
-                                <rect key="frame" x="0.0" y="20" width="421" height="50"/>
+                                <rect key="frame" x="0.0" y="20" width="416" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ofz-Ji-twM">
-                                        <rect key="frame" x="8" y="10" width="70" height="30"/>
+                                        <rect key="frame" x="8" y="11.09626357722891" width="69.999999999999986" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <state key="normal" title="Back">
@@ -749,11 +749,11 @@
                                 </connections>
                             </button>
                             <view alpha="0.64999997615814209" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8kR-y5-Py8">
-                                <rect key="frame" x="0.0" y="20" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="20" width="416" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8iS-Mf-pc0">
-                                        <rect key="frame" x="10" y="10.666666666666666" width="70" height="30"/>
+                                        <rect key="frame" x="9.9999999999995453" y="15.394911049119401" width="70" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <state key="normal" title="Back">
@@ -994,16 +994,19 @@
                                 </cells>
                             </collectionView>
                             <view alpha="0.64999997615814209" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Vo-AH-7wL">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="20" width="416" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I5W-X9-frO">
-                                        <rect key="frame" x="10" y="10.666666666666629" width="70" height="30"/>
+                                        <rect key="frame" x="5" y="10" width="70" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <state key="normal" title="Back">
                                             <color key="titleColor" red="0.51944217410000004" green="0.77020542510000001" blue="0.35725247710000002" alpha="0.64000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="T7x-ly-ZLS" kind="show" id="jbT-G6-1oM"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1014,7 +1017,6 @@
                     </view>
                     <connections>
                         <segue destination="RWD-9c-L1T" kind="show" identifier="goToEditPosts" id="Nnb-Tr-J6f"/>
-                        <segue destination="T7x-ly-ZLS" kind="show" id="bo3-68-7Fg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bkf-Ey-pN3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1089,11 +1091,11 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <view alpha="0.64999997615814209" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uda-91-cYZ">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="20" width="416" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P7R-5x-k7p">
-                                        <rect key="frame" x="10" y="10.666666666666629" width="70" height="30"/>
+                                        <rect key="frame" x="5" y="10" width="70" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <state key="normal" title="Back">
@@ -1480,11 +1482,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <view alpha="0.64999997615814209" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hlD-7I-5Da">
-                                <rect key="frame" x="0.0" y="20" width="421" height="50"/>
+                                <rect key="frame" x="0.0" y="20" width="416" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W2O-UJ-FyP">
-                                        <rect key="frame" x="8" y="10" width="70" height="30"/>
+                                        <rect key="frame" x="8" y="12.375740396882975" width="70.000000000000057" height="30.000000000000227"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <state key="normal" title="Back">
@@ -1576,11 +1578,11 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="bUM-6t-q5m"/>
-        <segue reference="xvS-xp-wOa"/>
+        <segue reference="hsC-QM-tXF"/>
         <segue reference="hEW-Tg-xT3"/>
-        <segue reference="bo3-68-7Fg"/>
-        <segue reference="ILV-tI-h8y"/>
-        <segue reference="Gt5-ag-1hF"/>
+        <segue reference="jbT-G6-1oM"/>
+        <segue reference="orN-1e-Kdb"/>
+        <segue reference="Zws-NX-V0I"/>
         <segue reference="ah8-Pd-8H0"/>
         <segue reference="Qi0-SO-NHl"/>
         <segue reference="tZq-ce-hmW"/>
