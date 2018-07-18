@@ -10,6 +10,9 @@ import UIKit
 
 class yourPostsViewController: UIViewController {
 
+    @IBAction func goBack(_ sender: Any) {
+        self.performSegue(withIdentifier: "goBackYPtoProfile", sender: self)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
