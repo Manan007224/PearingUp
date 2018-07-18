@@ -69,6 +69,8 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
                  print(posts)
                  */
                 //print(response.data!)
+                let  postImg = UIImage(data: response.data!)
+                
                 self.myGroup.leave()
             }
             else {
