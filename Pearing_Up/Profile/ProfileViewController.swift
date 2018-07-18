@@ -12,9 +12,10 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
+    @IBOutlet weak var nameTextView: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        nameTextView.text = User.Data.username
         // Do any additional setup after loading the view.
     }
 

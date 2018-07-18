@@ -853,6 +853,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" image="user-30" id="evZ-Qb-ic0"/>
                     <connections>
+                        <outlet property="nameTextView" destination="6Xc-8N-eaX" id="Ien-Cn-f7j"/>
                         <segue destination="iEl-dF-o3Q" kind="show" identifier="yourPostsSegue" id="hEW-Tg-xT3"/>
                     </connections>
                 </viewController>
@@ -1520,7 +1521,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="F78-8O-rt0"/>
         <segue reference="xvS-xp-wOa"/>
-        <segue reference="59B-vQ-Nga"/>
+        <segue reference="hEW-Tg-xT3"/>
         <segue reference="bo3-68-7Fg"/>
         <segue reference="ILV-tI-h8y"/>
         <segue reference="Zws-NX-V0I"/>

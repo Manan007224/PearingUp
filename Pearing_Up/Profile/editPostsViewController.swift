@@ -63,8 +63,6 @@ class editPostsViewController: UIViewController,UIImagePickerControllerDelegate,
     }
 
     func update_data() {
-        //self.bookmarked_posts.dataSource = self
-        //bookmarked_posts.reloadData()
         print("Data Reloaded")
     }
     
@@ -88,10 +86,11 @@ class editPostsViewController: UIViewController,UIImagePickerControllerDelegate,
             displayAlert(message: " image required")
             return
         }
-        else{
-            
+        else {
+            let url_image = "https://pearingup.herokuapp.com/upload/"
             let image_params: [String: Any] = ["file" : imageView.image!]
             
+            makePost(url: url_image, params: image_params)
             let info_params : [String: String] = ["fruits":pickedFruit]
             print(pickedFruit)
             let username = User.Data.username
@@ -103,6 +102,11 @@ class editPostsViewController: UIViewController,UIImagePickerControllerDelegate,
             print(url_post)
             makePost(url: url_post, params: user_params)
         }
+    }
+    
+    //delete the post using posts id(?) and then repost it with new information
+    func deletePost(){
+        
     }
     
     func makePost(url: String, params: [String : Any]){
