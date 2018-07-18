@@ -1461,6 +1461,7 @@
                         <outlet property="imageView" destination="IbR-1N-pbh" id="scY-0Y-78Y"/>
                         <outlet property="locationTextView" destination="U9t-fe-eWw" id="qja-ef-oI5"/>
                         <outlet property="titleTextView" destination="gWg-x8-QyW" id="fYD-nN-iKq"/>
+                        <segue destination="e3t-rz-pqt" kind="show" identifier="uploadToExpore" id="wfA-jF-kRq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fs4-7r-M6z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1627,7 +1628,7 @@
         <segue reference="hEW-Tg-xT3"/>
         <segue reference="bo3-68-7Fg"/>
         <segue reference="ILV-tI-h8y"/>
-        <segue reference="Zws-NX-V0I"/>
+        <segue reference="wfA-jF-kRq"/>
         <segue reference="ah8-Pd-8H0"/>
         <segue reference="Qi0-SO-NHl"/>
         <segue reference="tZq-ce-hmW"/>
