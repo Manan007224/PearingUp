@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class PostObject {
 
@@ -18,4 +19,6 @@ class PostObject {
          var pickers : [String] = [""]
     
          var fruit : String = ""
+         var img : UIImage  = UIImage(named: "tree1" )!
+    
 }
