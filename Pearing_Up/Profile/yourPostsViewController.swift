@@ -12,6 +12,8 @@ import SwiftyJSON
 
 class yourPostsViewController: UIViewController, UICollectionViewDataSource {
 
+    
+    
     @IBAction func goBack(_ sender: Any) {
         self.performSegue(withIdentifier: "goBackYPtoProfile", sender: self)
     }
@@ -22,6 +24,7 @@ class yourPostsViewController: UIViewController, UICollectionViewDataSource {
     var postAdditionalMsgs : [String] = []
     var postFruits: [String] = []
     var postCities : [String] = []
+    var postIDs : [String] = []
     //var postImages : [UIImage] = []
     var postCount : Int = 0
     var allposts : [PostObject] = []
@@ -97,6 +100,8 @@ class yourPostsViewController: UIViewController, UICollectionViewDataSource {
                     self.postTitles.append( self.allposts[i].title )
                     self.postAdditionalMsgs.append(self.allposts[i].additional_msg )
                     self.postFruits.append( self.allposts[i].fruit )
+                    self.postIDs.append(self.allposts[i].img_id)
+                    
                     
                     //print(self.postTitles[i])
                 }
@@ -121,31 +126,36 @@ class yourPostsViewController: UIViewController, UICollectionViewDataSource {
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("click")
+        self.performSegue(withIdentifier: "goToEditPosts", sender: indexPath)
         
-        self.performSegue(withIdentifier: "contentVideoSegue", sender: indexPath)
     }
     
     // passes data to next controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "expandPost" {
-//            if let collectionCell: yourPostsCell = sender as? yourPostsCell {
-//                if let collectionView: UICollectionView = collectionCell.superview as? UICollectionView {
-//
-//                    if let destination = segue.destination as? ExpandedPostViewController {
-//                        // Pass some data to YourViewController
-//                        // collectionView.tag will give your selected tableView index
-//                        destination.owner = User.Data.username
-//
-//                        if let selectedindexpath = collectionView.indexPathsForSelectedItems?.first {
-//
-//                            destination.titl = postTitles[selectedindexpath.row]
-//                            destination.desc = postAdditionalMsgs[selectedindexpath.row]
-//                            destination.fruitnme = postFruits[selectedindexpath.row]
-//                        }
-//                    }
-//                }
-//            }
-//        }
+        print("clicker")
+        if segue.identifier == "goToEditPosts" {
+            if let collectionCell: yourPostsCell = sender as? yourPostsCell {
+                if let collectionView: UICollectionView = collectionCell.superview as? UICollectionView {
+                    
+                    if let destination = segue.destination as? editPostsViewController {
+                        // Pass some data to YourViewController
+                        // collectionView.tag will give your selected tableView index
+                        destination.owner = User.Data.username
+                        
+                        if let selectedindexpath = collectionView.indexPathsForSelectedItems?.first {
+                            
+                            destination.titl = postTitles[selectedindexpath.row]
+                            destination.desc = postAdditionalMsgs[selectedindexpath.row]
+                            destination.fruitnme = postFruits[selectedindexpath.row]
+                            destination.idee = postIDs[selectedindexpath.row]
+                            print(postTitles[selectedindexpath.row] + " " + postIDs[selectedindexpath.row])
+                            
+                        }
+                    }
+                }
+            }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

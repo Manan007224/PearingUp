@@ -111,7 +111,7 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
                 print(url_post)
                 self.makePost(url: url_post, params: user_params)
                 self.myGroup.leave()
-                self.performSegue(withIdentifier: "uploadToExpore", sender: self)
+                self.performSegue(withIdentifier: "uploadToExplore", sender: self)
             }
         }
     }

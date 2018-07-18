@@ -10,9 +10,8 @@ import UIKit
 
 class yourPostsCell: UICollectionViewCell {
     
-
-    @IBOutlet weak var post_city: UITextView!
-    @IBOutlet weak var post_fruit: UITextView!
-    @IBOutlet weak var post_description: UITextView!
+    @IBOutlet weak var post_city: UILabel!
+    @IBOutlet weak var post_fruit: UILabel!
+    @IBOutlet weak var post_description: UILabel!
     @IBOutlet weak var post_title: UITextView!
 }
