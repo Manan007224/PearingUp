@@ -5,16 +5,10 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="AppleSDGothicNeo.ttc">
-            <string>AppleSDGothicNeo-Bold</string>
-            <string>AppleSDGothicNeo-Regular</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -516,6 +510,9 @@
                                         <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="acceptRequest:" destination="Vyx-mo-yU9" eventType="touchUpInside" id="gCL-rW-y2F"/>
+                                </connections>
                             </button>
                             <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="100" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UTR-ah-WlX">
                                 <rect key="frame" x="20" y="122" width="372" height="442"/>
@@ -570,6 +567,9 @@
                                         <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="declineRequest:" destination="Vyx-mo-yU9" eventType="touchUpInside" id="gCq-yk-Tii"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -579,6 +579,7 @@
                         <outlet property="descriptionUI" destination="UTR-ah-WlX" id="0Xf-9C-vMa"/>
                         <outlet property="nameUI" destination="smy-Pc-sku" id="D0V-s4-reo"/>
                         <segue destination="rBV-QC-hUM" kind="show" identifier="acceptRequest" id="F78-8O-rt0"/>
+                        <segue destination="rBV-QC-hUM" kind="show" identifier="declineRequest" id="RM7-Ia-xwy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qGO-hz-8e9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1514,10 +1515,7 @@
         <image name="user-30" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1Ae-QY-D3E"/>
-        <segue reference="xvS-xp-wOa"/>
-        <segue reference="hEW-Tg-xT3"/>
-        <segue reference="bo3-68-7Fg"/>
+        <segue reference="bUM-6t-q5m"/>
         <segue reference="ILV-tI-h8y"/>
         <segue reference="Zws-NX-V0I"/>
         <segue reference="U0U-y2-7XZ"/>
