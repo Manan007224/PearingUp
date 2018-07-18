@@ -516,6 +516,9 @@
                                         <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="acceptRequest:" destination="Vyx-mo-yU9" eventType="touchUpInside" id="gCL-rW-y2F"/>
+                                </connections>
                             </button>
                             <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="100" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UTR-ah-WlX">
                                 <rect key="frame" x="20" y="122" width="372" height="442"/>
@@ -570,6 +573,9 @@
                                         <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="declineRequest:" destination="Vyx-mo-yU9" eventType="touchUpInside" id="gCq-yk-Tii"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -579,6 +585,7 @@
                         <outlet property="descriptionUI" destination="UTR-ah-WlX" id="0Xf-9C-vMa"/>
                         <outlet property="nameUI" destination="smy-Pc-sku" id="D0V-s4-reo"/>
                         <segue destination="rBV-QC-hUM" kind="show" identifier="acceptRequest" id="F78-8O-rt0"/>
+                        <segue destination="rBV-QC-hUM" kind="show" identifier="declineRequest" id="RM7-Ia-xwy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qGO-hz-8e9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -800,36 +807,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Profile View WIP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Xc-8N-eaX">
-                                <rect key="frame" x="0.0" y="20" width="414" height="120"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eEt-zq-ZhZ">
+                                <rect key="frame" x="56" y="613" width="302" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <state key="normal" title="viewing history">
+                                    <color key="titleColor" red="0.51944217410000004" green="0.77020542510000001" blue="0.35725247710000002" alpha="0.64000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qCX-bd-ui9">
+                                <rect key="frame" x="186" y="49" width="57" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="REE-cP-T27">
-                                <rect key="frame" x="64" y="126" width="189" height="65"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
-                                <state key="normal" title="create post">
-                                    <color key="titleColor" red="0.51944217410000004" green="0.77020542510000001" blue="0.35725247710000002" alpha="0.64000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
-                                </state>
-                                <connections>
-                                    <action selector="gotobookmarks:" destination="T7x-ly-ZLS" eventType="touchUpInside" id="vvK-64-HD5"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vXU-zB-R28">
-                                <rect key="frame" x="328" y="606" width="44" height="66"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="logout">
-                                    <color key="titleColor" red="0.51944217410000004" green="0.77020542510000001" blue="0.35725247710000002" alpha="0.64000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
-                                </state>
-                                <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" identifier="logoutSegue" id="QfL-a8-EuT"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4OO-jk-cyR">
-                                <rect key="frame" x="64" y="199" width="292" height="78"/>
+                                <rect key="frame" x="56" y="548" width="302" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <state key="normal" title="view your postings">
@@ -839,27 +833,19 @@
                                     <action selector="goToYourPosts:" destination="T7x-ly-ZLS" eventType="touchUpInside" id="D0c-an-wVP"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eBb-OV-w4E">
-                                <rect key="frame" x="64" y="296" width="233" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
-                                <state key="normal" title="view requests">
-                                    <color key="titleColor" red="0.51944217410000004" green="0.77020542510000001" blue="0.35725247710000002" alpha="0.64000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
-                                </state>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="QhE-Ub-5U2"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" image="user-30" id="evZ-Qb-ic0"/>
                     <connections>
-                        <outlet property="nameTextView" destination="6Xc-8N-eaX" id="Ien-Cn-f7j"/>
+                        <outlet property="nameTextView" destination="qCX-bd-ui9" id="6pi-6G-vfb"/>
                         <segue destination="iEl-dF-o3Q" kind="show" identifier="yourPostsSegue" id="hEW-Tg-xT3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h9E-XF-Dmw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4387" y="951"/>
+            <point key="canvasLocation" x="4386.9565217391309" y="950.54347826086962"/>
         </scene>
         <!--Your Posts View Controller-->
         <scene sceneID="c3K-jl-dWR">
@@ -887,36 +873,29 @@
                                             <rect key="frame" x="0.0" y="0.0" width="373" height="236"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Title" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="k2B-w2-08C">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Title" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k2B-w2-08C">
                                                     <rect key="frame" x="0.0" y="0.0" width="373" height="53"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="szo-tJ-9pl">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Description" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="szo-tJ-9pl">
                                                     <rect key="frame" x="0.0" y="45" width="373" height="110"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Fruit" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bEy-k9-g7T">
-                                                    <rect key="frame" x="0.0" y="155" width="177" height="37"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sn3-7p-GjM">
+                                                    <rect key="frame" x="20" y="163" width="174" height="53"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="City" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lCH-PS-0Ne">
-                                                    <rect key="frame" x="182" y="151" width="191" height="37"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                </textView>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sn3-7p-GjM">
-                                                    <rect key="frame" x="0.0" y="163" width="219" height="53"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="City" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lCH-PS-0Ne">
+                                                    <rect key="frame" x="182" y="163" width="191" height="53"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -925,13 +904,17 @@
                                             </subviews>
                                         </view>
                                         <connections>
-                                            <outlet property="yourPostDescription" destination="szo-tJ-9pl" id="NId-i3-a2y"/>
-                                            <outlet property="yourPostsCity" destination="lCH-PS-0Ne" id="4w3-Tg-R6P"/>
-                                            <outlet property="yourPostsFruit" destination="bEy-k9-g7T" id="mJk-we-n4p"/>
-                                            <outlet property="yourPostsTitle" destination="k2B-w2-08C" id="Vrd-ik-0zK"/>
+                                            <outlet property="post_city" destination="lCH-PS-0Ne" id="FwF-5k-QQQ"/>
+                                            <outlet property="post_description" destination="szo-tJ-9pl" id="bVF-ex-Lpr"/>
+                                            <outlet property="post_fruit" destination="sn3-7p-GjM" id="bb9-SF-vv7"/>
+                                            <outlet property="post_title" destination="k2B-w2-08C" id="vFe-fu-axD"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="iEl-dF-o3Q" id="Ok7-wd-fq2"/>
+                                    <outlet property="delegate" destination="iEl-dF-o3Q" id="fV7-lF-b6Q"/>
+                                </connections>
                             </collectionView>
                             <view alpha="0.64999997615814209" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Vo-AH-7wL">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
@@ -956,6 +939,7 @@
                         <viewLayoutGuide key="safeArea" id="Pvt-19-a2B"/>
                     </view>
                     <connections>
+                        <outlet property="saved_posts" destination="PgE-WQ-YLd" id="QWp-pj-Ocw"/>
                         <segue destination="RWD-9c-L1T" kind="show" identifier="goToEditPosts" id="Nnb-Tr-J6f"/>
                         <segue destination="T7x-ly-ZLS" kind="show" identifier="goBackYPtoProfile" id="bo3-68-7Fg"/>
                     </connections>
@@ -1217,7 +1201,7 @@
                                         <rect key="frame" x="0.0" y="28" width="414" height="130"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NYd-eL-3Zz" id="OZi-sO-CfZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="129.66666666666666"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="130"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DmU-Ou-hlL">
@@ -1358,6 +1342,7 @@
                         <outlet property="imageView" destination="IbR-1N-pbh" id="scY-0Y-78Y"/>
                         <outlet property="locationTextView" destination="U9t-fe-eWw" id="qja-ef-oI5"/>
                         <outlet property="titleTextView" destination="gWg-x8-QyW" id="fYD-nN-iKq"/>
+                        <segue destination="e3t-rz-pqt" kind="show" identifier="uploadToExpore" id="wfA-jF-kRq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fs4-7r-M6z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1519,7 +1504,7 @@
         <image name="user-30" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="F78-8O-rt0"/>
+        <segue reference="bUM-6t-q5m"/>
         <segue reference="xvS-xp-wOa"/>
         <segue reference="hEW-Tg-xT3"/>
         <segue reference="bo3-68-7Fg"/>
@@ -1527,6 +1512,6 @@
         <segue reference="Zws-NX-V0I"/>
         <segue reference="ah8-Pd-8H0"/>
         <segue reference="Qi0-SO-NHl"/>
-        <segue reference="QfL-a8-EuT"/>
+        <segue reference="nZi-Zf-xsI"/>
     </inferredMetricsTieBreakers>
 </document>

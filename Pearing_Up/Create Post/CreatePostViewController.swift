@@ -14,18 +14,19 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
     
     let myGroup = DispatchGroup()
     
-    // var imgData: NSData!
-    var id : String = ""
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleTextView: UITextField!
     @IBOutlet weak var descriptionTextView: UITextField!
-    //@IBOutlet weak var fruitTextView: UITextField!
     @IBOutlet weak var locationTextView: UITextField!
     @IBOutlet weak var fruitPickerView: UIPickerView!
     
+    var fileLocation : String = ""
+    var id : String = ""
+    let url = "https://pearingup.herokuapp.com/"
+    
     let fruit = ["Almond" , "Apple" , "Apricot", "Avocado", "Blood Orange", "Cherry", "Citron", "Feijoa", "Fig", "Grapefruit", "Hardy Citrus","Jujube", "Kaffir Lime", "Kiwi", "Kumquat","Lemon", "Lime","Loquat", "Mandarin Orange", "Medlar", "Mulberry", "Navel Orange", "Nectarine", "Olive", "Pawpaw", "Peach", "Pear", "Persimmon", "Plum", "Pomegranate","Quince" , "Sour Orange"]
     
-    var pickedFruit = ""
+    var pickedFruit = "Almond"
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let label = (view as? UILabel) ?? UILabel()
         
@@ -76,16 +77,12 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
     
     
     @IBAction func CreatePost(_ sender: Any) {
+        myGroup.enter()
         if(titleTextView.text == "" ){
             print("title field required")
             displayAlert(message: "title field required")
             return
         }
-//        else if (fruitTextView.text == ""){
-//            print("produce field required")
-//            displayAlert(message: "produce field required")
-//            return
-//        }
         else if(locationTextView.text == ""){
             print("location field required")
             displayAlert(message: "location field required")
@@ -98,22 +95,23 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
         }
         else{
             //UPLOAD PICTURE
-            let url_image = "https://pearingup.herokuapp.com/upload/"
-            
-            let image_params: [String: Any] = ["file" : imageView.image!]
-            
-            makePost(url: url_image, params: image_params)
-            print(url_image)
-            let info_params : [String: String] = ["fruits":pickedFruit]
-            print(pickedFruit)
-            let username = User.Data.username
-            
-            let user_params : [String: Any] = ["owner":username, "info":info_params, "additional_msg": descriptionTextView.text!,"title":titleTextView.text!]
-            
-            //UPLOAD POST
-            let url_post = "https://pearingup.herokuapp.com/uploadPostDetails/" + id
-            print(url_post)
-            makePost(url: url_post, params: user_params)
+            upload_data() { responseId in
+                self.id = responseId.string!
+                
+                print("https://pearingup.herokuapp.com/upload/")
+                let info_param : [String: String] = ["fruits":self.pickedFruit]
+                print(self.pickedFruit)
+                let username = User.Data.username
+                
+                let user_params : [String: Any] = ["owner": username, "info": info_param, "additional_msg": self.descriptionTextView.text!,"title":self.titleTextView.text!]
+                
+                //UPLOAD POST
+                let url_post = "https://pearingup.herokuapp.com/uploadPostDetails/" + self.id
+                print(url_post)
+                self.makePost(url: url_post, params: user_params)
+                self.myGroup.leave()
+                self.performSegue(withIdentifier: "uploadToExpore", sender: self)
+            }
         }
     }
     
@@ -159,6 +157,39 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
         self.myGroup.leave()
     }
     
+    func upload_data(completionHandler : @escaping (JSON)->()){
+        
+        self.myGroup.enter()
+        
+        print("Came in here")
+        
+        Alamofire.upload(multipartFormData: { (multipartFormData) in
+            multipartFormData.append(Data(), withName: "file", fileName: self.fileLocation, mimeType: "image/png")
+        }, to:"http://pearingup.herokuapp.com/upload")
+        { (result) in
+            switch result {
+            case .success(let upload, _,_ ):
+                upload.uploadProgress(closure: { (progress) in
+                    print("uploading")
+                })
+                upload.responseJSON { response in
+                    let temp : JSON = JSON(response.result.value!)
+                    print("The id of the image is : ")
+                    print(temp)
+                    completionHandler(temp["id"])
+                    
+                    
+                    self.myGroup.leave()
+                }
+            case .failure(let encodingError):
+                print("failed")
+                print(encodingError)
+                
+            }
+        }
+        
+    }
+    
     @IBAction func addImg(_ sender: Any) {
         print("yollllll")
         let picker = UIImagePickerController()
@@ -194,11 +225,11 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
     
     func imagePickerController( _ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
         print("pic")
+        fileLocation = UIImagePickerControllerImageURL
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
         imageView.image = chosenImage //4
         dismiss(animated:true, completion: nil) //5
     }
-    
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController){
         picker.dismiss(animated: true, completion: nil)

@@ -94,6 +94,10 @@ class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.update_data()
+    }
+    
     
     
     override func didReceiveMemoryWarning() {

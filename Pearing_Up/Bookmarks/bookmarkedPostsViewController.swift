@@ -16,9 +16,9 @@ class bookmarkedPostsViewController: UIViewController, UICollectionViewDataSourc
     
     let myGroup = DispatchGroup()
     @IBOutlet weak var bookmar_posts: UICollectionView!
+    var bookmarkedTitles: [String] = []
     
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,14 +34,21 @@ class bookmarkedPostsViewController: UIViewController, UICollectionViewDataSourc
         // Dispose of any resources that can be recreated.
     }
     
+    
     func request_bookmarks(url: URL) {
         self.myGroup.enter()
         Alamofire.request(url, method: .get ).responseJSON { response in
             if( response.result.isSuccess ) {
                 let temp : JSON = JSON( response.result.value! )
                 print("inside reqest bookmars")
-                print(temp)
                 
+                print(temp["result"].count)
+                for i in 0...temp["result"].count {
+                //    bookmarkedTitles[i] = temp["result"][i]
+                }
+               
+            //    bookmarkedTitles =
+        
             } else{
                 print(response.result.error!)
                 self.myGroup.leave()
