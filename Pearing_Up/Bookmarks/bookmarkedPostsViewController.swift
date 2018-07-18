@@ -18,88 +18,85 @@ class bookmarkedPostsViewController: UIViewController, UICollectionViewDataSourc
     @IBOutlet weak var bookmar_posts: UICollectionView!
     var bookmarkedTitles: [String] = []
     
+    
+    // Declaring all the variables from here
+    
+    let bookmarks_url : URL = URL(string: "https://pearingup.herokuapp.com/said/getBookmarkedPosts")!
+    var bookmarkTitles : [String] = []
+    var bookmarkMsgs : [String] = []
+    var bookmarkFruits : [String] = []
+    var bookmarkCities : [String] = []
+    var bookmarkImages : [UIImage] = []
+    var bookmarkOwners : [String] = []
+    var bookmarkPostsCount: Int = 0;
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        getBookmarkedPosts(url: bookmarks_url)
+        myGroup.notify(queue: .main){
+            self.update_data()
+        }
+    }
+    
+    func update_data(){
+        self.bookmar_posts.dataSource = self
+        print(self.bookmarkImages.count)
+    }
+    
+    func getBookmarkedPosts(url: URL){
         
-        var urlString: String  = "https://pearingup.herokuapp.com/" + "manan" + "/getBookmarkedPosts"
-        let bookmark_url : URL = URL(string: urlString)!
-        request_bookmarks(url: bookmark_url)
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-    func request_bookmarks(url: URL) {
+        // Sending the Alamofire Request to the bookmark posts function
+        
         self.myGroup.enter()
-        Alamofire.request(url, method: .get ).responseJSON { response in
-            if( response.result.isSuccess ) {
-                let temp : JSON = JSON( response.result.value! )
-                print("inside reqest bookmars")
-                
-                print(temp["result"].count)
-                for i in 0...temp["result"].count {
-                //    bookmarkedTitles[i] = temp["result"][i]
-                }
-               
-            //    bookmarkedTitles =
         
-            } else{
+        Alamofire.request(url, method: .get).responseJSON {
+            response in
+            if(response.result.isSuccess){
+                let bkPosts : JSON = JSON(response.result.value!)
+                for i in 0...(bkPosts["result"].count-1){
+                    self.bookmarkMsgs.append(bkPosts["result"][i]["additional_msg"].string!)
+                    self.bookmarkFruits.append(bkPosts["result"][i]["info"]["fruits"].string!)
+                    self.bookmarkOwners.append(bkPosts["result"][i]["owner"].string!)
+                    self.bookmarkTitles.append(bkPosts["result"][i]["title"].string!)
+                    self.getBookmarkedImages(title: bkPosts["result"][i]["title"].string!)
+                }
+                self.myGroup.leave()
+            }
+            else {
+            }
+        }
+    }
+    
+    
+    func getBookmarkedImages(title: String){
+        self.myGroup.enter()
+        let urlstring = "https://pearingup.herokuapp.com/getpost/" + title
+        let image_url : URL = URL(string: urlstring)!
+        Alamofire.request(image_url, method: .get).responseString{
+            response in
+            if(response.result.isSuccess){
+                let bookmarkImg = UIImage(data: response.data!)
+                self.bookmarkImages.append(bookmarkImg!)
+                self.myGroup.leave()
+            }
+            else{
                 print(response.result.error!)
                 self.myGroup.leave()
             }
         }
     }
-    
-    /*
-    func request_bookmarks(url: URL, completion : @escaping (JSON) -> Void) {
-        Alamofire.request(url, method: .get).responseJSON {
-            response in
-            if(response.result.isSuccess) {
-                let temp : JSON = JSON(response.result.value!)
-                print("Success in the get-saved-posts route")
-                //print(response.result!)
-                completion(temp)
-            }
-            else {
-                print("Error happened")
-                completion(response.result.error! as! JSON)
-            }
-        }
-    }
-     
-    func get_bookmarks(url: URL) {
-        self.myGroup.enter()
-        print("Came at get_bookmarks")
-        self.myGroup.leave()
-    }*/
-    
-
+  
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return self.bookmarkOwners.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let bookmarked_posts = collectionView.dequeueReusableCell(withReuseIdentifier: "bookmarked_posts_cell", for: indexPath) as! bookmarkedPostCell
-        
+        bookmarked_posts.bookmarkCell_description.text! = self.bookmarkMsgs[indexPath.item]
+        bookmarked_posts.bookmarkcell_title.text! = self.bookmarkTitles[indexPath.item]
+        bookmarked_posts.boomarkCell_fruit.text! = self.bookmarkFruits[indexPath.item]
+        bookmarked_posts.bookmarkCell_Image.image = self.bookmarkImages[indexPath.item]
         return bookmarked_posts
     }
  
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
