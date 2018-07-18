@@ -18,6 +18,8 @@ class PostObject {
          var title : String = ""
          var pickers : [String] = [""]
          var fruit : String = ""
+
          var img : UIImage  = UIImage.init()
+
     
 }

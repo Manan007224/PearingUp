@@ -60,8 +60,10 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
             response in
             if(response.result.isSuccess) {
                 print("get image function")
+
                 let postImg = UIImage(data: response.data!)
                 self.postImages.append(postImg!)
+
                 self.myGroup.leave()
             }
             else {
