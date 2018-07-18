@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -21,6 +23,9 @@ class ProfileViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func goToYourPosts(_ sender: Any) {
+        self.performSegue(withIdentifier: "yourPostsSegue", sender: self)
+    }
     
     @IBAction func gotobookmarks(_ sender: Any) {
         self.performSegue(withIdentifier: "bookmarkslist", sender: self)
