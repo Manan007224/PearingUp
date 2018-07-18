@@ -144,7 +144,7 @@ class editPostsViewController: UIViewController,UIImagePickerControllerDelegate,
             
             picker.sourceType = .camera
             self.present(picker, animated: true, completion: nil)
-        })) 
+        }))
         
         actionSheet.addAction(UIAlertAction(title: "Photo Library" , style: .default, handler: {(action:UIAlertAction) in picker.sourceType = .photoLibrary
             self.present(picker, animated: true, completion: nil)
@@ -168,7 +168,7 @@ class editPostsViewController: UIViewController,UIImagePickerControllerDelegate,
         picker.dismiss(animated: true, completion: nil)
     }
     
-    //edit the data here (delete post -> create new post?)
+    //edit the data here (delete post -> create new post? / edit post)
     func uploadData(url : String, params : [String : Any], completion: @escaping (JSON) -> Void){
         Alamofire.request(url, method: .post, parameters: params).responseJSON{
             response in
