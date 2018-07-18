@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class MakePostViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class MakePostViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
     let myGroup = DispatchGroup()
     
@@ -19,9 +19,40 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleTextView: UITextField!
     @IBOutlet weak var descriptionTextView: UITextField!
-    @IBOutlet weak var fruitTextView: UITextField!
+    //@IBOutlet weak var fruitTextView: UITextField!
     @IBOutlet weak var locationTextView: UITextField!
+    @IBOutlet weak var fruitPickerView: UIPickerView!
     
+    let fruit = ["Almond" , "Apple" , "Apricot", "Avocado", "Blood Orange", "Cherry", "Citron", "Feijoa", "Fig", "Grapefruit", "Hardy Citrus","Jujube", "Kaffir Lime", "Kiwi", "Kumquat","Lemon", "Lime","Loquat", "Mandarin Orange", "Medlar", "Mulberry", "Navel Orange", "Nectarine", "Olive", "Pawpaw", "Peach", "Pear", "Persimmon", "Plum", "Pomegranate","Quince" , "Sour Orange"]
+    
+    var pickedFruit = ""
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let label = (view as? UILabel) ?? UILabel()
+        
+        label.textColor = .black
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 14)
+        
+        label.text = fruit[row]
+        
+        return label
+    }
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return fruit[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return fruit.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        //label.text = fruit[row] // fruit[row] is what is selected
+        pickedFruit = fruit[row]
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,11 +81,11 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
             displayAlert(message: "title field required")
             return
         }
-        else if (fruitTextView.text == ""){
-            print("produce field required")
-            displayAlert(message: "produce field required")
-            return
-        }
+//        else if (fruitTextView.text == ""){
+//            print("produce field required")
+//            displayAlert(message: "produce field required")
+//            return
+//        }
         else if(locationTextView.text == ""){
             print("location field required")
             displayAlert(message: "location field required")
@@ -73,8 +104,8 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
             
             makePost(url: url_image, params: image_params)
             print(url_image)
-            let info_params : [String: String] = ["fruits":fruitTextView.text!]
-            
+            let info_params : [String: String] = ["fruits":pickedFruit]
+            print(pickedFruit)
             let username = User.Data.username
             
             let user_params : [String: Any] = ["owner":username, "info":info_params, "additional_msg": descriptionTextView.text!,"title":titleTextView.text!]
