@@ -17,8 +17,7 @@ class PostObject {
          var owner : String = ""
          var title : String = ""
          var pickers : [String] = [""]
-    
          var fruit : String = ""
-         var img : UIImage  = UIImage(named: "tree1" )!
+         var img : UIImage  = UIImage.init()
     
 }
