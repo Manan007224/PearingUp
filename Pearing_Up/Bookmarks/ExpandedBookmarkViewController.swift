@@ -1,17 +1,24 @@
 //
-//  ProfileViewController.swift
+//  ExpandedBookmarkViewController.swift
 //  Pearing_Up
 //
-//  Created by Manan Maniyar on 2018-06-18.
+//  Created by waz on 2018-07-17.
 //  Copyright © 2018 Manan Maniyar. All rights reserved.
 //
 
 import UIKit
 
+class ExpandedBookmarkViewController: UIViewController {
 
+    @IBOutlet weak var titleText: UILabel!
+    @IBOutlet weak var fruitimage: UIImageView!
+    @IBOutlet weak var descriptionText: UILabel!
+    @IBOutlet weak var location: UILabel!
+    @IBOutlet weak var fruitname: UILabel!
+    
 
-class ProfileViewController: UIViewController {
-
+    @IBOutlet weak var removeBookmark_click: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,12 +30,7 @@ class ProfileViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func goToYourPosts(_ sender: Any) {
-        self.performSegue(withIdentifier: "yourPostsSegue", sender: self)
-    }
-    
-    @IBAction func gotobookmarks(_ sender: Any) {
-        self.performSegue(withIdentifier: "bookmarkslist", sender: self)
+    @IBAction func removeBookmark_click(_ sender: Any) {
     }
     
     

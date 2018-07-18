@@ -10,7 +10,7 @@ import UIKit
 
 class ExpandedPostViewController: UIViewController {
 
-    var owner = "owner"
+    var owner = ""
     var titl: String!
     var desc: String!
     var loca: String!
@@ -28,11 +28,14 @@ class ExpandedPostViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = true
         // Do any additional setup after loading the view.
         
+        self.owner = User.Data.username
+        
         descriptionText.text = desc
         titleText.text = titl
+        fruitname.text = fruitnme
     }
     
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -43,16 +46,16 @@ class ExpandedPostViewController: UIViewController {
                 self.performSegue(withIdentifier: "applyToPost", sender: self)
     }
     
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "applyToPost" {
             
             let destination = segue.destination as! SendRequestViewController
-            owner = destination.receiverName
-            descriptionText.text = destination.description
-            titleText.text = destination.title
-         //   location.text = destination.location
-        
+            destination.desc = self.desc
+            destination.titl = self.titl
+            destination.fruitnme = self.fruitnme
+            
         }
     }
     /*
