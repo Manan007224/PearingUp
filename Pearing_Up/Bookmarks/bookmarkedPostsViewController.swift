@@ -44,7 +44,7 @@ class bookmarkedPostsViewController: UIViewController, UICollectionViewDataSourc
                 
                 print(temp["result"].count)
                 for i in 0...temp["result"].count {
-                    bookmarkedTitles[i] = temp["result"][i]
+                //    bookmarkedTitles[i] = temp["result"][i]
                 }
                
             //    bookmarkedTitles =
