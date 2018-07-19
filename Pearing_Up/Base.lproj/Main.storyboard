@@ -1503,7 +1503,6 @@
         <image name="user-30" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fil-c6-bul"/>
         <segue reference="IYu-uU-fDe"/>
         <segue reference="bUM-6t-q5m"/>
         <segue reference="xvS-xp-wOa"/>
