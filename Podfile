@@ -5,9 +5,8 @@ target 'Pearing_Up' do
   use_frameworks!
 
   # Pods for Pearing_Up
-
+  
     pod 'SwiftyJSON'
     pod 'Alamofire'
     pod 'SVProgressHUD'
-    pod 'Firebase/Core'
 end
