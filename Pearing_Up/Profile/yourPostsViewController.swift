@@ -94,16 +94,18 @@ class yourPostsViewController: UIViewController, UICollectionViewDataSource {
                 // self.prepareArrays()
                 self.myGroup.leave()
                 self.myGroup.enter()
-                
-                for i in 0...(count-1) {
+                if (count > 0){
                     
-                    self.postTitles.append( self.allposts[i].title )
-                    self.postAdditionalMsgs.append(self.allposts[i].additional_msg )
-                    self.postFruits.append( self.allposts[i].fruit )
-                    self.postIDs.append(self.allposts[i].img_id)
-                    
-                    
-                    //print(self.postTitles[i])
+                    for i in 0...(count-1) {
+                        
+                        self.postTitles.append( self.allposts[i].title )
+                        self.postAdditionalMsgs.append(self.allposts[i].additional_msg )
+                        self.postFruits.append( self.allposts[i].fruit )
+                        self.postIDs.append(self.allposts[i].img_id)
+                        
+                        
+                        //print(self.postTitles[i])
+                    }
                 }
                 
                 self.myGroup.leave()
