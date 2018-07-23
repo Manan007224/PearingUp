@@ -7,19 +7,21 @@
 //
 
 import UIKit
+import Alamofire
 
 class ExpandedPostViewController: UIViewController {
 
+    let temp_url = "https://pearingup.herokuapp.com/" + User.Data.username + "/savedposts"
     var owner = ""
     var titl: String!
     var desc: String!
     var loca: String!
     var fruitnme: String!
-    
+  
     @IBOutlet weak var titleText: UILabel!
     @IBOutlet weak var fruitimage: UIImageView!
     @IBOutlet weak var MakeAppointmentButton: UIButton!
-    @IBOutlet weak var descriptionText: UILabel!
+    @IBOutlet weak var descriptionText: UITextView!
     @IBOutlet weak var location: UILabel!
     @IBOutlet weak var fruitname: UILabel!
     
@@ -33,6 +35,7 @@ class ExpandedPostViewController: UIViewController {
         descriptionText.text = desc
         titleText.text = titl
         fruitname.text = fruitnme
+        
     }
     
     
@@ -41,11 +44,22 @@ class ExpandedPostViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func ApplyToPostingClicked(_ sender: Any)
-        {
-                self.performSegue(withIdentifier: "applyToPost", sender: self)
+    @IBAction func ApplyToPostingClicked(_ sender: Any){
+        self.performSegue(withIdentifier: "applyToPost", sender: self)
     }
     
+    @IBAction func bookmarkButton(_ sender: Any) {
+        var bookmarks_url : URL = URL(string: "https://pearingup.herokuapp.com/bookmarkPost/" + User.Data.username + "/" + titl)!
+        Alamofire.request(bookmarks_url, method: .get).responseJSON {
+            response in
+            if(response.result.isSuccess){
+                print(response.result.value)
+            }
+            else{
+                print("error")
+            }
+        }
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         

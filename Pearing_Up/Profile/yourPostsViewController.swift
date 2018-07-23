@@ -94,16 +94,18 @@ class yourPostsViewController: UIViewController, UICollectionViewDataSource {
                 // self.prepareArrays()
                 self.myGroup.leave()
                 self.myGroup.enter()
-                
-                for i in 0...(count-1) {
+                if (count > 0){
                     
-                    self.postTitles.append( self.allposts[i].title )
-                    self.postAdditionalMsgs.append(self.allposts[i].additional_msg )
-                    self.postFruits.append( self.allposts[i].fruit )
-                    self.postIDs.append(self.allposts[i].img_id)
-                    
-                    
-                    //print(self.postTitles[i])
+                    for i in 0...(count-1) {
+                        
+                        self.postTitles.append( self.allposts[i].title )
+                        self.postAdditionalMsgs.append(self.allposts[i].additional_msg )
+                        self.postFruits.append( self.allposts[i].fruit )
+                        self.postIDs.append(self.allposts[i].img_id)
+                        
+                        
+                        //print(self.postTitles[i])
+                    }
                 }
                 
                 self.myGroup.leave()
@@ -167,6 +169,9 @@ class yourPostsViewController: UIViewController, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let saved_posts = collectionView.dequeueReusableCell(withReuseIdentifier: "your_posts_cell", for: indexPath) as! yourPostsCell
         
+        saved_posts.layer.borderColor = UIColor.black.cgColor
+        saved_posts.layer.borderWidth = 2
+        saved_posts.layer.cornerRadius = 5.0
         saved_posts.post_fruit.text! = postFruits[indexPath.item]
         saved_posts.post_description.text! = postAdditionalMsgs[indexPath.item]
         saved_posts.post_title.text! = postTitles[indexPath.item]
