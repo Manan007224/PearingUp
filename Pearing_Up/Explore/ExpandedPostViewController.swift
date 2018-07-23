@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import Alamofire
 
 class ExpandedPostViewController: UIViewController {
 
+    let temp_url = "https://pearingup.herokuapp.com/" + User.Data.username + "/savedposts"
+    var bookmarks_url : URL = URL(string: "https://pearingup.herokuapp.com/manan/savedposts")!
+    // https://pearingup.herokuapp.com
     var owner = ""
     var titl: String!
     var desc: String!
@@ -19,7 +23,7 @@ class ExpandedPostViewController: UIViewController {
     @IBOutlet weak var titleText: UILabel!
     @IBOutlet weak var fruitimage: UIImageView!
     @IBOutlet weak var MakeAppointmentButton: UIButton!
-    @IBOutlet weak var descriptionText: UILabel!
+    @IBOutlet weak var descriptionText: UITextView!
     @IBOutlet weak var location: UILabel!
     @IBOutlet weak var fruitname: UILabel!
     
@@ -33,6 +37,7 @@ class ExpandedPostViewController: UIViewController {
         descriptionText.text = desc
         titleText.text = titl
         fruitname.text = fruitnme
+        bookmarks_url = URL(string: )
     }
     
     
@@ -46,6 +51,8 @@ class ExpandedPostViewController: UIViewController {
                 self.performSegue(withIdentifier: "applyToPost", sender: self)
     }
     
+    @IBAction func bookmarkButton(_ sender: Any) {
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
