@@ -116,7 +116,7 @@ class yourPostsViewController: UIViewController, UICollectionViewDataSource {
     }
     
     
-    
+    // Reloads table view with all posts
     func update_data() {
         
         self.saved_posts.dataSource = self
