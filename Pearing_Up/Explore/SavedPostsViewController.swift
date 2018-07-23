@@ -167,8 +167,6 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
             }
         }
     }
-
-
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
