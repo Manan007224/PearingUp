@@ -25,6 +25,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     var postCount : Int = 0
     var allposts : [PostObject] = []
     var booleann : Int = 1
+    var selectedRow = -1
     
     @IBOutlet weak var saved_posts: UICollectionView!
     let myGroup = DispatchGroup()
@@ -73,6 +74,15 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     }
     
     
+    func bookmarkPost(url: URL){
+        Alamofire.request(url, method: .post).responseJSON { response in
+            
+        }
+    }
+    
+    @IBAction func bookmarkButton(_ sender: Any) {
+        displayAlert(message: "Post bookmarked.")
+    }
     
     
     func get_titles(url: URL){
@@ -156,9 +166,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         }
     }
 
-    func bookmarkPost(url: URL){
-        
-    }
+
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -170,6 +178,10 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let saved_posts = collectionView.dequeueReusableCell(withReuseIdentifier: "saved_posts_cell", for: indexPath) as! SavedPostsCell
+        
+        saved_posts.layer.borderColor = UIColor.black.cgColor
+        saved_posts.layer.borderWidth = 1.420
+        saved_posts.layer.cornerRadius = 10.0
         saved_posts.post_fruit.text! = postFruits[indexPath.item]
         saved_posts.post_description.text! = postAdditionalMsgs[indexPath.item]
         saved_posts.post_title.text! = postTitles[indexPath.item]
