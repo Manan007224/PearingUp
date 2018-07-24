@@ -28,6 +28,8 @@
 		72E9028820FDCDAA00573BE9 /* bookmarkedPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E9028720FDCDAA00573BE9 /* bookmarkedPostCell.swift */; };
 		72E9028A20FDCDE200573BE9 /* bookmarkedPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E9028920FDCDE200573BE9 /* bookmarkedPostsViewController.swift */; };
 		72E9028C20FDD5EF00573BE9 /* ExpandedBookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E9028B20FDD5EF00573BE9 /* ExpandedBookmarkViewController.swift */; };
+		9139035F2106A1CB00E6A410 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9139035E2106A1CB00E6A410 /* GoogleService-Info.plist */; };
+		913903632106A2CD00E6A410 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 913903622106A2CD00E6A410 /* GoogleService-Info.plist */; };
 		9164945C20E7507C00F5467D /* SignUpInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9164945B20E7507C00F5467D /* SignUpInfoController.swift */; };
 		9164948820E7C8F700F5467D /* SavedPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9164948720E7C8F700F5467D /* SavedPostsViewController.swift */; };
 		9164948A20E7C9A900F5467D /* SavedPostsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9164948920E7C9A900F5467D /* SavedPostsCell.swift */; };
@@ -75,6 +77,8 @@
 		72E9028920FDCDE200573BE9 /* bookmarkedPostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bookmarkedPostsViewController.swift; sourceTree = "<group>"; };
 		72E9028B20FDD5EF00573BE9 /* ExpandedBookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandedBookmarkViewController.swift; sourceTree = "<group>"; };
 		80891CEF7889EB75F0E2F1FD /* Pods_Pearing_Up.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pearing_Up.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9139035E2106A1CB00E6A410 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		913903622106A2CD00E6A410 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9164945B20E7507C00F5467D /* SignUpInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpInfoController.swift; sourceTree = "<group>"; };
 		9164948720E7C8F700F5467D /* SavedPostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPostsViewController.swift; sourceTree = "<group>"; };
 		9164948920E7C9A900F5467D /* SavedPostsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPostsCell.swift; sourceTree = "<group>"; };
@@ -124,6 +128,7 @@
 		4197900720F84A6D00DD6282 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				9139035E2106A1CB00E6A410 /* GoogleService-Info.plist */,
 				91E774DB20D638740030121E /* ViewController.swift */,
 				9164945B20E7507C00F5467D /* SignUpInfoController.swift */,
 				916EA22420D7B71300C1085D /* SignUpViewController.swift */,
@@ -225,6 +230,7 @@
 				4197900620F84A4900DD6282 /* Explore */,
 				91E774D920D638740030121E /* AppDelegate.swift */,
 				91E774E020D638740030121E /* Assets.xcassets */,
+				913903622106A2CD00E6A410 /* GoogleService-Info.plist */,
 				91E774E520D638740030121E /* Info.plist */,
 				728A7F0820EBC62D0051F353 /* tabBarViewController.swift */,
 			);
@@ -334,7 +340,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				91E774E120D638740030121E /* Assets.xcassets in Resources */,
+				913903632106A2CD00E6A410 /* GoogleService-Info.plist in Resources */,
 				91E774DF20D638740030121E /* Main.storyboard in Resources */,
+				9139035F2106A1CB00E6A410 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,18 +375,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Pearing_Up/Pods-Pearing_Up-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
