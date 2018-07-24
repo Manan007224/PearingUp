@@ -36,6 +36,8 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         print("boolean value:")
         print(booleann)
         
+        UIApplication.shared.statusBarStyle = .default
+        
         let all_titles_url : URL = URL(string: "https://pearingup.herokuapp.com/allPosts")!
         get_titles(url: all_titles_url)
         
@@ -182,7 +184,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         saved_posts.layer.shadowRadius = 5.0
         saved_posts.layer.masksToBounds = false
         saved_posts.layer.shadowOpacity = 1.0
-        saved_posts.layer.shadowPath = UIBezierPath.init(rect: saved_posts.bounds).cgPath
+       // saved_posts.layer.shadowPath = UIBezierPath.init(rect: saved_posts.bounds).cgPath
         saved_posts.layer.shadowOffset = CGSize.zero
         saved_posts.layer.cornerRadius = 10.0
         saved_posts.post_fruit.text! = postFruits[indexPath.item]
