@@ -13,35 +13,40 @@ import SwiftyJSON
 class ContactListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
+    @IBOutlet weak var contactTableView: UITableView!
+    
     let myGroup = DispatchGroup()
     
     
-    func get_RequestData(name: String, completion: @escaping (String) -> Void) {
+    func get_RequestData(completion: @escaping (String) -> Void) {
         self.myGroup.enter()
-        populate(uname: name)
+        populate()
         self.myGroup.leave()
     }
     
-    func populate(uname : String)
+    // Ge
+    func populate()
     {
         self.myGroup.enter()
-        let url = "https://pearingup.herokuapp.com/" + uname + "/getContacts"
+        let url = "https://pearingup.herokuapp.com/" + User.Data.username + "/getContacts"
         Alamofire.request(url, method: .get).responseJSON {
             response in
             if(response.result.isSuccess) {
                 let json : JSON = JSON(response.result.value!)
-                //print(json)
+                print(json)
                 let requested_people = json["result"].array
-                //print(result)
                 
-                for people in requested_people! {
-                    self.nameList.append(people["username"].string!)
-                    self.descriptionList.append(people["add_msg"].string!)
+                
+                print(requested_people)
+                if(requested_people != nil){
+                    for people in requested_people! {
+                            self.nameList.append(people.string!)
+                            //self.descriptionList.append(people["add_msg"].string!)
+                        }
                 }
                 self.myGroup.leave()
-                
             } else {
-                print("Inbox View Controller Error")
+                print("Contacts View Controller Error")
                 self.myGroup.leave()
             }
         }
@@ -49,7 +54,7 @@ class ContactListViewController: UIViewController, UITableViewDelegate, UITableV
     
     func update_data() {
         print("Came at update_Data()")
-        self.inboxTableView.reloadData()
+        self.contactTableView.reloadData()
     }
     
     
@@ -67,22 +72,22 @@ class ContactListViewController: UIViewController, UITableViewDelegate, UITableV
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "inboxCell", for: indexPath) as! InboxTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "inboxCell", for: indexPath) as! ContactListTableViewCell
         
-        cell.myLabel.text = nameList[indexPath.row]
+        cell.nameLabel.text = nameList[indexPath.row]
         cell.descriptionLabel.text = descriptionList[indexPath.row]
         
         return(cell)
     }
     
-    @IBOutlet weak var inboxTableView: UITableView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.inboxTableView.dataSource = self
-        self.inboxTableView.delegate = self
+        self.contactTableView.dataSource = self
+        self.contactTableView.delegate = self
         //populate(uname : "manan")
-        self.get_RequestData(name: User.Data.username) { data in
+        self.get_RequestData() { data in
             print("Came here")
         }
         myGroup.notify(queue: .main) {
@@ -108,7 +113,6 @@ class ContactListViewController: UIViewController, UITableViewDelegate, UITableV
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         self.performSegue(withIdentifier: "expandRequest", sender: indexPath)
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
