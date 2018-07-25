@@ -20,6 +20,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     var postTitles : [String] = []
     var postAdditionalMsgs : [String] = []
     var postFruits: [String] = []
+    var postOwners: [String] = []
     var postCities : [String] = []
     var postImages : [UIImage] = []
     var postCount : Int = 0
@@ -121,7 +122,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
                     self.postTitles.append( self.allposts[i].title )
                     self.postAdditionalMsgs.append(self.allposts[i].additional_msg )
                     self.postFruits.append( self.allposts[i].fruit )
-                    
+                    self.postOwners.append(self.allposts[i].owner)
                 }
                 
                 self.myGroup.leave()
@@ -160,6 +161,8 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
                         
                         if let selectedindexpath = collectionView.indexPathsForSelectedItems?.first {
                             
+                            destination.image = postImages[selectedindexpath.row]
+                            destination.owner = postOwners[selectedindexpath.row]
                             destination.titl = postTitles[selectedindexpath.row]
                             destination.desc = postAdditionalMsgs[selectedindexpath.row]
                             destination.fruitnme = postFruits[selectedindexpath.row]
