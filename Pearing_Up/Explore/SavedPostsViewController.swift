@@ -36,10 +36,10 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         super.viewDidLoad()
         print("boolean value:")
         print(booleann)
-       /*
+       
         UIApplication.shared.statusBarStyle = .default
         
-        let all_titles_url : URL = URL(string: "https://pearingup.herokuapp.com/allPosts")!
+        let all_titles_url : URL = URL(string: "https:pearingup.herokuapp.com/allPosts")!
         get_titles(url: all_titles_url)
         
         myGroup.notify(queue: .main) {
@@ -48,22 +48,12 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
             self.update_data()
         }
         
-        */
+        
         self.tabBarController?.tabBar.isHidden = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
-        UIApplication.shared.statusBarStyle = .default
-        
-        let all_titles_url : URL = URL(string: "https://pearingup.herokuapp.com/allPosts")!
-        get_titles(url: all_titles_url)
-        
-        myGroup.notify(queue: .main) {
-            print("before update")
-            print(self.postImages.count)
-            self.update_data()
-        }
     }
     
     func getimage(title: String){
