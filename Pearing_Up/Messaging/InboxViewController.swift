@@ -95,6 +95,7 @@ class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
         self.update_data()
     }
     
