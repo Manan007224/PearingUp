@@ -20,7 +20,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         nameTextView.text = User.Data.username
-        locationLabel.text = User.Data.address
+        locationLabel.text = User.Data.city // this does not work right now 07.25
         // Do any additional setup after loading the view.
     }
 
