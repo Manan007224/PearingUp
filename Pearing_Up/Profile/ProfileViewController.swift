@@ -23,6 +23,10 @@ class ProfileViewController: UIViewController {
         locationLabel.text = User.Data.city // this does not work right now 07.25
         // Do any additional setup after loading the view.
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -38,7 +42,10 @@ class ProfileViewController: UIViewController {
     }
     
     
-
+    @IBAction func logoutButton(_ sender: Any) {
+        self.performSegue(withIdentifier: "logout", sender: self)
+    }
+    
     /*
     // MARK: - Navigation
 

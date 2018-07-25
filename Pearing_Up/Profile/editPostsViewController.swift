@@ -49,6 +49,10 @@ class editPostsViewController: UIViewController,UIImagePickerControllerDelegate,
         return 1
     }
     
+    @IBAction func backButton(_ sender: Any) {
+        _ = navigationController?.popViewController(animated: true)
+    }
+    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return fruit[row]
     }

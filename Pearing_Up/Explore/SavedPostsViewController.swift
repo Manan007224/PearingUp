@@ -149,7 +149,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("click")
         self.performSegue(withIdentifier: "contentVideoSegue", sender: indexPath)
-    }
+    }	
     
     // passes data to next controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
