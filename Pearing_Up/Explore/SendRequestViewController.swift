@@ -38,8 +38,8 @@ class SendRequestViewController: UIViewController {
     }
     
     @IBAction func back_to_expandview(_ sender: Any) {
-        self.performSegue(withIdentifier: "sendrequest_to_expandview", sender: self)
-        
+        //self.performSegue(withIdentifier: "sendrequest_to_expandview", sender: self)
+        _ = navigationController?.popViewController(animated: true)
     }
     
     // Pass posting info back to the expanded post so it can load
