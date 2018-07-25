@@ -36,10 +36,10 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         super.viewDidLoad()
         print("boolean value:")
         print(booleann)
-        
+       
         UIApplication.shared.statusBarStyle = .default
         
-        let all_titles_url : URL = URL(string: "https://pearingup.herokuapp.com/allPosts")!
+        let all_titles_url : URL = URL(string: "https:pearingup.herokuapp.com/allPosts")!
         get_titles(url: all_titles_url)
         
         myGroup.notify(queue: .main) {
@@ -52,6 +52,9 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         self.tabBarController?.tabBar.isHidden = false
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
+    }
     
     func getimage(title: String){
         var imgdata : UIImage
@@ -146,7 +149,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("click")
         self.performSegue(withIdentifier: "contentVideoSegue", sender: indexPath)
-    }
+    }	
     
     // passes data to next controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

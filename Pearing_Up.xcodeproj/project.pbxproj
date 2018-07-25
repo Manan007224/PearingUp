@@ -217,10 +217,10 @@
 		91E774D820D638740030121E /* Pearing_Up */ = {
 			isa = PBXGroup;
 			children = (
-				72E9028620FDCD4300573BE9 /* Bookmarks */,
 				91E774DD20D638740030121E /* Main.storyboard */,
 				727C1B0A20FC73240033A53C /* PostObject.swift */,
 				417FA09F20ECAEC100C19780 /* User.swift */,
+				72E9028620FDCD4300573BE9 /* Bookmarks */,
 				4197900A20F84AB700DD6282 /* Messaging */,
 				4197900920F84AA400DD6282 /* Create Post */,
 				4197900820F84A9400DD6282 /* Profile */,

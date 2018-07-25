@@ -15,7 +15,7 @@ class yourPostsViewController: UIViewController, UICollectionViewDataSource {
     
     
     @IBAction func goBack(_ sender: Any) {
-        self.performSegue(withIdentifier: "goBackYPtoProfile", sender: self)
+        _ = navigationController?.popViewController(animated: true)
     }
 
     let bookmarks_url : URL = URL(string: "https://pearingup.herokuapp.com/manan/savedposts")!

@@ -5,7 +5,6 @@
 //  Created by Ali Arshad on 2018-07-03.
 //  Copyright © 2018 Manan Maniyar. All rights reserved.
 //
-
 import UIKit
 import Alamofire
 import SwiftyJSON
@@ -38,8 +37,8 @@ class SendRequestViewController: UIViewController {
     }
     
     @IBAction func back_to_expandview(_ sender: Any) {
-        self.performSegue(withIdentifier: "sendrequest_to_expandview", sender: self)
-        
+        //self.performSegue(withIdentifier: "sendrequest_to_expandview", sender: self)
+        _ = navigationController?.popViewController(animated: true)
     }
     
     // Pass posting info back to the expanded post so it can load
@@ -68,7 +67,8 @@ class SendRequestViewController: UIViewController {
             let url = (message_url + "/" + User.Data.username + "/" + receiverName)
             print("send a request at " + url)
             serverRequest(url: url, params: ["add_msg" : message])// also need to pass the dates
-            self.performSegue(withIdentifier: "sendrequest_to_expandview", sender: self)
+            //self.performSegue(withIdentifier: "sendrequest_to_expandview", sender: self)
+            _ = navigationController?.popViewController(animated: true)
         }
     }
     

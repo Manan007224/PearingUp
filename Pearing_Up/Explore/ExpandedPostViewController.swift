@@ -43,6 +43,10 @@ class ExpandedPostViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func backButton(_ sender: Any) {
+        _ = navigationController?.popViewController(animated: true)
+    }
+
     @IBAction func ApplyToPostingClicked(_ sender: Any){
         self.performSegue(withIdentifier: "applyToPost", sender: self)
     }
