@@ -13,9 +13,14 @@ import UIKit
 class ProfileViewController: UIViewController {
 
     @IBOutlet weak var nameTextView: UILabel!
+    @IBOutlet weak var pickerRatingLabel: UILabel!
+    @IBOutlet weak var ownerRatingLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         nameTextView.text = User.Data.username
+        locationLabel.text = User.Data.address
         // Do any additional setup after loading the view.
     }
 
