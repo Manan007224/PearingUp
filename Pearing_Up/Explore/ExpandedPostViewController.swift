@@ -11,8 +11,8 @@ import Alamofire
 
 class ExpandedPostViewController: UIViewController {
 
-    let temp_url = "https://pearingup.herokuapp.com/" + User.Data.username + "/savedposts"
-    var owner = ""
+    var owner : String!
+    var image : UIImage!
     var titl: String!
     var desc: String!
     var loca: String!
@@ -29,12 +29,11 @@ class ExpandedPostViewController: UIViewController {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = true
         // Do any additional setup after loading the view.
-        
-        self.owner = User.Data.username
-        
+                
         descriptionText.text = desc
         titleText.text = titl
         fruitname.text = fruitnme
+        fruitimage.image = image
         
     }
     
@@ -66,9 +65,11 @@ class ExpandedPostViewController: UIViewController {
         if segue.identifier == "applyToPost" {
             
             let destination = segue.destination as! SendRequestViewController
+            destination.receiverName = self.owner
             destination.desc = self.desc
             destination.titl = self.titl
             destination.fruitnme = self.fruitnme
+            destination.image = self.image
             
         }
     }
