@@ -169,9 +169,13 @@ class yourPostsViewController: UIViewController, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let saved_posts = collectionView.dequeueReusableCell(withReuseIdentifier: "your_posts_cell", for: indexPath) as! yourPostsCell
         
-        saved_posts.layer.borderColor = UIColor.black.cgColor
-        saved_posts.layer.borderWidth = 2
-        saved_posts.layer.cornerRadius = 5.0
+        saved_posts.layer.shadowRadius = 5.0
+        saved_posts.layer.masksToBounds = false
+        saved_posts.layer.shadowOpacity = 1.0
+        saved_posts.layer.shadowOffset = CGSize.zero
+        saved_posts.layer.cornerRadius = 10.0
+//        saved_posts.layer.borderColor = UIColor.black.cgColor
+//        saved_posts.layer.borderWidth = 2
         saved_posts.post_fruit.text! = postFruits[indexPath.item]
         saved_posts.post_description.text! = postAdditionalMsgs[indexPath.item]
         saved_posts.post_title.text! = postTitles[indexPath.item]

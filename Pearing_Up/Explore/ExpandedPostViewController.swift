@@ -29,7 +29,12 @@ class ExpandedPostViewController: UIViewController {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = true
         // Do any additional setup after loading the view.
-                
+        fruitimage.layer.borderWidth = 1
+        fruitimage.layer.shadowRadius = 5.0
+        fruitimage.layer.masksToBounds = false
+        fruitimage.layer.shadowOpacity = 1.0
+        fruitimage.layer.shadowOffset = CGSize.zero
+        fruitimage.layer.cornerRadius = 10.0
         descriptionText.text = desc
         titleText.text = titl
         fruitname.text = fruitnme
