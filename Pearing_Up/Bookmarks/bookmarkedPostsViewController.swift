@@ -118,9 +118,15 @@ class bookmarkedPostsViewController: UIViewController, UICollectionViewDataSourc
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let bookmarked_posts = collectionView.dequeueReusableCell(withReuseIdentifier: "bookmarked_posts_cell", for: indexPath) as! bookmarkedPostCell
+        
+        bookmarked_posts.layer.shadowRadius = 5.0
+        bookmarked_posts.layer.masksToBounds = false
+        bookmarked_posts.layer.shadowOpacity = 1.0
+        bookmarked_posts.layer.shadowOffset = CGSize.zero
+        bookmarked_posts.layer.cornerRadius = 10.0
         bookmarked_posts.bookmarkCell_description.text! = self.bookmarkMsgs[indexPath.item]
         bookmarked_posts.bookmarkcell_title.text! = self.bookmarkTitles[indexPath.item]
-        bookmarked_posts.boomarkCell_fruit.text! = self.bookmarkFruits[indexPath.item]
+        bookmarked_posts.bookmarkCell_fruit.text! = self.bookmarkFruits[indexPath.item]
         bookmarked_posts.bookmarkCell_Image.image = self.bookmarkImages[indexPath.item]
         return bookmarked_posts
     }
