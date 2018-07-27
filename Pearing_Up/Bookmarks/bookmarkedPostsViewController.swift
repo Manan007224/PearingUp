@@ -38,6 +38,10 @@ class bookmarkedPostsViewController: UIViewController, UICollectionViewDataSourc
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
     func update_data(){
         self.bookmar_posts.dataSource = self
         print(self.bookmarkImages.count)
@@ -82,6 +86,28 @@ class bookmarkedPostsViewController: UIViewController, UICollectionViewDataSourc
             else{
                 print(response.result.error!)
                 self.myGroup.leave()
+            }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "expandBookmarkPost" {
+            if let collectionCell: bookmarkedPostCell = sender as? bookmarkedPostCell {
+                if let collectionView: UICollectionView = collectionCell.superview as? UICollectionView {
+                    
+                    if let destination = segue.destination as? ExpandedPostViewController {
+                        // Pass some data to YourViewController
+                        // collectionView.tag will give your selected tableView index                        
+                        if let selectedindexpath = collectionView.indexPathsForSelectedItems?.first {
+                            
+                            destination.image = bookmarkImages[selectedindexpath.row]
+                            destination.owner = bookmarkOwners[selectedindexpath.row]
+                            destination.titl = bookmarkTitles[selectedindexpath.row]
+                            destination.desc = bookmarkMsgs[selectedindexpath.row]
+                            destination.fruitnme = bookmarkFruits[selectedindexpath.row]
+                        }
+                    }
+                }
             }
         }
     }
