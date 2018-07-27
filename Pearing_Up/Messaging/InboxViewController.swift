@@ -68,7 +68,8 @@ class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDat
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "inboxCell", for: indexPath) as! InboxTableViewCell
-        
+        cell.layer.borderWidth = 0.840
+        cell.layer.borderColor = UIColor.lightGray.cgColor
         cell.myLabel.text = nameList[indexPath.row]
         cell.descriptionLabel.text = descriptionList[indexPath.row]
         
