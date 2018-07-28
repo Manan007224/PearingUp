@@ -61,6 +61,10 @@ class SignUpViewController: UIViewController {
         }
     }
     
+    @IBAction func backButton(_ sender: Any) {
+        self.performSegue(withIdentifier: "signupToLanding", sender: self)
+    }
+    
     func signup(url: String, params: [String:String]){
         Alamofire.request(url, method: .post, parameters: params).responseJSON{
             response in

@@ -5,21 +5,22 @@
 //  Created by Ali Arshad on 2018-07-03.
 //  Copyright © 2018 Manan Maniyar. All rights reserved.
 //
-
 import UIKit
 import Alamofire
 import SwiftyJSON
 
+// View Controller Class used to send a request to pick from another user's tree
 class SendRequestViewController: UIViewController {
     
-    var owner = ""
+    var owner: String!
+    var image: UIImage!
     var titl: String!
     var desc: String!
     var loca: String!
     var fruitnme: String!
     
     let message_url : String = "https://pearingup.herokuapp.com/sentRequest"
-    var receiverName : String = "receiver"
+    var receiverName : String!
     @IBOutlet weak var messageUI: UITextView!
     @IBOutlet weak var lastDateUI: UIDatePicker!
     @IBOutlet weak var firstDateUI: UIDatePicker!
@@ -36,10 +37,11 @@ class SendRequestViewController: UIViewController {
     }
     
     @IBAction func back_to_expandview(_ sender: Any) {
-        self.performSegue(withIdentifier: "sendrequest_to_expandview", sender: self)
-        
+        //self.performSegue(withIdentifier: "sendrequest_to_expandview", sender: self)
+        _ = navigationController?.popViewController(animated: true)
     }
     
+    // Pass posting info back to the expanded post so it can load
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.identifier == "sendrequest_to_expandview" {
             
@@ -47,9 +49,11 @@ class SendRequestViewController: UIViewController {
             expandview.desc = self.desc
             expandview.titl = self.titl
             expandview.fruitnme = self.fruitnme
+            expandview.image = self.image
         }
     }
     
+    // Build URL and sends a request to that owner using the provided dates
     @IBAction func sendMessage(_ sender: Any) {
         let firstDate = firstDateUI.date
         let secondDate = lastDateUI.date
@@ -59,9 +63,12 @@ class SendRequestViewController: UIViewController {
         }
         else {
             let message = ("I am free from: " + dateToString(date: firstDate) + "\nTo: " + dateToString(date: secondDate) + "\n" + messageUI.text)
+        
             let url = (message_url + "/" + User.Data.username + "/" + receiverName)
-            
+            print("send a request at " + url)
             serverRequest(url: url, params: ["add_msg" : message])// also need to pass the dates
+            //self.performSegue(withIdentifier: "sendrequest_to_expandview", sender: self)
+            _ = navigationController?.popViewController(animated: true)
         }
     }
     
@@ -79,8 +86,6 @@ class SendRequestViewController: UIViewController {
 
                     return
                 }
-                
-                self.performSegue(withIdentifier: "messageSent", sender: self)
             }
             else {
                 print("Error Happened, url is:" + url)

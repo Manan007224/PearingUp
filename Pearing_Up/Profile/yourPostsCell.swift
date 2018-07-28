@@ -10,6 +10,7 @@ import UIKit
 
 class yourPostsCell: UICollectionViewCell {
     
+    @IBOutlet weak var post_image: UIImageView!
     @IBOutlet weak var post_city: UILabel!
     @IBOutlet weak var post_fruit: UILabel!
     @IBOutlet weak var post_description: UILabel!

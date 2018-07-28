@@ -20,23 +20,39 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     var postTitles : [String] = []
     var postAdditionalMsgs : [String] = []
     var postFruits: [String] = []
+    var postOwners: [String] = []
     var postCities : [String] = []
     var postImages : [UIImage] = []
     var postCount : Int = 0
-    var allposts : [PostObject] = []
     var booleann : Int = 1
+    var selectedRow = -1
     
     @IBOutlet weak var saved_posts: UICollectionView!
     let myGroup = DispatchGroup()
     
     
     override func viewDidLoad() {
-       // print("yolo")
         super.viewDidLoad()
         print("boolean value:")
         print(booleann)
+       
+        UIApplication.shared.statusBarStyle = .default
         
-        let all_titles_url : URL = URL(string: "https://pearingup.herokuapp.com/allPosts")!
+        
+
+        
+        
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        postTitles = []
+        postAdditionalMsgs = []
+        postFruits = []
+        postCities = []
+        postImages = []
+        postCount = 0
+        let all_titles_url : URL = URL(string: "https:pearingup.herokuapp.com/allPosts")!
         get_titles(url: all_titles_url)
         
         myGroup.notify(queue: .main) {
@@ -47,10 +63,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         self.tabBarController?.tabBar.isHidden = false
     }
     
-    
-    func getimage(title: String){
-        var imgdata : UIImage
-        
+    func getimage(title: String, completionHandler : @escaping ()->Void){
         self.myGroup.enter()
         let urlstring = "https://pearingup.herokuapp.com/getpost/" + title
         print(urlstring)
@@ -65,6 +78,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
                 self.postImages.append(postImg!)
 
                 self.myGroup.leave()
+                completionHandler()
             }
             else {
                 print(response.result.error!)
@@ -74,6 +88,15 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     }
     
     
+    func bookmarkPost(url: URL){
+        Alamofire.request(url, method: .post).responseJSON { response in
+            
+        }
+    }
+    
+    @IBAction func bookmarkButton(_ sender: Any) {
+        displayAlert(message: "Post bookmarked.")
+    }
     
     
     func get_titles(url: URL){
@@ -85,57 +108,17 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
                 let temp : JSON = JSON(response.result.value!)
                 let posts : JSON = temp["Posts"]
                 print(posts)
-                //print(info["fruits"])
-                
                 self.postCount = posts.count
-            //    print(self.postCount )
-            //    print("=== postcoutn")
-                
                 for i in 0...(self.postCount-1){
-                   // print("-----hello-----")
-                    var post : PostObject = PostObject.init()
-                    let info : JSON = posts[i]["info"]
-                 //   print(posts[i]["title"].stringValue )
-                    post.title = posts[i]["title"].stringValue
-                    post.additional_msg = posts[i]["additional_msg"].stringValue
-                    post.id = posts[i]["id"].stringValue
-                    post.img_id = posts[i]["img_id"].stringValue
-                    post.owner = posts[i]["owner"].stringValue
-                    post.fruit = info["fruits"].stringValue
-                    self.getimage( title: posts[i]["title"].stringValue)
-//                    if ( imgdata == nil ){
-//                        print("yoo dayta is nil")
-//                    }
-//                    post.img = imgdata!
-                    
-                    self.allposts.append(post)
+                    self.getimage( title: posts[i]["title"].stringValue) {
+                        self.postTitles.append( posts[i]["title"].stringValue )
+                        self.postAdditionalMsgs.append(posts[i]["additional_msg"].stringValue )
+                        self.postFruits.append(posts[i]["info"]["fruits"].stringValue )
+                    }
                 }
-                /*
-                 var additional_msg : String = ""
-                 var id : String = ""
-                 var img_id: String = ""
-                 var owner : String = ""
-                 var title : String = "" */
-                
-                //let image_url : URL = URL(string: "https://pearingup.herokuapp.com/getpost" + title)!
-                //getimage(url_image)
-               // self.prepareArrays()
-                self.myGroup.leave()
-                self.myGroup.enter()
-                
-                for i in 0...(self.postCount-1) {
-                    
-                    self.postTitles.append( self.allposts[i].title )
-                    self.postAdditionalMsgs.append(self.allposts[i].additional_msg )
-                    self.postFruits.append( self.allposts[i].fruit )
-                    
-                    //print(self.postTitles[i])
-                }
-                
                 self.myGroup.leave()
             }
             else{
-               /// print(response.result.error!)
                 self.myGroup.leave()
             }
         }
@@ -154,7 +137,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("click")
         self.performSegue(withIdentifier: "contentVideoSegue", sender: indexPath)
-    }
+    }	
     
     // passes data to next controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -169,6 +152,8 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
                         
                         if let selectedindexpath = collectionView.indexPathsForSelectedItems?.first {
                             
+                            destination.image = postImages[selectedindexpath.row]
+                            destination.owner = postOwners[selectedindexpath.row]
                             destination.titl = postTitles[selectedindexpath.row]
                             destination.desc = postAdditionalMsgs[selectedindexpath.row]
                             destination.fruitnme = postFruits[selectedindexpath.row]
@@ -178,28 +163,31 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
             }
         }
     }
-
-    ////////////////////////////
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // originally was postTitle.count
         
-        return allposts.count
+        return postCount
     }
 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let saved_posts = collectionView.dequeueReusableCell(withReuseIdentifier: "saved_posts_cell", for: indexPath) as! SavedPostsCell
-
         
-      //  saved_posts.post_image.image = postImages[indexPath.row]
-       // saved_posts.post_city.text! = postCities[indexPath.item]
-      //  print(postFruits.count,  " ",  postAdditionalMsgs.count,  "  ",  postTitles.count )
-        
+        saved_posts.layer.shadowRadius = 5.0
+        saved_posts.layer.masksToBounds = false
+        saved_posts.layer.shadowOpacity = 1.0
+       // saved_posts.layer.shadowPath = UIBezierPath.init(rect: saved_posts.bounds).cgPath
+        saved_posts.layer.shadowOffset = CGSize.zero
+        saved_posts.layer.cornerRadius = 10.0
         saved_posts.post_fruit.text! = postFruits[indexPath.item]
         saved_posts.post_description.text! = postAdditionalMsgs[indexPath.item]
         saved_posts.post_title.text! = postTitles[indexPath.item]
-        saved_posts.post_image.image = postImages[indexPath.item]
+        saved_posts.post_image.layer.cornerRadius = 5.0
+        saved_posts.post_image.clipsToBounds = true
         
+        saved_posts.post_image.image = postImages[indexPath.item]
         
         return saved_posts
     }

@@ -9,11 +9,9 @@
 import UIKit
 
 class bookmarkedPostCell: UICollectionViewCell {
-    
     @IBOutlet weak var bookmarkCell_Image: UIImageView!
-    @IBOutlet weak var bookmarkcell_title: UITextView!
-    @IBOutlet weak var boomarkCell_fruit: UITextView!
-    @IBOutlet weak var bookmarkCell_city: UITextView!
-    @IBOutlet weak var bookmarkCell_description: UITextView!
-    
+    @IBOutlet weak var bookmarkcell_title: UILabel!
+    @IBOutlet weak var bookmarkCell_description: UILabel!
+    @IBOutlet weak var bookmarkCell_fruit: UILabel!
+    @IBOutlet weak var bookmarkCell_city: UILabel!
 }
