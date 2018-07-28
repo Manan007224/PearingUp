@@ -15,6 +15,7 @@ import SwiftyJSON
 
 class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     
+    var firstStartUp : Bool  = true
     let bookmarks_url : URL = URL(string: "https://pearingup.herokuapp.com/manan/savedposts")!
     let posts_url : URL = URL(string: "https://pearingup.herokuapp.com/getpost/apple_post")!
     var postTitles : [String] = []
@@ -38,29 +39,35 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
        
         UIApplication.shared.statusBarStyle = .default
         
-        
-
-        
-        
-        self.tabBarController?.tabBar.isHidden = false
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
         postTitles = []
         postAdditionalMsgs = []
         postFruits = []
         postCities = []
         postImages = []
+        postOwners = []
         postCount = 0
         let all_titles_url : URL = URL(string: "https:pearingup.herokuapp.com/allPosts")!
         get_titles(url: all_titles_url)
-        
+
         myGroup.notify(queue: .main) {
             print("before update")
             print(self.postImages.count)
             self.update_data()
         }
+        
         self.tabBarController?.tabBar.isHidden = false
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if(!firstStartUp) {
+            print("Not first start up")
+            viewDidLoad()
+            
+        }
+        else{
+            firstStartUp = false
+        }
     }
     
     func getimage(title: String, completionHandler : @escaping ()->Void){
@@ -114,6 +121,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
                         self.postTitles.append( posts[i]["title"].stringValue )
                         self.postAdditionalMsgs.append(posts[i]["additional_msg"].stringValue )
                         self.postFruits.append(posts[i]["info"]["fruits"].stringValue )
+                        self.postOwners.append(posts[i]["owner"].stringValue)
                     }
                 }
                 self.myGroup.leave()
@@ -129,7 +137,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     func update_data() {
         
         self.saved_posts.dataSource = self
-        //bookmarked_posts.reloadData()
+        self.saved_posts.reloadData()
         print("Data Reloaded")
     }
     
@@ -153,6 +161,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
                         if let selectedindexpath = collectionView.indexPathsForSelectedItems?.first {
                             
                             destination.image = postImages[selectedindexpath.row]
+                            print("post owners" , postOwners)
                             destination.owner = postOwners[selectedindexpath.row]
                             destination.titl = postTitles[selectedindexpath.row]
                             destination.desc = postAdditionalMsgs[selectedindexpath.row]
@@ -175,12 +184,15 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let saved_posts = collectionView.dequeueReusableCell(withReuseIdentifier: "saved_posts_cell", for: indexPath) as! SavedPostsCell
         
+        print(indexPath)
         saved_posts.layer.shadowRadius = 5.0
         saved_posts.layer.masksToBounds = false
         saved_posts.layer.shadowOpacity = 1.0
        // saved_posts.layer.shadowPath = UIBezierPath.init(rect: saved_posts.bounds).cgPath
         saved_posts.layer.shadowOffset = CGSize.zero
         saved_posts.layer.cornerRadius = 10.0
+        print(postFruits.count)
+        print("Post titles: " , postTitles[indexPath.item])
         saved_posts.post_fruit.text! = postFruits[indexPath.item]
         saved_posts.post_description.text! = postAdditionalMsgs[indexPath.item]
         saved_posts.post_title.text! = postTitles[indexPath.item]
