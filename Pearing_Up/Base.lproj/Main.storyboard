@@ -1,22 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="AppleSDGothicNeo.ttc">
-            <string>AppleSDGothicNeo-Bold</string>
-            <string>AppleSDGothicNeo-Regular</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -690,8 +684,6 @@ more line</string>
                     <connections>
                         <outlet property="descriptionUI" destination="UTR-ah-WlX" id="0Xf-9C-vMa"/>
                         <outlet property="nameUI" destination="smy-Pc-sku" id="D0V-s4-reo"/>
-                        <segue destination="rBV-QC-hUM" kind="show" identifier="acceptRequest" id="F78-8O-rt0"/>
-                        <segue destination="rBV-QC-hUM" kind="show" identifier="declineRequest" id="RM7-Ia-xwy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qGO-hz-8e9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1180,14 +1172,14 @@ more line</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XI2-LE-0im">
-                                                    <rect key="frame" x="19.999999999999847" y="20" width="353" height="21"/>
+                                                    <rect key="frame" x="162" y="20" width="211" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uqH-xR-sFe">
-                                                    <rect key="frame" x="20" y="52" width="325" height="84"/>
+                                                    <rect key="frame" x="162" y="52" width="183" height="84"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <nil key="textColor"/>
@@ -1207,6 +1199,10 @@ more line</string>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oDL-GT-Rbq">
+                                                    <rect key="frame" x="20" y="20" width="134" height="116"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1214,6 +1210,7 @@ more line</string>
                                             <outlet property="post_city" destination="r7J-6W-oQJ" id="elt-Os-XNk"/>
                                             <outlet property="post_description" destination="uqH-xR-sFe" id="L5W-tu-Ogz"/>
                                             <outlet property="post_fruit" destination="CZK-6G-frU" id="Y99-Bd-uef"/>
+                                            <outlet property="post_image" destination="oDL-GT-Rbq" id="x8u-AQ-mgu"/>
                                             <outlet property="post_title" destination="XI2-LE-0im" id="XNj-fn-0bN"/>
                                             <segue destination="RWD-9c-L1T" kind="show" identifier="goToEditPosts" id="Sud-Qd-4aI"/>
                                         </connections>
@@ -1247,7 +1244,7 @@ more line</string>
                         <viewLayoutGuide key="safeArea" id="Pvt-19-a2B"/>
                     </view>
                     <connections>
-                        <outlet property="saved_posts" destination="PgE-WQ-YLd" id="QWp-pj-Ocw"/>
+                        <outlet property="tableView" destination="PgE-WQ-YLd" id="DaL-YW-wIY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bkf-Ey-pN3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1342,7 +1339,7 @@ more line</string>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="editPost:" destination="RWD-9c-L1T" eventType="touchUpInside" id="Dbx-SV-4QW"/>
+                                    <action selector="deletePost:" destination="RWD-9c-L1T" eventType="touchUpInside" id="iL5-gX-MXG"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1355,7 +1352,6 @@ more line</string>
                         <outlet property="imageView" destination="gej-OQ-SwG" id="t43-Ot-TiO"/>
                         <outlet property="locationTextView" destination="rag-ZS-z4s" id="e1b-qa-YJB"/>
                         <outlet property="titleTextView" destination="bEi-hy-H94" id="Iay-ll-wda"/>
-                        <segue destination="iEl-dF-o3Q" kind="show" identifier="goBackYourPosts" id="59B-vQ-Nga"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MlJ-dq-nxW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1835,8 +1831,7 @@ more line</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="IYu-uU-fDe"/>
-        <segue reference="1Ae-QY-D3E"/>
-        <segue reference="hEW-Tg-xT3"/>
+        <segue reference="bUM-6t-q5m"/>
         <segue reference="ILV-tI-h8y"/>
         <segue reference="ah8-Pd-8H0"/>
         <segue reference="Qi0-SO-NHl"/>

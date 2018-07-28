@@ -20,6 +20,9 @@ class editPostsViewController: UIViewController,UIImagePickerControllerDelegate,
     var fruitnme : String!
     var city = "Vancouver"
     var idee : String!
+    var image : UIImage!
+    // needsUpdate will indicate to yourPostViewController if the view needs to be reloaded
+    var needsUpdate : Bool = false
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleTextView: UITextField!
@@ -73,6 +76,7 @@ class editPostsViewController: UIViewController,UIImagePickerControllerDelegate,
             self.update_data()
         }
         
+        imageView.image = image
         titleTextView.text = titl
         descriptionTextView.text = desc
         locationTextView.text = city
@@ -85,53 +89,51 @@ class editPostsViewController: UIViewController,UIImagePickerControllerDelegate,
         print("Data Reloaded")
     }
     
+    // Edits the selected post information and uploads it to the server
     @IBAction func editPost(_ sender: Any) {
-//        myGroup.enter()
-//        if(titleTextView.text == "" ){
-//            print("title field required")
-//            displayAlert(message: "title field required")
-//            return
-//        }
-//        else if(locationTextView.text == ""){
-//            print("location field required")
-//            displayAlert(message: "location field required")
-//            return
-//        }
-//        else if(imageView.image == nil ){
-//            print("image required")
-//            displayAlert(message: " image required")
-//            return
-//        }
-//        else{
-//            //UPLOAD PICTURE
-//            let imageData = UIImageJPEGRepresentation(self.imageView.image!, 0.2)!
-//            upload_data(imageData : imageData) { responseId in
-//                self.id = responseId.string!
-//
-//                print("https://pearingup.herokuapp.com/upload/")
-//                let info_param : [String: String] = ["fruits":self.pickedFruit]
-//                print(self.pickedFruit)
-//                let username = User.Data.username
-//
-//                let user_params : [String: Any] = ["owner": username, "info": info_param, "additional_msg": self.descriptionTextView.text!,"title":self.titleTextView.text!]
-//
-//                //UPLOAD POST
-//                let url_post = "https://pearingup.herokuapp.com/uploadPostDetails/" + self.id
-//                print(url_post)
-//                self.makePost(url: url_post, params: user_params)
-//                self.myGroup.leave()
-//                self.performSegue(withIdentifier: "uploadToExpore", sender: self)
-//            }
-//        }
+        myGroup.enter()
+        deletePostRequest() {
+            let info_param : [String: String] = ["fruits": self.pickedFruit]
+            let params : [String: Any] = ["owner": User.Data.username, "info": info_param, "additional_msg": self.descriptionTextView.text!,"title": self.titleTextView.text!]
+            self.makePost(params: params) {
+                yourPostsViewController.setNeedsUpdate(needsUpdate: true)
+                _ = self.navigationController?.popViewController(animated: true)
+                self.myGroup.leave()
+            }
+        }
     }
     
-    //Completion handler to retrieve json response data
-    func uploadData(url : String, params : [String : Any], completion: @escaping (JSON) -> Void){
-        Alamofire.request(url, method: .post, parameters: params).responseJSON{
+    // Deletes the selected post and its associated image from the server
+    @IBAction func deletePost(_ sender: Any) {
+        myGroup.enter()
+        deletePostRequest() {
+            self.deleteImageRequest() {
+                yourPostsViewController.setNeedsUpdate(needsUpdate: true)
+                _ = self.navigationController?.popViewController(animated: true)
+                self.myGroup.leave()
+            }
+        }
+    }
+    
+    func deletePostRequest(completionHandler : @escaping () -> Void) {
+        myGroup.enter()
+        let requestUrl = (url + "post/" + titl)
+        print(requestUrl)
+        Alamofire.request(requestUrl, method: .delete).responseJSON{
             response in
             if response.result.isSuccess{
                 print("---------if response result issuccess-----------")
-                completion(JSON(response.result.value!))
+                let temp : JSON = JSON(response.result.value!)
+                
+                if( temp["code"].exists() ){
+                    print("---------if temp code exists-----------")
+                    
+                    if(temp["code"] == 409){
+                        self.displayAlert(message: "server errror-------------------")
+                    }
+                }
+                self.myGroup.leave()
+                completionHandler()
             }
             else{
                 print("error occured")
@@ -139,67 +141,57 @@ class editPostsViewController: UIViewController,UIImagePickerControllerDelegate,
         }
     }
     
-    func makePost(url: String, params: [String : Any]){
-        self.myGroup.enter()
-        
-        uploadData(url: url, params: params) { response in
-            // Do your stuff here
-            let temp : JSON = response
-            
-            print(temp)
-            
-            // this  is the most is made successfully
-            
-            if( temp["code"].exists() ){
-                print("---------if temp code exists-----------")
+    func deleteImageRequest(completionHandler : @escaping () -> Void) {
+        myGroup.enter()
+        let requestUrl = (url + "image/" + idee)
+        print(requestUrl)
+        Alamofire.request(requestUrl, method: .delete).responseJSON{
+            response in
+            if response.result.isSuccess{
+                print("---------if response result issuccess-----------")
+                let temp : JSON = JSON(response.result.value!)
                 
-                if(temp["code"] == 409){
-                    self.displayAlert(message: "server errror-------------------")
-                }
-            }
-            if( temp["id"].exists() ){
-                
-                self.id = temp["id"].string!
-            }
-            
-        }
-        self.myGroup.leave()
-    }
-    
-    func upload_data(imageData : Data, completionHandler : @escaping (JSON)->()){
-        
-        self.myGroup.enter()
-        
-        print("Came in here")
-        
-        Alamofire.upload(multipartFormData: { (multipartFormData) in
-            multipartFormData.append(imageData, withName: "file", fileName: "tree.jpg", mimeType: "image/png")
-        }, to:"http://pearingup.herokuapp.com/upload")
-        { (result) in
-            switch result {
-            case .success(let upload, _,_ ):
-                upload.uploadProgress(closure: { (progress) in
-                    print("uploading")
-                })
-                upload.responseJSON { response in
-                    let temp : JSON = JSON(response.result.value!)
-                    print("The id of the image is : ")
-                    print(temp)
-                    completionHandler(temp["id"])
+                if( temp["code"].exists() ){
+                    print("---------if temp code exists-----------")
                     
-                    
-                    self.myGroup.leave()
+                    if(temp["code"] == 409){
+                        self.displayAlert(message: "server errror-------------------")
+                    }
                 }
-            case .failure(let encodingError):
-                print("failed")
-                print(encodingError)
-                
+                self.myGroup.leave()
+                completionHandler()
+            }
+            else{
+                print("error occured")
             }
         }
-        
     }
     
-
+    func makePost(params : [String : Any], completionHandler : @escaping () -> Void) {
+        myGroup.enter()
+        let requestUrl = (url + "uploadPostDetails/" + idee)
+        print(requestUrl)
+        Alamofire.request(requestUrl, method: .post, parameters : params).responseJSON{
+            response in
+            if response.result.isSuccess{
+                print("---------if response result issuccess-----------")
+                let temp : JSON = JSON(response.result.value!)
+                
+                if( temp["code"].exists() ){
+                    print("---------if temp code exists-----------")
+                    
+                    if(temp["code"] == 409){
+                        self.displayAlert(message: "server errror-------------------")
+                    }
+                }
+                self.myGroup.leave()
+                completionHandler()
+            }
+            else{
+                print("error occured")
+            }
+        }
+    }
     
     func imagePickerController( _ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
         print("pic")
@@ -227,6 +219,4 @@ class editPostsViewController: UIViewController,UIImagePickerControllerDelegate,
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
-
 }

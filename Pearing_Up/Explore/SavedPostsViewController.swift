@@ -24,7 +24,6 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     var postCities : [String] = []
     var postImages : [UIImage] = []
     var postCount : Int = 0
-    var allposts : [PostObject] = []
     var booleann : Int = 1
     var selectedRow = -1
     
@@ -39,6 +38,20 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
        
         UIApplication.shared.statusBarStyle = .default
         
+        
+
+        
+        
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        postTitles = []
+        postAdditionalMsgs = []
+        postFruits = []
+        postCities = []
+        postImages = []
+        postCount = 0
         let all_titles_url : URL = URL(string: "https:pearingup.herokuapp.com/allPosts")!
         get_titles(url: all_titles_url)
         
@@ -47,18 +60,10 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
             print(self.postImages.count)
             self.update_data()
         }
-        
-        
         self.tabBarController?.tabBar.isHidden = false
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = false
-    }
-    
-    func getimage(title: String){
-        var imgdata : UIImage
-        
+    func getimage(title: String, completionHandler : @escaping ()->Void){
         self.myGroup.enter()
         let urlstring = "https://pearingup.herokuapp.com/getpost/" + title
         print(urlstring)
@@ -73,6 +78,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
                 self.postImages.append(postImg!)
 
                 self.myGroup.leave()
+                completionHandler()
             }
             else {
                 print(response.result.error!)
@@ -102,32 +108,14 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
                 let temp : JSON = JSON(response.result.value!)
                 let posts : JSON = temp["Posts"]
                 print(posts)
-               
                 self.postCount = posts.count
                 for i in 0...(self.postCount-1){
-                   // print("-----hello-----")
-                    var post : PostObject = PostObject.init()
-                    let info : JSON = posts[i]["info"]
-                    post.title = posts[i]["title"].stringValue
-                    post.additional_msg = posts[i]["additional_msg"].stringValue
-                    post.id = posts[i]["id"].stringValue
-                    post.img_id = posts[i]["img_id"].stringValue
-                    post.owner = posts[i]["owner"].stringValue
-                    post.fruit = info["fruits"].stringValue
-                    self.getimage( title: posts[i]["title"].stringValue)
-                    self.allposts.append(post)
+                    self.getimage( title: posts[i]["title"].stringValue) {
+                        self.postTitles.append( posts[i]["title"].stringValue )
+                        self.postAdditionalMsgs.append(posts[i]["additional_msg"].stringValue )
+                        self.postFruits.append(posts[i]["info"]["fruits"].stringValue )
+                    }
                 }
-                self.myGroup.leave()
-                self.myGroup.enter()
-                
-                for i in 0...(self.postCount-1) {
-                    
-                    self.postTitles.append( self.allposts[i].title )
-                    self.postAdditionalMsgs.append(self.allposts[i].additional_msg )
-                    self.postFruits.append( self.allposts[i].fruit )
-                    self.postOwners.append(self.allposts[i].owner)
-                }
-                
                 self.myGroup.leave()
             }
             else{
@@ -180,7 +168,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // originally was postTitle.count
         
-        return allposts.count
+        return postCount
     }
 
     
