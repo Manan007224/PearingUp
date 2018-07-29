@@ -19,6 +19,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     let bookmarks_url : URL = URL(string: "https://pearingup.herokuapp.com/manan/savedposts")!
     let posts_url : URL = URL(string: "https://pearingup.herokuapp.com/getpost/apple_post")!
     var postTitles : [String] = []
+    var bookmarkedPosts : [String] = []
     var postAdditionalMsgs : [String] = []
     var postFruits: [String] = []
     var postOwners: [String] = []
@@ -40,6 +41,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         UIApplication.shared.statusBarStyle = .default
         
         postTitles = []
+        bookmarkedPosts = []
         postAdditionalMsgs = []
         postFruits = []
         postCities = []
@@ -47,7 +49,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         postOwners = []
         postCount = 0
         let all_titles_url : URL = URL(string: "https:pearingup.herokuapp.com/allPosts")!
-        get_titles(url: all_titles_url)
+        getPosts(url: all_titles_url)
 
         myGroup.notify(queue: .main) {
             print("before update")
@@ -60,17 +62,53 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        // We want to reload the page whenever it is visited, instead of only on first visit
         if(!firstStartUp) {
             print("Not first start up")
             viewDidLoad()
-            
         }
         else{
             firstStartUp = false
         }
     }
     
-    func getimage(title: String, completionHandler : @escaping ()->Void){
+    func update_data() {
+        
+        self.saved_posts.dataSource = self
+        self.saved_posts.reloadData()
+        print("Data Reloaded")
+    }
+    
+    // Retrieve list of posts from server
+    func getPosts(url: URL){
+        
+        self.myGroup.enter()
+        Alamofire.request(url, method: .get).responseJSON { response in
+            
+            if( response.result.isSuccess){
+                let temp : JSON = JSON(response.result.value!)
+                let posts : JSON = temp["Posts"]
+                print(posts)
+                self.postCount = posts.count
+                for i in 0...(self.postCount-1){
+                    self.getImage( title: posts[i]["title"].stringValue) {
+                        self.postTitles.append( posts[i]["title"].stringValue )
+                        self.postAdditionalMsgs.append(posts[i]["additional_msg"].stringValue )
+                        self.postFruits.append(posts[i]["info"]["fruits"].stringValue )
+                        self.postOwners.append(posts[i]["owner"].stringValue)
+                        self.getBookmarkedPosts()
+                    }
+                }
+                self.myGroup.leave()
+            }
+            else{
+                self.myGroup.leave()
+            }
+        }
+    }
+    
+    // Retrieve image for correspoding titled post from server
+    func getImage(title: String, completionHandler : @escaping ()->Void){
         self.myGroup.enter()
         let urlstring = "https://pearingup.herokuapp.com/getpost/" + title
         print(urlstring)
@@ -93,54 +131,29 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
             }
         }
     }
-    
-    
-    func bookmarkPost(url: URL){
-        Alamofire.request(url, method: .post).responseJSON { response in
-            
-        }
-    }
-    
-    @IBAction func bookmarkButton(_ sender: Any) {
-        displayAlert(message: "Post bookmarked.")
-    }
-    
-    
-    func get_titles(url: URL){
-        
+
+    // Retrieve list of booksmarked posts from server
+    func getBookmarkedPosts() {
         self.myGroup.enter()
-        Alamofire.request(url, method: .get).responseJSON { response in
-            
-            if( response.result.isSuccess){
-                let temp : JSON = JSON(response.result.value!)
-                let posts : JSON = temp["Posts"]
-                print(posts)
-                self.postCount = posts.count
-                for i in 0...(self.postCount-1){
-                    self.getimage( title: posts[i]["title"].stringValue) {
-                        self.postTitles.append( posts[i]["title"].stringValue )
-                        self.postAdditionalMsgs.append(posts[i]["additional_msg"].stringValue )
-                        self.postFruits.append(posts[i]["info"]["fruits"].stringValue )
-                        self.postOwners.append(posts[i]["owner"].stringValue)
+        
+        let url : URL = URL(string: "https://pearingup.herokuapp.com/" + User.Data.username + "/getBookmarkedPosts")!
+        
+        Alamofire.request(url, method: .get).responseJSON {
+            response in
+            if(response.result.isSuccess){
+                let bkPosts : JSON = JSON(response.result.value!)
+                if(bkPosts["result"].count > 0) {
+                    for i in 0...(bkPosts["result"].count-1) {
+                        self.bookmarkedPosts.append(bkPosts["result"][i]["title"].stringValue)
                     }
                 }
                 self.myGroup.leave()
             }
-            else{
-                self.myGroup.leave()
+            else {
+                print("error")
             }
         }
     }
-    
- 
-    
-    func update_data() {
-        
-        self.saved_posts.dataSource = self
-        self.saved_posts.reloadData()
-        print("Data Reloaded")
-    }
-    
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("click")
@@ -182,26 +195,76 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let saved_posts = collectionView.dequeueReusableCell(withReuseIdentifier: "saved_posts_cell", for: indexPath) as! SavedPostsCell
+        let post = collectionView.dequeueReusableCell(withReuseIdentifier: "saved_posts_cell", for: indexPath) as! SavedPostsCell
         
-        print(indexPath)
-        saved_posts.layer.shadowRadius = 5.0
-        saved_posts.layer.masksToBounds = false
-        saved_posts.layer.shadowOpacity = 1.0
-       // saved_posts.layer.shadowPath = UIBezierPath.init(rect: saved_posts.bounds).cgPath
-        saved_posts.layer.shadowOffset = CGSize.zero
-        saved_posts.layer.cornerRadius = 10.0
-        print(postFruits.count)
-        print("Post titles: " , postTitles[indexPath.item])
-        saved_posts.post_fruit.text! = postFruits[indexPath.item]
-        saved_posts.post_description.text! = postAdditionalMsgs[indexPath.item]
-        saved_posts.post_title.text! = postTitles[indexPath.item]
-        saved_posts.post_image.layer.cornerRadius = 5.0
-        saved_posts.post_image.clipsToBounds = true
+        post.layer.shadowRadius = 5.0
+        post.layer.masksToBounds = false
+        post.layer.shadowOpacity = 1.0
+        post.layer.shadowOffset = CGSize.zero
+        post.layer.cornerRadius = 10.0
+        post.post_fruit.text! = postFruits[indexPath.item]
+        post.post_description.text! = postAdditionalMsgs[indexPath.item]
+        post.post_title.text! = postTitles[indexPath.item]
+        post.post_image.layer.cornerRadius = 5.0
+        post.post_image.clipsToBounds = true
         
-        saved_posts.post_image.image = postImages[indexPath.item]
+        post.post_image.image = postImages[indexPath.item]
         
-        return saved_posts
+        // Update whether or not post is bookmarked or not
+        if(self.bookmarkedPosts.contains(self.postTitles[indexPath.item])) {
+            post.bookmarkButton.setImage(UIImage(named: "bookmark filled"), for: .normal)
+        }
+        else {
+            post.bookmarkButton.setImage(UIImage(named: "bookmark-50"), for: .normal)
+        }
+        
+        // Button press event listener
+        post.buttonAction = { sender in
+            if(self.bookmarkedPosts.contains(self.postTitles[indexPath.item])) {
+                self.unBookmarkPost(title: self.postTitles[indexPath.item])
+                post.bookmarkButton.setImage(UIImage(named: "bookmark-50"), for: .normal)
+                self.bookmarkedPosts = self.bookmarkedPosts.filter() { $0 != self.postTitles[indexPath.item]}
+            }
+            else {
+                self.bookmarkPost(title: self.postTitles[indexPath.item])
+                post.bookmarkButton.setImage(UIImage(named: "bookmark filled"), for: .normal)
+                self.bookmarkedPosts.append(self.postTitles[indexPath.item])
+            }
+        }
+        
+        return post
+    }
+    
+    // Send request to server to bookmark titled post
+    func bookmarkPost(title: String){
+        myGroup.enter()
+        let url : URL = URL(string: "https://pearingup.herokuapp.com/bookmarkPost/" + User.Data.username + "/" + title)!
+        
+        Alamofire.request(url, method: .get).responseJSON { response in
+            if(response.result.isSuccess){
+                print(title + " Successfully Bookmarked")
+                self.myGroup.leave()
+            }
+            else {
+                print("error")
+            }
+        }
+    }
+    
+    // Send request to server to unbookmark titled post
+    func unBookmarkPost(title: String) {
+        myGroup.enter()
+        let url : URL = URL(string: "https://pearingup.herokuapp.com/unBookmarkPost/" + User.Data.username + "/" + title)!
+        
+        Alamofire.request(url, method: .get).responseJSON { response in
+            if(response.result.isSuccess){
+                print(title + "Successfully Unbookmarked")
+                self.myGroup.leave()
+            }
+            else {
+                print("error")
+            }
+        }
     }
  
     func displayAlert(message: String){

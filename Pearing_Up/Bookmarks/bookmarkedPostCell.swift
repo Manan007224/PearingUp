@@ -14,4 +14,12 @@ class bookmarkedPostCell: UICollectionViewCell {
     @IBOutlet weak var bookmarkCell_description: UILabel!
     @IBOutlet weak var bookmarkCell_fruit: UILabel!
     @IBOutlet weak var bookmarkCell_city: UILabel!
+    
+    @IBOutlet weak var bookmarkButton: UIButton!
+    
+    var buttonAction: ((Any) -> Void)?
+    
+    @IBAction func bookmarkButtonPressed(_ sender: UIButton!) {
+        self.buttonAction?(sender)
+    }
 }

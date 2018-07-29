@@ -1,22 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="AppleSDGothicNeo.ttc">
-            <string>AppleSDGothicNeo-Bold</string>
-            <string>AppleSDGothicNeo-Regular</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -559,7 +553,7 @@ more line</string>
                                                     <inset key="contentEdgeInsets" minX="5" minY="5" maxX="0.0" maxY="0.0"/>
                                                     <state key="normal" image="bookmark-50"/>
                                                     <connections>
-                                                        <action selector="bookmarkButton:" destination="e3t-rz-pqt" eventType="touchUpInside" id="MD0-fO-Hoh"/>
+                                                        <action selector="bookmarkButtonPressed:" destination="Aj7-dP-AJu" eventType="touchUpInside" id="Jtp-jo-DG4"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -572,6 +566,7 @@ more line</string>
                                             <constraint firstItem="KyS-z7-4Ah" firstAttribute="centerX" secondItem="Aj7-dP-AJu" secondAttribute="centerX" constant="149" id="iWX-Uq-weo"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="bookmarkButton" destination="KyS-z7-4Ah" id="xJn-xC-eea"/>
                                             <outlet property="post_city" destination="u8w-Pt-za4" id="a7N-jz-8dd"/>
                                             <outlet property="post_description" destination="jQv-rf-gPu" id="5jw-Cg-UmZ"/>
                                             <outlet property="post_fruit" destination="nQc-cd-yfz" id="xgj-Kb-LcT"/>
@@ -829,6 +824,7 @@ more line</string>
                     </view>
                     <connections>
                         <outlet property="MakeAppointmentButton" destination="mcy-gn-4eh" id="xVJ-6d-cCr"/>
+                        <outlet property="bookmarkButtonUI" destination="FYW-Lk-8Vb" id="ANe-ra-sKC"/>
                         <outlet property="descriptionText" destination="uQn-Gf-75x" id="Z59-e0-bkF"/>
                         <outlet property="fruitimage" destination="0bC-8D-C40" id="2wr-Pq-OKK"/>
                         <outlet property="fruitname" destination="EnH-mD-hGn" id="h1Z-e0-Kga"/>
@@ -1431,13 +1427,14 @@ more line</string>
                                                     <inset key="contentEdgeInsets" minX="5" minY="5" maxX="0.0" maxY="0.0"/>
                                                     <state key="normal" image="bookmark filled"/>
                                                     <connections>
-                                                        <action selector="bookmarkButton:" destination="e3t-rz-pqt" eventType="touchUpInside" id="7i6-gG-HrB"/>
+                                                        <action selector="bookmarkButtonPressed:" destination="4Hs-GE-tuH" eventType="touchUpInside" id="gZf-3P-mdS"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
+                                            <outlet property="bookmarkButton" destination="450-Ps-5DY" id="9vw-ke-UO1"/>
                                             <outlet property="bookmarkCell_Image" destination="w8A-Nd-le8" id="qqT-lh-r58"/>
                                             <outlet property="bookmarkCell_city" destination="OM7-O2-sQV" id="Gh8-cb-LlO"/>
                                             <outlet property="bookmarkCell_description" destination="AYP-fo-eZt" id="y8N-rL-yz0"/>
