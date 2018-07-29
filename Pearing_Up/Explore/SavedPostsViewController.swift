@@ -62,10 +62,10 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        // We want to reload the page whenever it is visited, instead of only on first visit
         if(!firstStartUp) {
             print("Not first start up")
             viewDidLoad()
-            
         }
         else{
             firstStartUp = false
@@ -79,6 +79,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         print("Data Reloaded")
     }
     
+    // Retrieve list of posts from server
     func getPosts(url: URL){
         
         self.myGroup.enter()
@@ -106,7 +107,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         }
     }
     
-    
+    // Retrieve image for correspoding titled post from server
     func getImage(title: String, completionHandler : @escaping ()->Void){
         self.myGroup.enter()
         let urlstring = "https://pearingup.herokuapp.com/getpost/" + title
@@ -131,6 +132,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         }
     }
 
+    // Retrieve list of booksmarked posts from server
     func getBookmarkedPosts() {
         self.myGroup.enter()
         
@@ -208,6 +210,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         
         post.post_image.image = postImages[indexPath.item]
         
+        // Update whether or not post is bookmarked or not
         if(self.bookmarkedPosts.contains(self.postTitles[indexPath.item])) {
             post.bookmarkButton.setImage(UIImage(named: "bookmark filled"), for: .normal)
         }
@@ -215,6 +218,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
             post.bookmarkButton.setImage(UIImage(named: "bookmark-50"), for: .normal)
         }
         
+        // Button press event listener
         post.buttonAction = { sender in
             if(self.bookmarkedPosts.contains(self.postTitles[indexPath.item])) {
                 self.unBookmarkPost(title: self.postTitles[indexPath.item])
@@ -231,7 +235,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         return post
     }
     
-    
+    // Send request to server to bookmark titled post
     func bookmarkPost(title: String){
         myGroup.enter()
         let url : URL = URL(string: "https://pearingup.herokuapp.com/bookmarkPost/" + User.Data.username + "/" + title)!
@@ -247,7 +251,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         }
     }
     
-    
+    // Send request to server to unbookmark titled post
     func unBookmarkPost(title: String) {
         myGroup.enter()
         let url : URL = URL(string: "https://pearingup.herokuapp.com/unBookmarkPost/" + User.Data.username + "/" + title)!
