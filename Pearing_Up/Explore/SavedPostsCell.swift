@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class SavedPostsCell: UICollectionViewCell {
     
     @IBOutlet weak var post_image: UIImageView!
@@ -15,6 +16,15 @@ class SavedPostsCell: UICollectionViewCell {
     @IBOutlet weak var post_description: UILabel!
     @IBOutlet weak var post_title: UILabel!
     @IBOutlet weak var post_city: UILabel!
+    
+
+    @IBOutlet weak var bookmarkButton: UIButton!
+    
+    var buttonAction: ((Any) -> Void)?
+    
+    @IBAction func bookmarkButtonPressed(_ sender: UIButton!) {
+        self.buttonAction?(sender)
+    }
 }
 
 

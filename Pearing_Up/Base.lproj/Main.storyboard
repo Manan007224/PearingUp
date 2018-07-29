@@ -1,22 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="AppleSDGothicNeo.ttc">
-            <string>AppleSDGothicNeo-Bold</string>
-            <string>AppleSDGothicNeo-Regular</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -649,7 +643,7 @@ more line</string>
                                                     <inset key="contentEdgeInsets" minX="5" minY="5" maxX="0.0" maxY="0.0"/>
                                                     <state key="normal" image="bookmark-50"/>
                                                     <connections>
-                                                        <action selector="bookmarkButton:" destination="e3t-rz-pqt" eventType="touchUpInside" id="MD0-fO-Hoh"/>
+                                                        <action selector="bookmarkButtonPressed:" destination="Aj7-dP-AJu" eventType="touchUpInside" id="Jtp-jo-DG4"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -662,6 +656,7 @@ more line</string>
                                             <constraint firstItem="KyS-z7-4Ah" firstAttribute="centerX" secondItem="Aj7-dP-AJu" secondAttribute="centerX" constant="149" id="iWX-Uq-weo"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="bookmarkButton" destination="KyS-z7-4Ah" id="xJn-xC-eea"/>
                                             <outlet property="post_city" destination="u8w-Pt-za4" id="a7N-jz-8dd"/>
                                             <outlet property="post_description" destination="jQv-rf-gPu" id="5jw-Cg-UmZ"/>
                                             <outlet property="post_fruit" destination="nQc-cd-yfz" id="xgj-Kb-LcT"/>
