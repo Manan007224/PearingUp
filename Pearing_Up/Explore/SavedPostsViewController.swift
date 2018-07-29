@@ -32,6 +32,12 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     @IBOutlet weak var saved_posts: UICollectionView!
     let myGroup = DispatchGroup()
     
+    @IBOutlet weak var searchtext: UITextField!
+    @IBAction func search(_ sender: Any) {
+        
+        
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
