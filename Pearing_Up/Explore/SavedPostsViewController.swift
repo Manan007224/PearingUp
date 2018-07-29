@@ -210,18 +210,23 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         
         post.post_image.image = postImages[indexPath.item]
         
+        if(self.bookmarkedPosts.contains(self.postTitles[indexPath.item])) {
+            post.bookmarkButton.setImage(UIImage(named: "bookmark-outline"), for: .normal)
+        }
+        else {
+            post.bookmarkButton.setImage(UIImage(named: "bookmark filled"), for: .normal)
+        }
+        
         post.buttonAction = { sender in
             if(self.bookmarkedPosts.contains(self.postTitles[indexPath.item])) {
                 //unBookmarkPost(url: <#T##URL#>)
                 print("unbookmarked")
                 self.bookmarkedPosts = self.bookmarkedPosts.filter() { $0 != self.postTitles[indexPath.item]}
-                post.bookmarkButton.setImage(UIImage(named: "bookmark-outline"), for: .normal)
             }
             else {
                 //bookmarkPost(Url)
                 print("bookmarked")
                 self.bookmarkedPosts.append(self.postTitles[indexPath.item])
-                post.bookmarkButton.setImage(UIImage(named: "bookmark filled"), for: .normal)
             }
         }
         
