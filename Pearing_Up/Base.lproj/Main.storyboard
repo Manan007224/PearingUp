@@ -568,6 +568,99 @@ I HEREBY REMISE, RELEASE AND FOREVER DISCHARGE PearingUp from all manner of acti
             </objects>
             <point key="canvasLocation" x="4386.9565217391309" y="44.836956521739133"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="Ebm-yc-3XK">
+            <objects>
+                <viewController id="NS8-IK-E9E" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Hi5-pZ-NNz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6bI-nI-rUu">
+                                <rect key="frame" x="0.0" y="45" width="414" height="647"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="647" id="Vf3-WE-V9m"/>
+                                    <constraint firstAttribute="width" constant="414" id="wW6-KE-KZ1"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="fD1-e0-XWB">
+                                    <size key="itemSize" width="380" height="413"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="saved_posts_cell" id="Nv3-pA-MHI" customClass="SavedPostsCell" customModule="Pearing_Up" customModuleProvider="target">
+                                        <rect key="frame" x="17" y="0.0" width="380" height="413"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="380" height="413"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="glo-8P-M1b">
+                                                    <rect key="frame" x="20" y="78" width="340" height="264"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pCS-hL-QQT">
+                                                    <rect key="frame" x="229" y="368" width="131" height="25"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FZ0-3q-YSf">
+                                                    <rect key="frame" x="20" y="370" width="140" height="23"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LVx-RN-Ee2">
+                                                    <rect key="frame" x="332" y="20" width="28" height="36"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="28" id="C4E-ys-ZkS"/>
+                                                        <constraint firstAttribute="height" constant="36" id="KSr-W0-eq3"/>
+                                                    </constraints>
+                                                    <inset key="contentEdgeInsets" minX="5" minY="5" maxX="0.0" maxY="0.0"/>
+                                                    <state key="normal" image="bookmark-50"/>
+                                                    <connections>
+                                                        <action selector="bookmarkButtonPressed:" destination="Nv3-pA-MHI" eventType="touchUpInside" id="fcF-sA-CZJ"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jkx-Uj-Fhw">
+                                                    <rect key="frame" x="20" y="20" width="312" height="36"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <color key="backgroundColor" red="0.99019607840000001" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="pCS-hL-QQT" firstAttribute="centerY" secondItem="Nv3-pA-MHI" secondAttribute="centerY" constant="74" id="9Ul-pz-BhX"/>
+                                            <constraint firstItem="LVx-RN-Ee2" firstAttribute="centerX" secondItem="Nv3-pA-MHI" secondAttribute="centerX" constant="149" id="J4W-20-Uvy"/>
+                                            <constraint firstItem="pCS-hL-QQT" firstAttribute="centerX" secondItem="Nv3-pA-MHI" secondAttribute="centerX" constant="104.5" id="ZFu-kR-CNs"/>
+                                            <constraint firstItem="LVx-RN-Ee2" firstAttribute="centerY" secondItem="Nv3-pA-MHI" secondAttribute="centerY" constant="-71.5" id="pIH-Yg-N5Z"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="bookmarkButton" destination="LVx-RN-Ee2" id="CJ0-uc-n8X"/>
+                                            <outlet property="post_city" destination="pCS-hL-QQT" id="8cO-IF-xrd"/>
+                                            <outlet property="post_fruit" destination="FZ0-3q-YSf" id="aUY-1H-Ofj"/>
+                                            <outlet property="post_image" destination="glo-8P-M1b" id="5hE-lu-54u"/>
+                                            <outlet property="post_title" destination="jkx-Uj-Fhw" id="ljN-As-461"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="p7X-uR-ws5"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BdM-nB-pm5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1053.6231884057972" y="244.56521739130437"/>
+        </scene>
         <!--Explore View Controller-->
         <scene sceneID="dha-b2-wFS">
             <objects>
