@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class ExpandedPostViewController: UIViewController {
 
@@ -24,6 +25,9 @@ class ExpandedPostViewController: UIViewController {
     @IBOutlet weak var descriptionText: UITextView!
     @IBOutlet weak var location: UILabel!
     @IBOutlet weak var fruitname: UILabel!
+    @IBOutlet weak var bookmarkButtonUI: UIButton!
+    
+    var bookmarkedPosts : [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +46,17 @@ class ExpandedPostViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        bookmarkedPosts = []
+        getBookmarkedPosts()
+        if(bookmarkedPosts.contains(titl)) {
+            bookmarkButtonUI.setImage(UIImage(named: "bookmark filled"), for: .normal)
+        }
+        else {
+            bookmarkButtonUI.setImage(UIImage(named: "bookmark-50"), for: .normal)
+        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -57,8 +72,16 @@ class ExpandedPostViewController: UIViewController {
     }
     
     @IBAction func bookmarkButton(_ sender: Any) {
-        var bookmarks_url : URL = URL(string: "https://pearingup.herokuapp.com/bookmarkPost/" + User.Data.username + "/" + titl)!
-        Alamofire.request(bookmarks_url, method: .get).responseJSON {
+        var bookmark_url : URL!
+        if(bookmarkedPosts.contains(titl)) {
+            bookmark_url = URL(string: "https://pearingup.herokuapp.com/unBookmarkPost/" + User.Data.username + "/" + titl)!
+            bookmarkButtonUI.setImage(UIImage(named: "bookmark-50"), for: .normal)
+        }
+        else {
+            bookmark_url = URL(string: "https://pearingup.herokuapp.com/bookmarkPost/" + User.Data.username + "/" + titl)!
+            bookmarkButtonUI.setImage(UIImage(named: "bookmark filled"), for: .normal)
+            }
+        Alamofire.request(bookmark_url, method: .get).responseJSON {
             response in
             if(response.result.isSuccess){
                 print(response.result.value)
@@ -68,6 +91,28 @@ class ExpandedPostViewController: UIViewController {
             }
         }
     }
+    
+    // Retrieve list of booksmarked posts from server
+    func getBookmarkedPosts() {
+        
+        let url : URL = URL(string: "https://pearingup.herokuapp.com/" + User.Data.username + "/getBookmarkedPosts")!
+        
+        Alamofire.request(url, method: .get).responseJSON {
+            response in
+            if(response.result.isSuccess){
+                let bkPosts : JSON = JSON(response.result.value!)
+                if(bkPosts["result"].count > 0) {
+                    for i in 0...(bkPosts["result"].count-1) {
+                        self.bookmarkedPosts.append(bkPosts["result"][i]["title"].stringValue)
+                    }
+                }
+            }
+            else {
+                print("error")
+            }
+        }
+    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         

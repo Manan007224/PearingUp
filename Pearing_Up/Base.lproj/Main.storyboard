@@ -915,6 +915,7 @@ more line</string>
                     </view>
                     <connections>
                         <outlet property="MakeAppointmentButton" destination="mcy-gn-4eh" id="xVJ-6d-cCr"/>
+                        <outlet property="bookmarkButtonUI" destination="FYW-Lk-8Vb" id="ANe-ra-sKC"/>
                         <outlet property="descriptionText" destination="uQn-Gf-75x" id="Z59-e0-bkF"/>
                         <outlet property="fruitimage" destination="0bC-8D-C40" id="2wr-Pq-OKK"/>
                         <outlet property="fruitname" destination="EnH-mD-hGn" id="h1Z-e0-Kga"/>
