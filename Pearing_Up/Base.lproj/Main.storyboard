@@ -809,8 +809,9 @@ more line</string>
                                             <action selector="backButton:" destination="jjy-3E-Ljd" eventType="touchUpInside" id="bed-tK-pX1"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FYW-Lk-8Vb">
-                                        <rect key="frame" x="354" y="0.0" width="44" height="56"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FYW-Lk-8Vb">
+                                        <rect key="frame" x="358" y="4" width="31" height="42"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <inset key="contentEdgeInsets" minX="5" minY="5" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" image="bookmark-50"/>
                                         <connections>
@@ -820,9 +821,7 @@ more line</string>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="FYW-Lk-8Vb" firstAttribute="top" secondItem="xt2-6U-8G1" secondAttribute="top" id="PxR-mL-pJp"/>
                                     <constraint firstItem="Ofz-Ji-twM" firstAttribute="centerY" secondItem="xt2-6U-8G1" secondAttribute="centerY" id="QE1-rF-xiX"/>
-                                    <constraint firstAttribute="trailing" secondItem="FYW-Lk-8Vb" secondAttribute="trailing" constant="23" id="dzH-yQ-iGU"/>
                                     <constraint firstItem="Ofz-Ji-twM" firstAttribute="leading" secondItem="xt2-6U-8G1" secondAttribute="leadingMargin" id="ngC-5O-zia"/>
                                     <constraint firstItem="Ofz-Ji-twM" firstAttribute="top" secondItem="xt2-6U-8G1" secondAttribute="top" constant="10" id="nuk-Mg-M62"/>
                                 </constraints>
@@ -926,7 +925,7 @@ more line</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kkQ-NN-Zla" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="206" y="1416"/>
+            <point key="canvasLocation" x="205.79710144927537" y="1415.217391304348"/>
         </scene>
         <!--Send Request View Controller-->
         <scene sceneID="ty9-Y2-afl">
@@ -2039,7 +2038,6 @@ more line</string>
         <image name="user-30" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="k3r-5W-sJW"/>
         <segue reference="TgW-S0-Hq7"/>
         <segue reference="1Ae-QY-D3E"/>
         <segue reference="ILV-tI-h8y"/>

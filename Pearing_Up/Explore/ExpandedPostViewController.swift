@@ -27,6 +27,8 @@ class ExpandedPostViewController: UIViewController {
     @IBOutlet weak var fruitname: UILabel!
     @IBOutlet weak var bookmarkButtonUI: UIButton!
     
+    let myGroup = DispatchGroup()
+    
     var bookmarkedPosts : [String] = []
     
     override func viewDidLoad() {
@@ -48,16 +50,30 @@ class ExpandedPostViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        bookmarkedPosts = []
-        getBookmarkedPosts()
-        if(bookmarkedPosts.contains(titl)) {
-            bookmarkButtonUI.setImage(UIImage(named: "bookmark filled"), for: .normal)
+        
+        myGroup.notify(queue: .main) {
+            print("before update")
+            self.update_data()
         }
-        else {
-            bookmarkButtonUI.setImage(UIImage(named: "bookmark-50"), for: .normal)
+        
+        
+        bookmarkedPosts = []
+        getBookmarkedPosts(){
+            print(self.bookmarkedPosts)
+            if(self.bookmarkedPosts.contains(self.titl)) {
+                print("is bookmarked")
+                self.bookmarkButtonUI.setImage(UIImage(named: "bookmark filled"), for: .normal)
+            }
+            else {
+                print("is not bookmarked")
+                self.bookmarkButtonUI.setImage(UIImage(named: "bookmark-50"), for: .normal)
+            }
         }
     }
     
+    func update_data() {
+        print("Data Reloaded")
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -93,9 +109,11 @@ class ExpandedPostViewController: UIViewController {
     }
     
     // Retrieve list of booksmarked posts from server
-    func getBookmarkedPosts() {
+    func getBookmarkedPosts(completionHandler : @escaping ()->()) {
         
         let url : URL = URL(string: "https://pearingup.herokuapp.com/" + User.Data.username + "/getBookmarkedPosts")!
+        
+        self.myGroup.enter()
         
         Alamofire.request(url, method: .get).responseJSON {
             response in
@@ -106,9 +124,12 @@ class ExpandedPostViewController: UIViewController {
                         self.bookmarkedPosts.append(bkPosts["result"][i]["title"].stringValue)
                     }
                 }
+                self.myGroup.leave()
+                completionHandler()
             }
             else {
                 print("error")
+                self.myGroup.leave()
             }
         }
     }
