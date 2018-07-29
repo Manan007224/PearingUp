@@ -57,7 +57,7 @@ class SignUpInfoController: UIViewController {
                         self.displayAlert(message: String(describing: temp["result"]))
                     }
                     
-                    self.performSegue(withIdentifier: "SingupToLogin", sender: self)
+                    self.performSegue(withIdentifier: "toWaiver", sender: self)
                 }
                 else {
                     print("Error")
