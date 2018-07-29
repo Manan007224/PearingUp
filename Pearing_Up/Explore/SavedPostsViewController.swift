@@ -142,7 +142,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
             response in
             if(response.result.isSuccess){
                 let bkPosts : JSON = JSON(response.result.value!)
-                if(bkPosts["result"].count > -1) {
+                if(bkPosts["result"].count > 0) {
                     for i in 0...(bkPosts["result"].count-1) {
                         self.bookmarkedPosts.append(bkPosts["result"][i]["title"].stringValue)
                     }
