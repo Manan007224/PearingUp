@@ -80,6 +80,39 @@ class editPostsViewController: UIViewController,UIImagePickerControllerDelegate,
         titleTextView.text = titl
         descriptionTextView.text = desc
         locationTextView.text = city
+        imageView.layer.cornerRadius = 5.0
+        imageView.clipsToBounds = true
+        imageView.layer.shadowRadius = 5.0
+        imageView.layer.masksToBounds = false
+        imageView.layer.shadowOpacity = 1.0
+        imageView.layer.shadowOffset = CGSize.zero
+        
+        let border = CALayer()
+        let border2 = CALayer()
+        let border3 = CALayer()
+        
+        let width = CGFloat(1.5)
+        border.borderColor = UIColor.lightGray.cgColor
+        border.frame = CGRect(x: 0, y: titleTextView.frame.size.height - width, width: titleTextView.frame.size.width, height: titleTextView.frame.size.height)
+        border.borderWidth = width
+        
+        border2.borderColor = UIColor.lightGray.cgColor
+        border2.frame = CGRect(x: 0, y: titleTextView.frame.size.height - width, width: titleTextView.frame.size.width, height: titleTextView.frame.size.height)
+        border2.borderWidth = width
+        
+        border3.borderColor = UIColor.lightGray.cgColor
+        border3.frame = CGRect(x: 0, y: titleTextView.frame.size.height - width, width: titleTextView.frame.size.width, height: titleTextView.frame.size.height)
+        border3.borderWidth = width
+        
+        titleTextView.layer.addSublayer(border)
+        titleTextView.layer.masksToBounds = true
+        
+        descriptionTextView.layer.addSublayer(border2)
+        descriptionTextView.layer.masksToBounds = true
+        
+        locationTextView.layer.addSublayer(border3)
+        locationTextView.layer.masksToBounds = true
+        
         print("id: " + idee)
     }
     
