@@ -68,12 +68,6 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
         //bookmarked_posts.reloadData()
         print("Data Reloaded")
     }
-    /*
-     if produce name, title, image location  empty
-     display alert
-     else
-     alamofire
-     */
     
     
     @IBAction func CreatePost(_ sender: Any) {
@@ -104,7 +98,9 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
                 print(self.pickedFruit)
                 let username = User.Data.username
                 
-                let user_params : [String: Any] = ["owner": username, "info": info_param, "additional_msg": self.descriptionTextView.text!,"title":self.titleTextView.text!]
+                let title = self.titleTextView.text!.replacingOccurrences(of: " ", with: "_")
+                
+                let user_params : [String: Any] = ["owner": username, "info": info_param, "additional_msg": self.descriptionTextView.text!,"title":title]
                 
                 //UPLOAD POST
                 let url_post = "https://pearingup.herokuapp.com/uploadPostDetails/" + self.id
@@ -192,13 +188,10 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     @IBAction func addImg(_ sender: Any) {
-        print("yollllll")
         let picker = UIImagePickerController()
         picker.delegate = self
         
-        print("1")
         let actionSheet = UIAlertController(title: "Photo Source", message: "Choose a Source", preferredStyle: .actionSheet)
-        print("2")
 
         actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: {(action:UIAlertAction) in
             if UIImagePickerController.isSourceTypeAvailable(.camera){
@@ -212,14 +205,12 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
             self.present(picker, animated: true, completion: nil)
         }))
         
-        print("3")
 
         actionSheet.addAction(UIAlertAction(title: "Photo Library" , style: .default, handler: {(action:UIAlertAction) in picker.sourceType = .photoLibrary
             self.present(picker, animated: true, completion: nil)
         }))
-        
+        print("Loading Image Picker")
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil ))
-        print("4")
         self.present(actionSheet, animated:true, completion: nil)
     }
     

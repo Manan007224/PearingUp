@@ -40,7 +40,7 @@ class ExpandedPostViewController: UIViewController {
         fruitimage.layer.shadowOffset = CGSize.zero
         fruitimage.layer.cornerRadius = 10.0
         descriptionText.text = desc
-        titleText.text = titl
+        titleText.text = titl.replacingOccurrences(of: "_", with: " ")
         fruitname.text = fruitnme
         fruitimage.image = image
         
