@@ -56,6 +56,13 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     
+    func update_data() {
+        //self.bookmarked_posts.dataSource = self
+        //bookmarked_posts.reloadData()
+        print("Data Reloaded")
+    }
+    
+    
     @IBAction func CreatePost(_ sender: Any) {
         myGroup.enter()
         if(titleTextView.text == "" ){
@@ -84,8 +91,12 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
                 print(self.pickedFruit)
                 let username = User.Data.username
                 
+                let title = self.titleTextView.text!.replacingOccurrences(of: " ", with: "_")
+                
+            
                 let user_params : [String: Any] = ["owner": username, "info": info_param, "additional_msg": self.descriptionTextView.text!,"title":self.titleTextView.text!, "location":self.locationTextView.text!]
                 
+             
                 //UPLOAD POST
                 let url_post = "https://pearingup.herokuapp.com/uploadPostDetails/" + self.id
                 print(url_post)
@@ -186,6 +197,7 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
             picker.sourceType = .camera
             self.present(picker, animated: true, completion: nil)
         }))
+        
 
         actionSheet.addAction(UIAlertAction(title: "Photo Library" , style: .default, handler: {(action:UIAlertAction) in picker.sourceType = .photoLibrary
             self.present(picker, animated: true, completion: nil)

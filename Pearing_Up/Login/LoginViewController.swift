@@ -44,8 +44,10 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func login_click(_ sender: Any) {
-        let user_params: [String:String] = ["email": email_holder.text!, "password": pwd_holder.text!]
-      //  let user_params: [String:String] = ["email": "q@sfu.ca", "password": "q"]
+        
+       // let user_params: [String:String] = ["email": email_holder.text!, "password": pwd_holder.text!]
+        let user_params : [String:String] = ["email": email_holder.text!, "password": pwd_holder.text!]
+        //  let user_params: [String:String] = ["email": "q@sfu.ca", "password": "q"]
         
         login(url: login_url, params: user_params)
     }

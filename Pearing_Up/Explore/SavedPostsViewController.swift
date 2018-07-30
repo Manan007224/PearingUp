@@ -283,7 +283,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("click")
         self.performSegue(withIdentifier: "contentVideoSegue", sender: indexPath)
-    }	
+    }    
     
     // passes data to next controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -331,8 +331,10 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         
         post.post_fruit.text! = postFruits[indexPath.item]
         post.post_description.text! = postAdditionalMsgs[indexPath.item]
+        post.post_title.text! = postTitles[indexPath.item].replacingOccurrences(of: "_", with: " ")
         post.post_city.text! = postCities[indexPath.item]
-        post.post_title.text! = postTitles[indexPath.item]
+        
+    
         post.post_image.layer.cornerRadius = 5.0
         post.post_image.clipsToBounds = true
         
