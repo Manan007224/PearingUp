@@ -44,8 +44,6 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func login_click(_ sender: Any) {
-        
-       // let user_params: [String:String] = ["email": email_holder.text!, "password": pwd_holder.text!]
         let user_params : [String:String] = ["email": email_holder.text!, "password": pwd_holder.text!]
         //  let user_params: [String:String] = ["email": "q@sfu.ca", "password": "q"]
         
@@ -62,6 +60,7 @@ class LoginViewController: UIViewController {
             displayAlert(message: "Email or Password is Empty. Please fill in again")
             return
         }
+ 
         
         // Check a valid email id using regular expressions
         

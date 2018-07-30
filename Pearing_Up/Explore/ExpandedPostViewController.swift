@@ -45,7 +45,7 @@ class ExpandedPostViewController: UIViewController {
         titleText.text = titl.replacingOccurrences(of: "_", with: " ")
         fruitname.text = fruitnme
         fruitimage.image = image
-        fruitname.text = loca
+        location.text = loca
         
     }
     
@@ -88,6 +88,7 @@ class ExpandedPostViewController: UIViewController {
         self.performSegue(withIdentifier: "applyToPost", sender: self)
     }
     
+    //post is bookmarked/unbookmarked when button is pressed
     @IBAction func bookmarkButton(_ sender: Any) {
         var bookmark_url : URL!
         if(bookmarkedPosts.contains(titl)) {
@@ -109,7 +110,7 @@ class ExpandedPostViewController: UIViewController {
         }
     }
     
-    // Retrieve list of booksmarked posts from server
+    // Retrieve list of bookmarked posts from server
     func getBookmarkedPosts(completionHandler : @escaping ()->()) {
         
         let url : URL = URL(string: "https://pearingup.herokuapp.com/" + User.Data.username + "/getBookmarkedPosts")!
@@ -135,7 +136,8 @@ class ExpandedPostViewController: UIViewController {
         }
     }
     
-    
+    // pass data to apply to sendrequestviewcontroller so when you
+    // press the back button all the data is still there in this view
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "applyToPost" {
@@ -146,6 +148,7 @@ class ExpandedPostViewController: UIViewController {
             destination.titl = self.titl
             destination.fruitnme = self.fruitnme
             destination.image = self.image
+            destination.loca = self.loca
             
         }
     }

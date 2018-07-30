@@ -50,6 +50,7 @@ class SendRequestViewController: UIViewController {
             expandview.titl = self.titl
             expandview.fruitnme = self.fruitnme
             expandview.image = self.image
+            expandview.loca = self.loca
         }
     }
     
