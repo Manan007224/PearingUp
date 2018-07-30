@@ -38,6 +38,7 @@ class ExpandedPostViewController: UIViewController {
         fruitimage.layer.borderWidth = 1
         fruitimage.layer.shadowRadius = 5.0
         fruitimage.layer.masksToBounds = false
+        fruitimage.clipsToBounds = true
         fruitimage.layer.shadowOpacity = 1.0
         fruitimage.layer.shadowOffset = CGSize.zero
         fruitimage.layer.cornerRadius = 10.0

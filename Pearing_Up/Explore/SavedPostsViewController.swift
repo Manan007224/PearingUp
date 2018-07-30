@@ -32,55 +32,67 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     @IBOutlet weak var saved_posts: UICollectionView!
     let myGroup = DispatchGroup()
     
+    @IBOutlet weak var behindSearchView: UIView!
     @IBOutlet weak var searchtext: UITextField!
     
     @IBAction func search(_ sender: Any) {
+        if (!(searchtext.text?.isEmpty)!) {
+            var temptitles : [String] = []
+            var tempfruits : [String] = []
+            var tempmsgs : [String] = []
+            var tempcities : [String] = []
+            // array of indices that contains the search word
+            var ind : [Int] = []
         
-        var temptitles : [String] = []
-        var tempfruits : [String] = []
-        var tempmsgs : [String] = []
-        var tempcities : [String] = []
-        // array of indices that contains the search word
-        var ind : [Int] = []
+            check(data: postFruits, indices:  &ind,srchtxt:  searchtext.text!);
+            check(data: postCities, indices: &ind, srchtxt: searchtext.text!);
+            check(data: postAdditionalMsgs, indices: &ind, srchtxt: searchtext.text!);
+            check(data: postTitles, indices: &ind, srchtxt: searchtext.text!);
         
-        check(data: postFruits, indices:  &ind,srchtxt:  searchtext.text!);
-        check(data: postCities, indices: &ind, srchtxt: searchtext.text!);
-        check(data: postAdditionalMsgs, indices: &ind, srchtxt: searchtext.text!);
-        check(data: postTitles, indices: &ind, srchtxt: searchtext.text!);
+            // update post count
+            postCount = ind.count
         
-        // update post count
-        postCount = ind.count
-        
-        for val in ind {
-            temptitles.append( postTitles[val] )
-            tempfruits.append(postFruits[val])
-            tempmsgs.append( postAdditionalMsgs[val] )
-            tempcities.append( postCities[val] )
-            
+            for val in ind {
+                temptitles.append( postTitles[val] )
+                tempfruits.append(postFruits[val])
+                tempmsgs.append( postAdditionalMsgs[val] )
+                tempcities.append( postCities[val] )
+                
+            }
+            postFruits = tempfruits
+            postCities = tempcities
+            postAdditionalMsgs = tempmsgs
+            postTitles = temptitles
+            update_data()
         }
-        postFruits = tempfruits
-        postCities = tempcities
-        postAdditionalMsgs = tempmsgs
-        postTitles = temptitles
-        update_data()
-        
+        else {
+            // If there are no inputs, just reload the data with all posts
+            viewDidLoad()
+        }
     }
     
     
     // goes through data arary and if srchtxt is found put the index into indices array if it
     // does not already exists in there
     func check(data: [String], indices: inout [Int], srchtxt: String) {
+
         
+        var lowerData : [String] = []
         
-        for i in 0...(data.count-1) {
-            if (data[i].range(of: srchtxt) != nil) {
-                if ( indices.contains(i) == false ){
-                    
-                    indices.append(i);
+        if(data.count > 0) {
+            
+            for i in 0...(data.count-1) {
+                
+                lowerData.append(data[i].lowercased())
+                
+                if (lowerData[i].range(of: srchtxt.lowercased()) != nil) {
+                    if ( indices.contains(i) == false ){
+                        
+                        indices.append(i);
+                    }
                 }
             }
         }
-        
     }
         /*
      
@@ -161,7 +173,8 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        print("disable")
+        self.saved_posts.isUserInteractionEnabled = false
         UIApplication.shared.statusBarStyle = .default
         
         postTitles = []
@@ -172,16 +185,26 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         postImages = []
         postOwners = []
         postCount = 0
+        
+        behindSearchView.layer.shadowRadius = 2.5
+        behindSearchView.layer.masksToBounds = false
+        behindSearchView.layer.shadowOpacity = 1.0
+        behindSearchView.layer.shadowOffset = CGSize.zero
+        behindSearchView.layer.cornerRadius = 10.0
+        
         let all_titles_url : URL = URL(string: "https:pearingup.herokuapp.com/allPosts")!
         getPosts(url: all_titles_url)
 
         myGroup.notify(queue: .main) {
             print("before update")
+            self.saved_posts.isUserInteractionEnabled = true
+            print("enable")
             print(self.postImages.count)
             self.update_data()
         }
         
         self.tabBarController?.tabBar.isHidden = false
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -204,7 +227,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     }
     
     // Retrieve list of posts from server
-    func getPosts(url: URL){
+    func getPosts(url: URL) {
         
         self.myGroup.enter()
         Alamofire.request(url, method: .get).responseJSON { response in
@@ -225,7 +248,8 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
                     }
                 }
                 self.myGroup.leave()
-            }
+        
+        }
             else{
                 self.myGroup.leave()
             }

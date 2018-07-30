@@ -93,8 +93,8 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
                 
                 let title = self.titleTextView.text!.replacingOccurrences(of: " ", with: "_")
                 
-            
-                let user_params : [String: Any] = ["owner": username, "info": info_param, "additional_msg": self.descriptionTextView.text!,"title":self.titleTextView.text!, "location":self.locationTextView.text!]
+                
+                let user_params : [String: Any] = ["owner": username, "info": info_param, "additional_msg": self.descriptionTextView.text!,"title": title, "location":self.locationTextView.text!]
                 
              
                 //UPLOAD POST
