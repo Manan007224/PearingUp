@@ -24,7 +24,7 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
     var id : String = ""
     let url = "https://pearingup.herokuapp.com/"
     
-    let fruit = ["Almond" , "Apple" , "Apricot", "Avocado", "Blood Orange", "Cherry", "Citron", "Feijoa", "Fig", "Grapefruit", "Hardy Citrus","Jujube", "Kaffir Lime", "Kiwi", "Kumquat","Lemon", "Lime","Loquat", "Mandarin Orange", "Medlar", "Mulberry", "Navel Orange", "Nectarine", "Olive", "Pawpaw", "Peach", "Pear", "Persimmon", "Plum", "Pomegranate","Quince" , "Sour Orange"]
+    let fruit = ["Almond" , "Apple" , "Apricot", "Avocado", "Banana", "Blackberry", "Blood Orange", "Blueberry", "Cherry", "Citron", "Feijoa", "Fig", "Grape", "Grapefruit", "Hardy Citrus","Jujube", "Kaffir Lime", "Kiwi", "Kumquat","Lemon", "Lime","Loquat", "Mandarin Orange", "Mango", "Medlar", "Mulberry", "Navel Orange", "Nectarine", "Olive", "Pawpaw", "Peach", "Pear", "Persimmon", "Pineapple", "Plum", "Pomegranate","Quince", "Raspberry", "Sour Orange", "Strawberry", "Watermelon", "Other"]
     
     var pickedFruit = "Almond"
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {

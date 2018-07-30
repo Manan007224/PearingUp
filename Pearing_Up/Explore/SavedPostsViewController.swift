@@ -421,6 +421,10 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         }
     }
  
+    @IBAction func switchViews(_ sender: Any) {
+        self.performSegue(withIdentifier: "listToCard", sender: self)
+    }
+
     func displayAlert(message: String){
         let alert_toDisplay = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
         alert_toDisplay.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
