@@ -190,7 +190,7 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
         actionSheet.addAction(UIAlertAction(title: "Photo Library" , style: .default, handler: {(action:UIAlertAction) in picker.sourceType = .photoLibrary
             self.present(picker, animated: true, completion: nil)
         }))
-        
+        print("Loading Image Picker")
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil ))
         self.present(actionSheet, animated:true, completion: nil)
     }

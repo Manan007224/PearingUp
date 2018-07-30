@@ -154,7 +154,7 @@ class bookmarkedPostsViewController: UIViewController, UICollectionViewDataSourc
         post.layer.shadowOffset = CGSize.zero
         post.layer.cornerRadius = 10.0
         post.bookmarkCell_description.text! = self.bookmarkMsgs[indexPath.item]
-        post.bookmarkcell_title.text! = self.bookmarkTitles[indexPath.item]
+        post.bookmarkcell_title.text! = self.bookmarkTitles[indexPath.item].replacingOccurrences(of: "_", with: " ")
         post.bookmarkCell_fruit.text! = self.bookmarkFruits[indexPath.item]
         post.bookmarkCell_Image.image = self.bookmarkImages[indexPath.item]
         
