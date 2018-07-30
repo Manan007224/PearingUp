@@ -7,43 +7,131 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class ExpandedPostViewController: UIViewController {
 
-    var owner = ""
+    var owner : String!
+    var image : UIImage!
     var titl: String!
     var desc: String!
     var loca: String!
     var fruitnme: String!
-    
+  
     @IBOutlet weak var titleText: UILabel!
     @IBOutlet weak var fruitimage: UIImageView!
     @IBOutlet weak var MakeAppointmentButton: UIButton!
-    @IBOutlet weak var descriptionText: UILabel!
+    @IBOutlet weak var descriptionText: UITextView!
     @IBOutlet weak var location: UILabel!
     @IBOutlet weak var fruitname: UILabel!
+    @IBOutlet weak var bookmarkButtonUI: UIButton!
+    
+    let myGroup = DispatchGroup()
+    
+    var bookmarkedPosts : [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = true
         // Do any additional setup after loading the view.
-        
-        self.owner = User.Data.username
-        
+        fruitimage.layer.borderWidth = 1
+        fruitimage.layer.shadowRadius = 5.0
+        fruitimage.layer.masksToBounds = false
+        fruitimage.layer.shadowOpacity = 1.0
+        fruitimage.layer.shadowOffset = CGSize.zero
+        fruitimage.layer.cornerRadius = 10.0
         descriptionText.text = desc
-        titleText.text = titl
+        titleText.text = titl.replacingOccurrences(of: "_", with: " ")
         fruitname.text = fruitnme
+        fruitimage.image = image
+        
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        myGroup.notify(queue: .main) {
+            print("before update")
+            self.update_data()
+        }
+        
+        
+        bookmarkedPosts = []
+        getBookmarkedPosts(){
+            print(self.bookmarkedPosts)
+            if(self.bookmarkedPosts.contains(self.titl)) {
+                print("is bookmarked")
+                self.bookmarkButtonUI.setImage(UIImage(named: "bookmark filled"), for: .normal)
+            }
+            else {
+                print("is not bookmarked")
+                self.bookmarkButtonUI.setImage(UIImage(named: "bookmark-50"), for: .normal)
+            }
+        }
+    }
     
+    func update_data() {
+        print("Data Reloaded")
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func ApplyToPostingClicked(_ sender: Any)
-        {
-                self.performSegue(withIdentifier: "applyToPost", sender: self)
+    @IBAction func backButton(_ sender: Any) {
+        _ = navigationController?.popViewController(animated: true)
+    }
+
+    @IBAction func ApplyToPostingClicked(_ sender: Any){
+        self.performSegue(withIdentifier: "applyToPost", sender: self)
+    }
+    
+    @IBAction func bookmarkButton(_ sender: Any) {
+        var bookmark_url : URL!
+        if(bookmarkedPosts.contains(titl)) {
+            bookmark_url = URL(string: "https://pearingup.herokuapp.com/unBookmarkPost/" + User.Data.username + "/" + titl)!
+            bookmarkButtonUI.setImage(UIImage(named: "bookmark-50"), for: .normal)
+        }
+        else {
+            bookmark_url = URL(string: "https://pearingup.herokuapp.com/bookmarkPost/" + User.Data.username + "/" + titl)!
+            bookmarkButtonUI.setImage(UIImage(named: "bookmark filled"), for: .normal)
+            }
+        Alamofire.request(bookmark_url, method: .get).responseJSON {
+            response in
+            if(response.result.isSuccess){
+                print(response.result.value)
+            }
+            else{
+                print("error")
+            }
+        }
+    }
+    
+    // Retrieve list of booksmarked posts from server
+    func getBookmarkedPosts(completionHandler : @escaping ()->()) {
+        
+        let url : URL = URL(string: "https://pearingup.herokuapp.com/" + User.Data.username + "/getBookmarkedPosts")!
+        
+        self.myGroup.enter()
+        
+        Alamofire.request(url, method: .get).responseJSON {
+            response in
+            if(response.result.isSuccess){
+                let bkPosts : JSON = JSON(response.result.value!)
+                if(bkPosts["result"].count > 0) {
+                    for i in 0...(bkPosts["result"].count-1) {
+                        self.bookmarkedPosts.append(bkPosts["result"][i]["title"].stringValue)
+                    }
+                }
+                self.myGroup.leave()
+                completionHandler()
+            }
+            else {
+                print("error")
+                self.myGroup.leave()
+            }
+        }
     }
     
     
@@ -52,9 +140,11 @@ class ExpandedPostViewController: UIViewController {
         if segue.identifier == "applyToPost" {
             
             let destination = segue.destination as! SendRequestViewController
+            destination.receiverName = self.owner
             destination.desc = self.desc
             destination.titl = self.titl
             destination.fruitnme = self.fruitnme
+            destination.image = self.image
             
         }
     }
