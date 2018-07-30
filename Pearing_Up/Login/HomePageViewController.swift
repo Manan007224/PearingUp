@@ -74,7 +74,7 @@ import SwiftyJSON
     }
 }
 
-class ViewController: UIViewController {
+class HomePageViewController: UIViewController {
     
 //    var gradientLayer: CAGradientLayer!
     

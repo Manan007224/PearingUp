@@ -48,7 +48,6 @@ class ExpandedRequestViewController: UIViewController {
         myGroup.enter()
         let accept_url : URL = URL(string: (url + "/AcceptRequest/" + User.Data.username + "/" + requestName!))!
         sendRequest(url: accept_url)
-        //self.performSegue(withIdentifier: "acceptRequest", sender: self)
         _ = navigationController?.popViewController(animated: true)
         myGroup.leave()
     }
@@ -57,7 +56,6 @@ class ExpandedRequestViewController: UIViewController {
         myGroup.enter()
         let decline_url : URL = URL(string: (url + "/declineRequest/"  + User.Data.username + "/" + requestName!))!
         sendRequest(url: decline_url)
-        //self.performSegue(withIdentifier: "declineRequest", sender: self)
         _ = navigationController?.popViewController(animated: true)
         myGroup.leave()
     }
