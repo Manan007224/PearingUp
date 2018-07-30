@@ -18,6 +18,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     var firstStartUp : Bool  = true
     let bookmarks_url : URL = URL(string: "https://pearingup.herokuapp.com/manan/savedposts")!
     let posts_url : URL = URL(string: "https://pearingup.herokuapp.com/getpost/apple_post")!
+    
     var postTitles : [String] = []
     var bookmarkedPosts : [String] = []
     var postAdditionalMsgs : [String] = []
@@ -25,6 +26,16 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     var postOwners: [String] = []
     var postCities : [String] = []
     var postImages : [UIImage] = []
+    
+    var didSearch : Bool = false
+    
+    var searchOwners: [String] = []
+    var searchTitles : [String] = []
+    var searchFruits : [String] = []
+    var searchAdditionalMsgs : [String] = []
+    var searchCities : [String] = []
+    var searchImages : [UIImage] = []
+    
     var postCount : Int = 0
     var booleann : Int = 1
     var selectedRow = -1
@@ -35,147 +46,13 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     @IBOutlet weak var behindSearchView: UIView!
     @IBOutlet weak var searchtext: UITextField!
     
-    @IBAction func search(_ sender: Any) {
-        if (!(searchtext.text?.isEmpty)!) {
-            var temptitles : [String] = []
-            var tempfruits : [String] = []
-            var tempmsgs : [String] = []
-            var tempcities : [String] = []
-            // array of indices that contains the search word
-            var ind : [Int] = []
-        
-            check(data: postFruits, indices:  &ind,srchtxt:  searchtext.text!);
-            check(data: postCities, indices: &ind, srchtxt: searchtext.text!);
-            check(data: postAdditionalMsgs, indices: &ind, srchtxt: searchtext.text!);
-            check(data: postTitles, indices: &ind, srchtxt: searchtext.text!);
-        
-            // update post count
-            postCount = ind.count
-        
-            for val in ind {
-                temptitles.append( postTitles[val] )
-                tempfruits.append(postFruits[val])
-                tempmsgs.append( postAdditionalMsgs[val] )
-                tempcities.append( postCities[val] )
-                
-            }
-            postFruits = tempfruits
-            postCities = tempcities
-            postAdditionalMsgs = tempmsgs
-            postTitles = temptitles
-            update_data()
-        }
-        else {
-            // If there are no inputs, just reload the data with all posts
-            viewDidLoad()
-        }
-    }
-    
-    
-    // goes through data arary and if srchtxt is found put the index into indices array if it
-    // does not already exists in there
-    func check(data: [String], indices: inout [Int], srchtxt: String) {
-
-        
-        var lowerData : [String] = []
-        
-        if(data.count > 0) {
-            
-            for i in 0...(data.count-1) {
-                
-                lowerData.append(data[i].lowercased())
-                
-                if (lowerData[i].range(of: srchtxt.lowercased()) != nil) {
-                    if ( indices.contains(i) == false ){
-                        
-                        indices.append(i);
-                    }
-                }
-            }
-        }
-    }
-        /*
-     
-     
-     
-     
-     // for i in 0...postTitles.count  { print( postTitles[i] )}
-     for val in postCities {print(val)  }
-     
-     temptitles.append( postTitles[0] )
-     tempmsgs.append( postAdditionalMsgs[0] )
-     tempfruits.append( postFruits[0] )
-     
-     temptitles.append( postTitles[2] )
-     tempmsgs.append( postAdditionalMsgs[2] )
-     tempfruits.append( postFruits[2] )
-     
-     
-     postTitles = temptitles
-     postFruits = tempfruits
-     postAdditionalMsgs = tempmsgs
-     postCount = 2
-     self.update_data()
-     //////
-        var cnt = allposts.count
-        var searchposts : [PostObject] = []
-        var isthere : Int = 0
-        
-        for i in 0...(cnt-1) {
-            if (( allposts[i].additional_msg.range(of: searchText.text!) ) != nil ){
-                isthere = 1
-            }
-            else if ( ( allposts[i].title.range(of: searchText.text!) ) != nil ){
-                isthere = 1
-            }
-            else if ( ( allposts[i].fruit.range(of: searchText.text!) ) != nil ){
-                isthere = 1
-            }
-            if isthere == 1 {
-                searchposts.append(allposts[i])
-                
-            }
-            isthere = 0
-        }
-        
-        if searchposts.count != 0 {
-            allposts.removeAll()
-            allposts = searchposts
-            print("all post coutn in search")
-            print(allposts.count)
-            
-            self.myGroup.enter()
-            
-            for i in 0...(self.allposts.count-1) {
-                self.postTitles.removeAll()
-                self.postAdditionalMsgs.removeAll()
-                self.postFruits.removeAll()
-                self.postOwner.removeAll()
-                
-                
-                self.postTitles.append( self.allposts[i].title )
-                self.postAdditionalMsgs.append(self.allposts[i].additional_msg )
-                self.postFruits.append( self.allposts[i].fruit )
-                self.postOwner.append(self.allposts[i].owner)
-                
-                //print(self.postTitles[i])
-            }
-            
-            self.myGroup.leave()
-            
-            
-            self.update_data()
-        }
-        
-*/
-        
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("disable")
         self.saved_posts.isUserInteractionEnabled = false
         UIApplication.shared.statusBarStyle = .default
+        
+        didSearch = false
         
         postTitles = []
         bookmarkedPosts = []
@@ -209,6 +86,9 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        searchtext.text! = ""
+
         // We want to reload the page whenever it is visited, instead of only on first visit
         if(!firstStartUp) {
             print("Not first start up")
@@ -303,6 +183,70 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
             }
         }
     }
+    
+    
+    @IBAction func searchButton(_ sender: Any) {
+        if (!(searchtext.text?.isEmpty)!) {
+            // array of indices that contains the search word
+            var ind : [Int] = []
+            
+            searchTitles = []
+            searchFruits = []
+            searchAdditionalMsgs = []
+            searchCities = []
+            searchOwners = []
+            searchImages = []
+            
+            check(data: postFruits, indices:  &ind,srchtxt:  searchtext.text!);
+            check(data: postCities, indices: &ind, srchtxt: searchtext.text!);
+            check(data: postAdditionalMsgs, indices: &ind, srchtxt: searchtext.text!);
+            check(data: postTitles, indices: &ind, srchtxt: searchtext.text!);
+            
+            // update post count
+            postCount = ind.count
+            
+            for val in ind {
+                searchTitles.append(postTitles[val] )
+                searchFruits.append(postFruits[val])
+                searchAdditionalMsgs.append(postAdditionalMsgs[val] )
+                searchCities.append(postCities[val] )
+                searchOwners.append(postOwners[val])
+                searchImages.append(postImages[val])
+                
+            }
+            didSearch = true
+        }
+        else {
+            // If there are no inputs, just reload the data with all posts
+            postCount = postTitles.count
+            didSearch = false
+        }
+        update_data()
+    }
+    
+    
+    // goes through data arary and if srchtxt is found put the index into indices array if it
+    // does not already exists in there
+    func check(data: [String], indices: inout [Int], srchtxt: String) {
+        
+        
+        var lowerData : [String] = []
+        
+        if(data.count > 0) {
+            
+            for i in 0...(data.count-1) {
+                
+                lowerData.append(data[i].lowercased())
+                
+                if (lowerData[i].range(of: srchtxt.lowercased()) != nil) {
+                    if ( indices.contains(i) == false ){
+                        
+                        indices.append(i);
+                    }
+                }
+            }
+        }
+    }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("click")
@@ -321,14 +265,23 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
                         destination.owner = User.Data.username
                         
                         if let selectedindexpath = collectionView.indexPathsForSelectedItems?.first {
-                            
-                            destination.image = postImages[selectedindexpath.row]
-                            print("post owners" , postOwners)
-                            destination.owner = postOwners[selectedindexpath.row]
-                            destination.titl = postTitles[selectedindexpath.row]
-                            destination.desc = postAdditionalMsgs[selectedindexpath.row]
-                            destination.fruitnme = postFruits[selectedindexpath.row]
-                            destination.loca = postCities[selectedindexpath.row]
+                            if(!didSearch) {
+                                destination.image = postImages[selectedindexpath.row]
+                                print("post owners" , postOwners)
+                                destination.owner = postOwners[selectedindexpath.row]
+                                destination.titl = postTitles[selectedindexpath.row]
+                                destination.desc = postAdditionalMsgs[selectedindexpath.row]
+                                destination.fruitnme = postFruits[selectedindexpath.row]
+                                destination.loca = postCities[selectedindexpath.row]
+                            }
+                            else {
+                                destination.image = searchImages[selectedindexpath.row]
+                                destination.owner = searchOwners[selectedindexpath.row]
+                                destination.titl = searchTitles[selectedindexpath.row]
+                                destination.desc = searchAdditionalMsgs[selectedindexpath.row]
+                                destination.fruitnme = searchFruits[selectedindexpath.row]
+                                destination.loca = searchCities[selectedindexpath.row]
+                            }
                         }
                     }
                 }
@@ -353,17 +306,26 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         post.layer.shadowOffset = CGSize.zero
         post.layer.cornerRadius = 10.0
         
-        post.post_fruit.text! = postFruits[indexPath.item]
-        post.post_description.text! = postAdditionalMsgs[indexPath.item]
-        post.post_title.text! = postTitles[indexPath.item].replacingOccurrences(of: "_", with: " ")
-        post.post_city.text! = postCities[indexPath.item]
+        if(didSearch) {
+            post.post_fruit.text! = searchFruits[indexPath.item]
+            post.post_description.text! = searchAdditionalMsgs[indexPath.item]
+            post.post_title.text! = searchTitles[indexPath.item].replacingOccurrences(of: "_", with: " ")
+            post.post_city.text! = searchCities[indexPath.item]
+            
+            post.post_image.image = searchImages[indexPath.item]
+        }
+        else {
+            post.post_fruit.text! = postFruits[indexPath.item]
+            post.post_description.text! = postAdditionalMsgs[indexPath.item]
+            post.post_title.text! = postTitles[indexPath.item].replacingOccurrences(of: "_", with: " ")
+            post.post_city.text! = postCities[indexPath.item]
+            
+            post.post_image.image = postImages[indexPath.item]
+        }
         
-    
+        
         post.post_image.layer.cornerRadius = 5.0
         post.post_image.clipsToBounds = true
-        
-        post.post_image.image = postImages[indexPath.item]
-        
         // Update whether or not post is bookmarked or not
         if(self.bookmarkedPosts.contains(self.postTitles[indexPath.item])) {
             post.bookmarkButton.setImage(UIImage(named: "bookmark filled"), for: .normal)
