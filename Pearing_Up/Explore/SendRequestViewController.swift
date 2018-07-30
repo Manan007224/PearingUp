@@ -68,7 +68,7 @@ class SendRequestViewController: UIViewController {
             print("send a request at " + url)
             serverRequest(url: url, params: ["add_msg" : message])// also need to pass the dates
             //self.performSegue(withIdentifier: "sendrequest_to_expandview", sender: self)
-            _ = navigationController?.popViewController(animated: true)
+            _ = navigationController?.popToRootViewController(animated: true)
         }
     }
     

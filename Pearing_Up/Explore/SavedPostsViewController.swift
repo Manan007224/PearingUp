@@ -210,7 +210,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         post.layer.cornerRadius = 10.0
         post.post_fruit.text! = postFruits[indexPath.item]
         post.post_description.text! = postAdditionalMsgs[indexPath.item]
-        post.post_title.text! = postTitles[indexPath.item]
+        post.post_title.text! = postTitles[indexPath.item].replacingOccurrences(of: "_", with: " ")
         post.post_image.layer.cornerRadius = 5.0
         post.post_image.clipsToBounds = true
         

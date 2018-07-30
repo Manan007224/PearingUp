@@ -77,7 +77,7 @@ class editPostsViewController: UIViewController,UIImagePickerControllerDelegate,
         }
         
         imageView.image = image
-        titleTextView.text = titl
+        titleTextView.text = titl.replacingOccurrences(of: "_", with: " ")
         descriptionTextView.text = desc
         locationTextView.text = city
         imageView.layer.cornerRadius = 5.0
