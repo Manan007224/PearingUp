@@ -33,16 +33,134 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     let myGroup = DispatchGroup()
     
     @IBOutlet weak var searchtext: UITextField!
+    
     @IBAction func search(_ sender: Any) {
         
+        var temptitles : [String] = []
+        var tempfruits : [String] = []
+        var tempmsgs : [String] = []
+        var tempcities : [String] = []
+        // array of indices that contains the search word
+        var ind : [Int] = []
         
+        check(data: postFruits, indices:  &ind,srchtxt:  searchtext.text!);
+        check(data: postCities, indices: &ind, srchtxt: searchtext.text!);
+        check(data: postAdditionalMsgs, indices: &ind, srchtxt: searchtext.text!);
+        check(data: postTitles, indices: &ind, srchtxt: searchtext.text!);
+        
+        // update post count
+        postCount = ind.count
+        
+        for val in ind {
+            temptitles.append( postTitles[val] )
+            tempfruits.append(postFruits[val])
+            tempmsgs.append( postAdditionalMsgs[val] )
+            tempcities.append( postCities[val] )
+            
+        }
+        postFruits = tempfruits
+        postCities = tempcities
+        postAdditionalMsgs = tempmsgs
+        postTitles = temptitles
+        update_data()
         
     }
     
+    
+    // goes through data arary and if srchtxt is found put the index into indices array if it
+    // does not already exists in there
+    func check(data: [String], indices: inout [Int], srchtxt: String) {
+        
+        
+        for i in 0...(data.count-1) {
+            if (data[i].range(of: srchtxt) != nil) {
+                if ( indices.contains(i) == false ){
+                    
+                    indices.append(i);
+                }
+            }
+        }
+        
+    }
+        /*
+     
+     
+     
+     
+     // for i in 0...postTitles.count  { print( postTitles[i] )}
+     for val in postCities {print(val)  }
+     
+     temptitles.append( postTitles[0] )
+     tempmsgs.append( postAdditionalMsgs[0] )
+     tempfruits.append( postFruits[0] )
+     
+     temptitles.append( postTitles[2] )
+     tempmsgs.append( postAdditionalMsgs[2] )
+     tempfruits.append( postFruits[2] )
+     
+     
+     postTitles = temptitles
+     postFruits = tempfruits
+     postAdditionalMsgs = tempmsgs
+     postCount = 2
+     self.update_data()
+     //////
+        var cnt = allposts.count
+        var searchposts : [PostObject] = []
+        var isthere : Int = 0
+        
+        for i in 0...(cnt-1) {
+            if (( allposts[i].additional_msg.range(of: searchText.text!) ) != nil ){
+                isthere = 1
+            }
+            else if ( ( allposts[i].title.range(of: searchText.text!) ) != nil ){
+                isthere = 1
+            }
+            else if ( ( allposts[i].fruit.range(of: searchText.text!) ) != nil ){
+                isthere = 1
+            }
+            if isthere == 1 {
+                searchposts.append(allposts[i])
+                
+            }
+            isthere = 0
+        }
+        
+        if searchposts.count != 0 {
+            allposts.removeAll()
+            allposts = searchposts
+            print("all post coutn in search")
+            print(allposts.count)
+            
+            self.myGroup.enter()
+            
+            for i in 0...(self.allposts.count-1) {
+                self.postTitles.removeAll()
+                self.postAdditionalMsgs.removeAll()
+                self.postFruits.removeAll()
+                self.postOwner.removeAll()
+                
+                
+                self.postTitles.append( self.allposts[i].title )
+                self.postAdditionalMsgs.append(self.allposts[i].additional_msg )
+                self.postFruits.append( self.allposts[i].fruit )
+                self.postOwner.append(self.allposts[i].owner)
+                
+                //print(self.postTitles[i])
+            }
+            
+            self.myGroup.leave()
+            
+            
+            self.update_data()
+        }
+        
+*/
+        
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("boolean value:")
-        print(booleann)
        
         UIApplication.shared.statusBarStyle = .default
         
@@ -102,6 +220,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
                         self.postAdditionalMsgs.append(posts[i]["additional_msg"].stringValue )
                         self.postFruits.append(posts[i]["info"]["fruits"].stringValue )
                         self.postOwners.append(posts[i]["owner"].stringValue)
+                        self.postCities.append(posts[i]["location_p"].stringValue  )
                         self.getBookmarkedPosts()
                     }
                 }
@@ -185,6 +304,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
                             destination.titl = postTitles[selectedindexpath.row]
                             destination.desc = postAdditionalMsgs[selectedindexpath.row]
                             destination.fruitnme = postFruits[selectedindexpath.row]
+                            destination.loca = postCities[selectedindexpath.row]
                         }
                     }
                 }
@@ -208,8 +328,10 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         post.layer.shadowOpacity = 1.0
         post.layer.shadowOffset = CGSize.zero
         post.layer.cornerRadius = 10.0
+        
         post.post_fruit.text! = postFruits[indexPath.item]
         post.post_description.text! = postAdditionalMsgs[indexPath.item]
+        post.post_city.text! = postCities[indexPath.item]
         post.post_title.text! = postTitles[indexPath.item]
         post.post_image.layer.cornerRadius = 5.0
         post.post_image.clipsToBounds = true

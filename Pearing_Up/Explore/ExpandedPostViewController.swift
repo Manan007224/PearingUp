@@ -45,6 +45,7 @@ class ExpandedPostViewController: UIViewController {
         titleText.text = titl
         fruitname.text = fruitnme
         fruitimage.image = image
+        fruitname.text = loca
         
     }
     

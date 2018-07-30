@@ -55,26 +55,6 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
         pickedFruit = fruit[row]
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        myGroup.notify(queue: .main) {
-            self.update_data()
-        }
-    }
-    
-    func update_data() {
-        //self.bookmarked_posts.dataSource = self
-        //bookmarked_posts.reloadData()
-        print("Data Reloaded")
-    }
-    /*
-     if produce name, title, image location  empty
-     display alert
-     else
-     alamofire
-     */
-    
     
     @IBAction func CreatePost(_ sender: Any) {
         myGroup.enter()
@@ -104,7 +84,7 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
                 print(self.pickedFruit)
                 let username = User.Data.username
                 
-                let user_params : [String: Any] = ["owner": username, "info": info_param, "additional_msg": self.descriptionTextView.text!,"title":self.titleTextView.text!]
+                let user_params : [String: Any] = ["owner": username, "info": info_param, "additional_msg": self.descriptionTextView.text!,"title":self.titleTextView.text!, "location":self.locationTextView.text!]
                 
                 //UPLOAD POST
                 let url_post = "https://pearingup.herokuapp.com/uploadPostDetails/" + self.id
@@ -162,8 +142,6 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
         
         self.myGroup.enter()
         
-        print("Came in here")
-        
         Alamofire.upload(multipartFormData: { (multipartFormData) in
             multipartFormData.append(imageData, withName: "file", fileName: "tree.jpg", mimeType: "image/png")
         }, to:"http://pearingup.herokuapp.com/upload")
@@ -192,13 +170,10 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     @IBAction func addImg(_ sender: Any) {
-        print("yollllll")
         let picker = UIImagePickerController()
         picker.delegate = self
         
-        print("1")
         let actionSheet = UIAlertController(title: "Photo Source", message: "Choose a Source", preferredStyle: .actionSheet)
-        print("2")
 
         actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: {(action:UIAlertAction) in
             if UIImagePickerController.isSourceTypeAvailable(.camera){
@@ -211,15 +186,12 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
             picker.sourceType = .camera
             self.present(picker, animated: true, completion: nil)
         }))
-        
-        print("3")
 
         actionSheet.addAction(UIAlertAction(title: "Photo Library" , style: .default, handler: {(action:UIAlertAction) in picker.sourceType = .photoLibrary
             self.present(picker, animated: true, completion: nil)
         }))
         
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil ))
-        print("4")
         self.present(actionSheet, animated:true, completion: nil)
     }
     

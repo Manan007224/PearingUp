@@ -53,7 +53,8 @@ class LoginViewController: UIViewController {
     func login(url: String, params: [String:String]){
         
         // Check weather email or password entered are not empty strings
-        
+        email_holder.text = "q@sfu.ca"
+        pwd_holder.text = "q"
         if(email_holder.text == "" || pwd_holder.text == ""){
             print("All fields required")
             displayAlert(message: "Email or Password is Empty. Please fill in again")
