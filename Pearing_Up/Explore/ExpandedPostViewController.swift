@@ -25,6 +25,7 @@ class ExpandedPostViewController: UIViewController {
     @IBOutlet weak var location: UILabel!
     @IBOutlet weak var descriptionText: UITextView!
     @IBOutlet weak var bookmarkButtonUI: UIButton!
+    @IBOutlet weak var mainView: UIView!
     
     
     let myGroup = DispatchGroup()
@@ -47,11 +48,11 @@ class ExpandedPostViewController: UIViewController {
         fruitimage.layer.cornerRadius = 10.0
         
         //the "cell" containing everything
-//        mainView.layer.shadowRadius = 2.5
-//        mainView.layer.masksToBounds = false
-//        mainView.layer.shadowOpacity = 1.0
-//        mainView.layer.shadowOffset = CGSize.zero
-//        mainView.layer.cornerRadius = 10.0
+        mainView.layer.shadowRadius = 2.5
+        mainView.layer.masksToBounds = false
+        mainView.layer.shadowOpacity = 1.0
+        mainView.layer.shadowOffset = CGSize.zero
+        mainView.layer.cornerRadius = 10.0
         
         //additional properties for labels
         descriptionText.text = desc
