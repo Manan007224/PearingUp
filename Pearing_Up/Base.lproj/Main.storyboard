@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="AppleSDGothicNeo.ttc">
+            <string>AppleSDGothicNeo-Bold</string>
+            <string>AppleSDGothicNeo-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Home Page View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -588,8 +594,9 @@ I HEREBY REMISE, RELEASE AND FOREVER DISCHARGE PearingUp from all manner of acti
                                             <rect key="frame" x="0.0" y="0.0" width="380" height="483"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pCS-hL-QQT">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pCS-hL-QQT">
                                                     <rect key="frame" x="229" y="438" width="131" height="25"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -601,18 +608,6 @@ I HEREBY REMISE, RELEASE AND FOREVER DISCHARGE PearingUp from all manner of acti
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LVx-RN-Ee2">
-                                                    <rect key="frame" x="332" y="20" width="28" height="36"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="28" id="C4E-ys-ZkS"/>
-                                                        <constraint firstAttribute="height" constant="36" id="KSr-W0-eq3"/>
-                                                    </constraints>
-                                                    <inset key="contentEdgeInsets" minX="5" minY="5" maxX="0.0" maxY="0.0"/>
-                                                    <state key="normal" image="bookmark-50"/>
-                                                    <connections>
-                                                        <action selector="bookmarkButtonPressed:" destination="Nv3-pA-MHI" eventType="touchUpInside" id="fcF-sA-CZJ"/>
-                                                    </connections>
-                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jkx-Uj-Fhw">
                                                     <rect key="frame" x="20" y="20" width="312" height="76"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -624,45 +619,54 @@ I HEREBY REMISE, RELEASE AND FOREVER DISCHARGE PearingUp from all manner of acti
                                                     <rect key="frame" x="20" y="104" width="340" height="310"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LVx-RN-Ee2">
+                                                    <rect key="frame" x="332" y="35" width="28" height="36"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <inset key="contentEdgeInsets" minX="5" minY="5" maxX="0.0" maxY="0.0"/>
+                                                    <state key="normal" image="bookmark-50"/>
+                                                    <connections>
+                                                        <action selector="bookmarkButtonPressed:" destination="Nv3-pA-MHI" eventType="touchUpInside" id="fcF-sA-CZJ"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" red="0.99019607840000001" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstItem="pCS-hL-QQT" firstAttribute="centerY" secondItem="Nv3-pA-MHI" secondAttribute="centerY" constant="74" id="9Ul-pz-BhX"/>
-                                            <constraint firstItem="LVx-RN-Ee2" firstAttribute="centerX" secondItem="Nv3-pA-MHI" secondAttribute="centerX" constant="149" id="J4W-20-Uvy"/>
-                                            <constraint firstItem="pCS-hL-QQT" firstAttribute="centerX" secondItem="Nv3-pA-MHI" secondAttribute="centerX" constant="104.5" id="ZFu-kR-CNs"/>
-                                            <constraint firstItem="LVx-RN-Ee2" firstAttribute="centerY" secondItem="Nv3-pA-MHI" secondAttribute="centerY" constant="-71.5" id="pIH-Yg-N5Z"/>
-                                        </constraints>
                                         <connections>
                                             <outlet property="bookmarkButton" destination="LVx-RN-Ee2" id="CJ0-uc-n8X"/>
                                             <outlet property="post_city" destination="pCS-hL-QQT" id="8cO-IF-xrd"/>
                                             <outlet property="post_fruit" destination="FZ0-3q-YSf" id="aUY-1H-Ofj"/>
                                             <outlet property="post_image" destination="glo-8P-M1b" id="5hE-lu-54u"/>
                                             <outlet property="post_title" destination="jkx-Uj-Fhw" id="ljN-As-461"/>
+                                            <segue destination="jjy-3E-Ljd" kind="show" identifier="secondaryExpand" id="6y7-IX-WaC"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="NS8-IK-E9E" id="NGX-JS-DJz"/>
+                                    <outlet property="delegate" destination="NS8-IK-E9E" id="eIA-kT-nsd"/>
+                                </connections>
                             </collectionView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aM5-nS-ksQ">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="79"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LaE-nf-7Al">
-                                        <rect key="frame" x="15" y="14" width="384" height="50"/>
+                                        <rect key="frame" x="8" y="14" width="398" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Try &quot;Pear&quot;" textAlignment="natural" clearsOnBeginEditing="YES" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xao-Ch-SNR">
-                                                <rect key="frame" x="21" y="0.0" width="325" height="50"/>
+                                                <rect key="frame" x="8" y="0.0" width="325" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Uc-My-q8p">
-                                                <rect key="frame" x="331" y="3" width="39" height="39"/>
+                                                <rect key="frame" x="347" y="3" width="39" height="39"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="magnifier"/>
                                                 <connections>
+                                                    <action selector="search:" destination="NS8-IK-E9E" eventType="touchUpInside" id="Kv0-kU-3dN"/>
                                                     <action selector="search:" destination="e3t-rz-pqt" eventType="touchUpInside" id="xbZ-ei-XQN"/>
                                                 </connections>
                                             </button>
@@ -670,27 +674,37 @@ I HEREBY REMISE, RELEASE AND FOREVER DISCHARGE PearingUp from all manner of acti
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6E4-SA-iem">
+                                <rect key="frame" x="10" y="70" width="74" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h22-40-CtG">
+                                        <rect key="frame" x="5" y="2" width="65" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button" image="cardView"/>
+                                        <connections>
+                                            <action selector="switchViews:" destination="e3t-rz-pqt" eventType="touchUpInside" id="3rs-yL-goV"/>
+                                            <action selector="switchViews:" destination="NS8-IK-E9E" eventType="touchUpInside" id="XyV-8s-Tlf"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b9T-Ah-EoA">
-                                <rect key="frame" x="26" y="72" width="65" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="cardView"/>
-                                <connections>
-                                    <action selector="switchViews:" destination="NS8-IK-E9E" eventType="touchUpInside" id="wW9-2c-tC0"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="p7X-uR-ws5"/>
                     </view>
                     <connections>
+                        <outlet property="behindSearchView" destination="LaE-nf-7Al" id="s9F-5E-934"/>
+                        <outlet property="saved_posts" destination="6bI-nI-rUu" id="GwN-Qz-Dmk"/>
+                        <outlet property="searchtext" destination="Xao-Ch-SNR" id="eGB-TN-igg"/>
                         <segue destination="e3t-rz-pqt" kind="show" identifier="cardToList" animates="NO" id="526-PI-xKb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BdM-nB-pm5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1053.6231884057972" y="244.56521739130437"/>
+            <point key="canvasLocation" x="1080" y="248"/>
         </scene>
         <!--Explore View Controller-->
         <scene sceneID="dha-b2-wFS">
@@ -1064,7 +1078,7 @@ more line</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kkQ-NN-Zla" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="205.79710144927537" y="1415.217391304348"/>
+            <point key="canvasLocation" x="161" y="976"/>
         </scene>
         <!--Send Request View Controller-->
         <scene sceneID="ty9-Y2-afl">
@@ -1221,7 +1235,7 @@ more line</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3yZ-AZ-lR4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-694" y="1427"/>
+            <point key="canvasLocation" x="-767" y="976"/>
         </scene>
         <!--Item-->
         <scene sceneID="G8E-sR-rHr">
@@ -2177,9 +2191,9 @@ more line</string>
     <inferredMetricsTieBreakers>
         <segue reference="TgW-S0-Hq7"/>
         <segue reference="1Ae-QY-D3E"/>
-        <segue reference="ILV-tI-h8y"/>
+        <segue reference="6y7-IX-WaC"/>
         <segue reference="526-PI-xKb"/>
-        <segue reference="OIo-Zd-Htm"/>
+        <segue reference="0z2-OR-vPm"/>
         <segue reference="x0u-Wb-3zU"/>
         <segue reference="5k6-nE-wgQ"/>
         <segue reference="q2g-qN-pJH"/>

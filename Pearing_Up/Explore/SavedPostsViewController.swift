@@ -52,6 +52,14 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         self.saved_posts.isUserInteractionEnabled = false
         UIApplication.shared.statusBarStyle = .default
         
+        
+        let tabBarControllerItems = self.tabBarController?.tabBar.items
+        
+        if let tabArray = tabBarControllerItems {
+            let tabBarItem1 = tabArray[0]
+            tabBarItem1.isEnabled = false
+        }
+        
         didSearch = false
         
         postTitles = []
@@ -88,7 +96,15 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         super.viewWillAppear(animated)
         
         searchtext.text! = ""
-
+        
+        let tabBarControllerItems = self.tabBarController?.tabBar.items
+        
+        if let tabArray = tabBarControllerItems {
+            let tabBarItem1 = tabArray[0]
+            tabBarItem1.isEnabled = false
+            tabBarItem1.badgeColor = UIColor.green
+        }
+        
         // We want to reload the page whenever it is visited, instead of only on first visit
         if(!firstStartUp) {
             print("Not first start up")
@@ -98,7 +114,16 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
             firstStartUp = false
         }
     }
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        let tabBarControllerItems = self.tabBarController?.tabBar.items
+        
+        if let tabArray = tabBarControllerItems {
+            let tabBarItem1 = tabArray[0]
+            tabBarItem1.isEnabled = true
+        }
+    }
     func update_data() {
         
         self.saved_posts.dataSource = self
