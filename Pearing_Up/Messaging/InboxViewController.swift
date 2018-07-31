@@ -15,6 +15,50 @@ class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     let myGroup = DispatchGroup()
     
+    @IBOutlet weak var inboxTableView: UITableView!
+    var firstRun : Bool = true
+    //populate this array with names of senders
+    var nameList : [String] = []
+    
+    //populate this array with attached messages
+    var descriptionList : [String] = []
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.inboxTableView.dataSource = self
+        self.inboxTableView.delegate = self
+        nameList = []
+        descriptionList = []
+        //populate(uname : "manan")
+        self.get_RequestData(name: User.Data.username) { data in
+            print("Came here")
+        }
+        myGroup.notify(queue: .main) {
+            self.update_data()
+        }
+        self.tabBarController?.tabBar.isHidden = false
+        
+        
+        // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if(!firstRun) {
+            viewDidLoad()
+        }
+        else {
+            firstRun = false
+        }
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
     func get_RequestData(name: String, completion: @escaping (String) -> Void) {
         self.myGroup.enter()
@@ -53,12 +97,6 @@ class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     
-    //populate this array with names of senders
-    var nameList : [String] = []
-    
-    //populate this array with attached messages
-    var descriptionList : [String] = []
-    
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return(nameList.count)
@@ -68,41 +106,16 @@ class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDat
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "inboxCell", for: indexPath) as! InboxTableViewCell
-        
+        cell.layer.borderWidth = 0.840
+        cell.layer.borderColor = UIColor.lightGray.cgColor
         cell.myLabel.text = nameList[indexPath.row]
         cell.descriptionLabel.text = descriptionList[indexPath.row]
         
         return(cell)
     }
-    
-    @IBOutlet weak var inboxTableView: UITableView!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.inboxTableView.dataSource = self
-        self.inboxTableView.delegate = self
-        //populate(uname : "manan")
-        self.get_RequestData(name: User.Data.username) { data in
-            print("Came here")
-        }
-        myGroup.notify(queue: .main) {
-            self.update_data()
-        }
-        self.tabBarController?.tabBar.isHidden = false
 
-        
-        // Do any additional setup after loading the view.
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        self.update_data()
-    }
-    
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func messagesButton(_ sender: Any) {
+        self.performSegue(withIdentifier: "requestsToMessages", sender: self)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

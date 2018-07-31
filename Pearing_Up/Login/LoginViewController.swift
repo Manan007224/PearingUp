@@ -44,10 +44,8 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func login_click(_ sender: Any) {
-      //  email_holder.text = "q@sfu.ca"
-       // pwd_holder.text = "q"
-        let user_params: [String:String] = ["email": email_holder.text!, "password": pwd_holder.text!]
-      //  let user_params: [String:String] = ["email": "q@sfu.ca", "password": "q"]
+        let user_params : [String:String] = ["email": email_holder.text!, "password": pwd_holder.text!]
+        //  let user_params: [String:String] = ["email": "q@sfu.ca", "password": "q"]
         
         login(url: login_url, params: user_params)
     }
@@ -55,12 +53,14 @@ class LoginViewController: UIViewController {
     func login(url: String, params: [String:String]){
         
         // Check weather email or password entered are not empty strings
-        
+        email_holder.text = "q@sfu.ca"
+        pwd_holder.text = "q"
         if(email_holder.text == "" || pwd_holder.text == ""){
             print("All fields required")
             displayAlert(message: "Email or Password is Empty. Please fill in again")
             return
         }
+ 
         
         // Check a valid email id using regular expressions
         
