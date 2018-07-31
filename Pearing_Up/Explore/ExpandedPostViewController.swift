@@ -21,12 +21,12 @@ class ExpandedPostViewController: UIViewController {
   
     @IBOutlet weak var titleText: UILabel!
     @IBOutlet weak var fruitimage: UIImageView!
-    @IBOutlet weak var MakeAppointmentButton: UIButton!
-    @IBOutlet weak var descriptionText: UITextView!
-    @IBOutlet weak var location: UILabel!
     @IBOutlet weak var fruitname: UILabel!
+    @IBOutlet weak var location: UILabel!
+    @IBOutlet weak var descriptionText: UITextView!
     @IBOutlet weak var bookmarkButtonUI: UIButton!
     @IBOutlet weak var mainView: UIView!
+    
     
     let myGroup = DispatchGroup()
     
@@ -166,14 +166,4 @@ class ExpandedPostViewController: UIViewController {
             
         }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
