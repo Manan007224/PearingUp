@@ -615,7 +615,7 @@ I HEREBY REMISE, RELEASE AND FOREVER DISCHARGE PearingUp from all manner of acti
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="glo-8P-M1b">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="glo-8P-M1b">
                                                     <rect key="frame" x="20" y="104" width="340" height="310"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
@@ -2290,7 +2290,7 @@ more line</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="TgW-S0-Hq7"/>
-        <segue reference="ILV-tI-h8y"/>
+        <segue reference="6y7-IX-WaC"/>
         <segue reference="526-PI-xKb"/>
         <segue reference="OIo-Zd-Htm"/>
         <segue reference="x0u-Wb-3zU"/>

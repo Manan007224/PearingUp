@@ -378,16 +378,16 @@ class SecondaryViewController: UIViewController, UICollectionViewDataSource {
         if(didSearch) {
             post.post_fruit.text! = searchFruits[indexPath.item]
             //post.post_description.text! = searchAdditionalMsgs[indexPath.item]
-            post.post_title.text! = searchTitles[indexPath.item].replacingOccurrences(of: "_", with: " ")
-            post.post_city.text! = searchCities[indexPath.item]
+            post.post_title.text! = (searchTitles[indexPath.item].replacingOccurrences(of: "_", with: " ")).capitalized
+            post.post_city.text! = (searchCities[indexPath.item]).capitalized
             
             post.post_image.image = searchImages[indexPath.item]
         }
         else {
             post.post_fruit.text! = postFruits[indexPath.item]
             //post.post_description.text! = postAdditionalMsgs[indexPath.item]
-            post.post_title.text! = postTitles[indexPath.item].replacingOccurrences(of: "_", with: " ")
-            post.post_city.text! = postCities[indexPath.item]
+            post.post_title.text! = (postTitles[indexPath.item].replacingOccurrences(of: "_", with: " ")).capitalized
+            post.post_city.text! = (postCities[indexPath.item]).capitalized
             
             post.post_image.image = postImages[indexPath.item]
         }
