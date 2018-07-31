@@ -44,6 +44,7 @@ class SecondaryViewController: UIViewController, UICollectionViewDataSource {
     let myGroup = DispatchGroup()
     
     @IBOutlet weak var behindSearchView: UIView!
+    @IBOutlet weak var behindButton: UIView!
     @IBOutlet weak var searchtext: UITextField!
     
     
@@ -52,7 +53,9 @@ class SecondaryViewController: UIViewController, UICollectionViewDataSource {
         super.viewDidLoad()
         print("disable")
         UIApplication.shared.statusBarStyle = .default
-
+        
+        
+        
         let tabBarControllerItems = self.tabBarController?.tabBar.items
         
         if let tabArray = tabBarControllerItems {
@@ -87,7 +90,11 @@ class SecondaryViewController: UIViewController, UICollectionViewDataSource {
         behindSearchView.layer.shadowOffset = CGSize.zero
         behindSearchView.layer.cornerRadius = 10.0
 
-        
+        behindButton.layer.cornerRadius = 5.0
+        behindButton.layer.shadowRadius = 2.5
+        behindButton.layer.masksToBounds = false
+        behindButton.layer.shadowOpacity = 1.0
+        behindButton.layer.shadowOffset = CGSize.zero
         
         myGroup.notify(queue: .main) {
             print("before update")

@@ -18,7 +18,7 @@ class ExpandedPostViewController: UIViewController {
     var desc: String!
     var loca: String!
     var fruitnme: String!
-  
+
     @IBOutlet weak var titleText: UILabel!
     @IBOutlet weak var fruitimage: UIImageView!
     @IBOutlet weak var fruitname: UILabel!
@@ -106,12 +106,16 @@ class ExpandedPostViewController: UIViewController {
     @IBAction func bookmarkButton(_ sender: Any) {
         var bookmark_url : URL!
         if(bookmarkedPosts.contains(titl)) {
+            print("unbookmark")
             bookmark_url = URL(string: "https://pearingup.herokuapp.com/unBookmarkPost/" + User.Data.username + "/" + titl)!
             bookmarkButtonUI.setImage(UIImage(named: "bookmark-50"), for: .normal)
+            self.bookmarkedPosts = self.bookmarkedPosts.filter() { $0 != self.titl}
         }
         else {
+            print("bookmark")
             bookmark_url = URL(string: "https://pearingup.herokuapp.com/bookmarkPost/" + User.Data.username + "/" + titl)!
             bookmarkButtonUI.setImage(UIImage(named: "bookmark filled"), for: .normal)
+            self.bookmarkedPosts.append(self.titl)
             }
         Alamofire.request(bookmark_url, method: .get).responseJSON {
             response in

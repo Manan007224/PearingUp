@@ -114,6 +114,9 @@ class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return(cell)
     }
 
+    @IBAction func messagesButton(_ sender: Any) {
+        self.performSegue(withIdentifier: "requestsToMessages", sender: self)
+    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         

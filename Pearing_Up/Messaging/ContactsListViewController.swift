@@ -115,6 +115,14 @@ class ContactListViewController: UIViewController, UITableViewDelegate, UITableV
         self.performSegue(withIdentifier: "expandRequest", sender: indexPath)
     }
     
+    @IBAction func requestButton(_ sender: Any) {
+        _ = navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func swipe(_ sender: Any) {
+        _ = navigationController?.popViewController(animated: true)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "expandRequest" {        
             // Push data of cell into next view
