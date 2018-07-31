@@ -1118,6 +1118,7 @@ more line</string>
                         <outlet property="fruitname" destination="jFX-aT-fPN" id="jeJ-3D-6g7"/>
                         <outlet property="location" destination="9mk-Ez-c1T" id="PRC-Pk-9gu"/>
                         <outlet property="mainView" destination="ENc-oU-VEu" id="msl-iX-ZlR"/>
+                        <outlet property="map" destination="1ZK-Pa-YNe" id="OQH-dc-3xJ"/>
                         <outlet property="titleText" destination="Lfq-1y-Deh" id="E4f-BK-H4G"/>
                         <segue destination="UwV-Qf-ZFd" kind="show" identifier="applyToPost" id="plM-IE-9D1"/>
                     </connections>
@@ -2274,7 +2275,7 @@ more line</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="TgW-S0-Hq7"/>
-        <segue reference="6y7-IX-WaC"/>
+        <segue reference="ILV-tI-h8y"/>
         <segue reference="526-PI-xKb"/>
         <segue reference="OIo-Zd-Htm"/>
         <segue reference="x0u-Wb-3zU"/>

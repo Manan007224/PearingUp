@@ -9,6 +9,8 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import MapKit
+
 
 class ExpandedPostViewController: UIViewController {
 
@@ -19,6 +21,8 @@ class ExpandedPostViewController: UIViewController {
     var loca: String!
     var fruitnme: String!
 
+    @IBOutlet weak var map: MKMapView!
+    
     @IBOutlet weak var titleText: UILabel!
     @IBOutlet weak var fruitimage: UIImageView!
     @IBOutlet weak var fruitname: UILabel!
@@ -61,7 +65,37 @@ class ExpandedPostViewController: UIViewController {
         fruitimage.image = image
         location.text = loca
         
+        
+        let searchRequest = MKLocalSearchRequest()
+        searchRequest.naturalLanguageQuery = location.text
+        
+        let activeSearch = MKLocalSearch(request: searchRequest)
+        // get longitude and latitude of the location and show on map
+        activeSearch.start { (response, error) in
+            if response == nil {
+                print("map error")
+            
+            }
+            else {
+                let latitude =  response?.boundingRegion.center.latitude
+                let longitude = response?.boundingRegion.center.longitude
+                
+                // create the location marker for the map s
+                let annotation = MKPointAnnotation()
+                annotation.title = self.location.text
+                annotation.coordinate = CLLocationCoordinate2DMake(latitude!, longitude!)
+                self.map.addAnnotation(annotation)
+                
+                let coordinate:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude!, longitude!)
+                let span = MKCoordinateSpanMake(0.1, 0.1)
+                let region = MKCoordinateRegionMake(coordinate, span)
+                self.map.setRegion(region, animated: true)
+            }
+            
+        }
     }
+    
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
