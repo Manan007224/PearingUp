@@ -13,6 +13,8 @@ import SwiftyJSON
 class SecondaryViewController: UIViewController, UICollectionViewDataSource {
 
     var firstStartUp : Bool  = true
+    var changedViewMode : Bool = false
+    
     let bookmarks_url : URL = URL(string: "https://pearingup.herokuapp.com/manan/savedposts")!
     let posts_url : URL = URL(string: "https://pearingup.herokuapp.com/getpost/apple_post")!
     
@@ -25,6 +27,7 @@ class SecondaryViewController: UIViewController, UICollectionViewDataSource {
     var postImages : [UIImage] = []
     
     var didSearch : Bool = false
+    var searchQuery : String = ""
     
     var searchOwners: [String] = []
     var searchTitles : [String] = []
@@ -48,7 +51,8 @@ class SecondaryViewController: UIViewController, UICollectionViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("disable")
-        
+        UIApplication.shared.statusBarStyle = .default
+
         let tabBarControllerItems = self.tabBarController?.tabBar.items
         
         if let tabArray = tabBarControllerItems {
@@ -57,27 +61,33 @@ class SecondaryViewController: UIViewController, UICollectionViewDataSource {
         }
         
         self.saved_posts.isUserInteractionEnabled = false
-        UIApplication.shared.statusBarStyle = .default
-        
+        print("LOOK AT ME: ", changedViewMode)
+        if(!changedViewMode) {
         didSearch = false
         
-        postTitles = []
-        bookmarkedPosts = []
-        postAdditionalMsgs = []
-        postFruits = []
-        postCities = []
-        postImages = []
-        postOwners = []
-        postCount = 0
-        
+            postTitles = []
+            bookmarkedPosts = []
+            postAdditionalMsgs = []
+            postFruits = []
+            postCities = []
+            postImages = []
+            postOwners = []
+            postCount = 0
+            let all_titles_url : URL = URL(string: "https:pearingup.herokuapp.com/allPosts")!
+            getPosts(url: all_titles_url)
+        }
+        else {
+            changedViewMode = false
+            searchtext.text = searchQuery
+        }
+            
         behindSearchView.layer.shadowRadius = 2.5
         behindSearchView.layer.masksToBounds = false
         behindSearchView.layer.shadowOpacity = 1.0
         behindSearchView.layer.shadowOffset = CGSize.zero
         behindSearchView.layer.cornerRadius = 10.0
+
         
-        let all_titles_url : URL = URL(string: "https:pearingup.herokuapp.com/allPosts")!
-        getPosts(url: all_titles_url)
         
         myGroup.notify(queue: .main) {
             print("before update")
@@ -104,6 +114,8 @@ class SecondaryViewController: UIViewController, UICollectionViewDataSource {
         }
         
         // We want to reload the page whenever it is visited, instead of only on first visit
+        print(firstStartUp)
+        
         if(!firstStartUp) {
             print("Not first start up")
             viewDidLoad()
@@ -111,6 +123,9 @@ class SecondaryViewController: UIViewController, UICollectionViewDataSource {
         else{
             firstStartUp = false
         }
+        
+        self.tabBarController?.tabBar.isHidden = false
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -310,6 +325,28 @@ class SecondaryViewController: UIViewController, UICollectionViewDataSource {
                         }
                     }
                 }
+            }
+        }
+        if segue.identifier == "cardToList" {
+            if let destination = segue.destination as?SavedPostsViewController {
+                print("transition")
+                destination.changedViewMode = true
+                
+                destination.postCount = self.postCount
+                destination.postTitles = self.postTitles
+                destination.bookmarkedPosts = self.bookmarkedPosts
+                destination.postAdditionalMsgs = self.postAdditionalMsgs
+                destination.postOwners = self.postOwners
+                destination.postFruits = self.postFruits
+                destination.postCities = self.postCities
+                destination.postImages = self.postImages
+                destination.didSearch = self.didSearch
+                destination.searchTitles = self.searchTitles
+                destination.searchAdditionalMsgs = self.searchAdditionalMsgs
+                destination.searchOwners = self.searchOwners
+                destination.searchFruits = self.searchFruits
+                destination.searchCities = self.searchCities
+                destination.searchImages = self.searchImages
             }
         }
     }

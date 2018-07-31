@@ -16,6 +16,9 @@ import SwiftyJSON
 class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     
     var firstStartUp : Bool  = true
+    var changedViewMode : Bool = false
+
+    
     let bookmarks_url : URL = URL(string: "https://pearingup.herokuapp.com/manan/savedposts")!
     let posts_url : URL = URL(string: "https://pearingup.herokuapp.com/getpost/apple_post")!
     
@@ -28,6 +31,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     var postImages : [UIImage] = []
     
     var didSearch : Bool = false
+    var searchQuery : String = ""
     
     var searchOwners: [String] = []
     var searchTitles : [String] = []
@@ -60,16 +64,25 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
             tabBarItem1.isEnabled = false
         }
         
-        didSearch = false
-        
-        postTitles = []
-        bookmarkedPosts = []
-        postAdditionalMsgs = []
-        postFruits = []
-        postCities = []
-        postImages = []
-        postOwners = []
-        postCount = 0
+        print("LOOK AT ME: ", changedViewMode)
+        if(!changedViewMode) {
+            didSearch = false
+            
+            postTitles = []
+            bookmarkedPosts = []
+            postAdditionalMsgs = []
+            postFruits = []
+            postCities = []
+            postImages = []
+            postOwners = []
+            postCount = 0
+            let all_titles_url : URL = URL(string: "https:pearingup.herokuapp.com/allPosts")!
+            getPosts(url: all_titles_url)
+        }
+        else {
+            changedViewMode = false
+            searchtext.text = searchQuery
+        }
         
         behindSearchView.layer.shadowRadius = 2.5
         behindSearchView.layer.masksToBounds = false
@@ -77,8 +90,6 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         behindSearchView.layer.shadowOffset = CGSize.zero
         behindSearchView.layer.cornerRadius = 10.0
         
-        let all_titles_url : URL = URL(string: "https:pearingup.herokuapp.com/allPosts")!
-        getPosts(url: all_titles_url)
 
         myGroup.notify(queue: .main) {
             print("before update")
@@ -113,6 +124,9 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         else{
             firstStartUp = false
         }
+        
+        self.tabBarController?.tabBar.isHidden = false
+
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -310,6 +324,29 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
                         }
                     }
                 }
+            }
+        }
+        if segue.identifier == "listToCard" {
+             if let destination = segue.destination as? SecondaryViewController {
+                print("transition")
+                
+                destination.changedViewMode = true
+                
+                destination.postCount = self.postCount
+                destination.postTitles = self.postTitles
+                destination.bookmarkedPosts = self.bookmarkedPosts
+                destination.postAdditionalMsgs = self.postAdditionalMsgs
+                destination.postOwners = self.postOwners
+                destination.postFruits = self.postFruits
+                destination.postCities = self.postCities
+                destination.postImages = self.postImages
+                destination.didSearch = self.didSearch
+                destination.searchTitles = self.searchTitles
+                destination.searchAdditionalMsgs = self.searchAdditionalMsgs
+                destination.searchOwners = self.searchOwners
+                destination.searchFruits = self.searchFruits
+                destination.searchCities = self.searchCities
+                destination.searchImages = self.searchImages
             }
         }
     }
