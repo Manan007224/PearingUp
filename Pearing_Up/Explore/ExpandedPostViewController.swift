@@ -89,7 +89,7 @@ class ExpandedPostViewController: UIViewController {
                 let coordinate:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude!, longitude!)
                 let span = MKCoordinateSpanMake(0.1, 0.1)
                 let region = MKCoordinateRegionMake(coordinate, span)
-                self.map.setRegion(region, animated: true)
+                self.map.setRegion(region, animated: false)
             }
             
         }
