@@ -1746,14 +1746,6 @@ more line</string>
             </objects>
             <point key="canvasLocation" x="7224.6376811594209" y="950.54347826086962"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="bwK-Mw-p0e">
-            <objects>
-                <viewController id="n9X-Es-Hzg" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="a18-Yu-Q4M" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="161" y="1896"/>
-        </scene>
         <!--bookmarks View Controller-->
         <scene sceneID="1Ac-sz-mT4">
             <objects>
