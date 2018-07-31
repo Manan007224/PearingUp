@@ -1242,6 +1242,21 @@
             </objects>
             <point key="canvasLocation" x="5627.536231884058" y="2662.5"/>
         </scene>
+        <!--Rating Controller-->
+        <scene sceneID="aoU-pX-wa7">
+            <objects>
+                <viewController id="caQ-Ig-qzU" customClass="RatingController" customModule="Pearing_Up" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8Uk-RS-o3h">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="hMu-1W-XPb"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zm8-OG-BLl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6488" y="1988"/>
+        </scene>
         <!--Item-->
         <scene sceneID="pzS-GX-Vy6">
             <objects>
