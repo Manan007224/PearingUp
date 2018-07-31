@@ -75,7 +75,7 @@ class ContactListViewController: UIViewController, UITableViewDelegate, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "inboxCell", for: indexPath) as! ContactListTableViewCell
         
         cell.nameLabel.text = nameList[indexPath.row]
-        cell.descriptionLabel.text = descriptionList[indexPath.row]
+        //cell.descriptionLabel.text = descriptionList[indexPath.row]
         
         return(cell)
     }
