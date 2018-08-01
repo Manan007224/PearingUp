@@ -10,4 +10,6 @@ target 'Pearing_Up' do
     pod 'Alamofire'
     pod 'SVProgressHUD'
     pod 'Firebase/Core'
+    pod 'Firebase/Database'
+    pod 'Firebase/Storage'
 end

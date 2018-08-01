@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseStorage
+import FirebaseDatabase
 
 class ContactListTableViewCell: UITableViewCell {
 
@@ -24,4 +27,16 @@ class ContactListTableViewCell: UITableViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    
+    var messageDetail : MessageDetail!
+    
+    var userPostKey: DatabaseReference!
+    
+    var messageId : String!
+    
+    func configureCell(messageDetail: MessageDetail) {
+        
+        self.messageDetail = messageDetail
+        let recipientData = Database.database().reference().child("users").child(messageDetail.recipient)
+    }
 }

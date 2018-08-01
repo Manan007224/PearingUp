@@ -9,6 +9,9 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import Firebase
+import FirebaseDatabase
+import FirebaseStorage
 
 class ContactListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -52,6 +55,14 @@ class ContactListViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
+    var messageDetail = [MessageDetail]()
+    
+    var detail : MessageDetail!
+    
+    var recipient : String!
+    
+    var messageId : String!
+    
     func update_data() {
         print("Came at update_Data()")
         self.contactTableView.reloadData()
@@ -66,16 +77,29 @@ class ContactListViewController: UIViewController, UITableViewDelegate, UITableV
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return(nameList.count)
+        return(messageDetail.count)
     }
     
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
+        print("this is: ",messageDetail[indexPath.row].messageRef.key)
+        let messageDet = messageDetail[indexPath.row]
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "inboxCell", for: indexPath) as! ContactListTableViewCell
         
-        cell.nameLabel.text = nameList[indexPath.row]
-        //cell.descriptionLabel.text = descriptionList[indexPath.row]
+        cell.configureCell(messageDetail: messageDet)
+        
+    Database.database().reference().child("users").child(User.Data.username).child("messages").child(messageDetail[indexPath.row].messageRef.key).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let lastMessage = snapshot.value as? Dictionary<String, AnyObject> {
+                cell.descriptionLabel.text = lastMessage["lastmessage"] as? String
+            }
+        })
+        
+        if(nameList.count == messageDetail.count) {
+            cell.nameLabel.text = nameList[indexPath.row]
+        }
         
         return(cell)
     }
@@ -86,6 +110,26 @@ class ContactListViewController: UIViewController, UITableViewDelegate, UITableV
         super.viewDidLoad()
         self.contactTableView.dataSource = self
         self.contactTableView.delegate = self
+        
+        Database.database().reference().child("users").child(User.Data.username).child("messages").observe(.value, with: {(snapshot) in
+            if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
+                
+                self.messageDetail.removeAll()
+                
+                for data in snapshot {
+                    if let messageDict = data.value as? Dictionary<String, AnyObject> {
+                        let key = data.key
+                        
+                        let info = MessageDetail(messageKey: key, messageData: messageDict)
+                    
+                        self.messageDetail.append(info)
+                    }
+                }
+            }
+            self.contactTableView.reloadData()
+            print(self.messageDetail)
+        })
+        
         //populate(uname : "manan")
         self.get_RequestData() { data in
             print("Came here")
@@ -124,12 +168,12 @@ class ContactListViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "expandRequest" {        
+        if segue.identifier == "toMessages" {        
             // Push data of cell into next view
-            if let collectionCell: InboxTableViewCell = sender as? InboxTableViewCell {
-                if let destination = segue.destination as? ExpandedRequestViewController {
-                    destination.requestName = collectionCell.myLabel.text!
-                    destination.requestDespcription = collectionCell.descriptionLabel.text!
+            if let collectionCell: ContactListTableViewCell = sender as? ContactListTableViewCell {
+                if let destination = segue.destination as? MessageViewController {
+                    destination.recipient = collectionCell.nameLabel.text
+                    destination.messageId = collectionCell.messageDetail.messageRef.key
                 }
             }
         }
