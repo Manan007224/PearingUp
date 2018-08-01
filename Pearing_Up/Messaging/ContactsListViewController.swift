@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import <#module#>
 
 class ContactListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
