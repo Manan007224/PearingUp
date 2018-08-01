@@ -177,6 +177,7 @@ class ContactListViewController: UIViewController, UITableViewDelegate, UITableV
                 }
             }
         }
+        
     }
     
 }

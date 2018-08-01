@@ -10,8 +10,11 @@ import UIKit
 
 class RatingViewController: UIViewController {
 
-    @IBOutlet var starButtons: [UIButton]!
+    var person : String!
     
+    @IBOutlet weak var personLabel: UILabel!
+    @IBOutlet var starButtons: [UIButton]!
+    @IBOutlet weak var cell: UIView!
     @IBAction func StarButtonTapped(_ sender: UIButton) {
         let tag = sender.tag
         for button in starButtons {
@@ -35,7 +38,13 @@ class RatingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print(person)
+        personLabel.text = person
+        cell.layer.shadowRadius = 2.5
+        cell.layer.masksToBounds = false
+        cell.layer.shadowOpacity = 1.0
+        cell.layer.shadowOffset = CGSize.zero
+        cell.layer.cornerRadius = 10.0
         // Do any additional setup after loading the view.
     }
 
@@ -44,7 +53,6 @@ class RatingViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
     /*
     // MARK: - Navigation
 
