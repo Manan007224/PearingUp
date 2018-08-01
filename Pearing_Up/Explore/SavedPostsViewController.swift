@@ -454,7 +454,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     }
  
     @IBAction func switchViews(_ sender: Any) {
-        //self.performSegue(withIdentifier: "listToCard", sender: self)
+       // self.performSegue(withIdentifier: "listToCard", sender: self)
     }
 
     func displayAlert(message: String){

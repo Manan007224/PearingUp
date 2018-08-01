@@ -20,6 +20,4 @@ class PostObject {
          var fruit : String = ""
 
          var img : UIImage  = UIImage.init()
-
-    
 }

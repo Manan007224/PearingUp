@@ -132,7 +132,6 @@ class SecondaryViewController: UIViewController, UICollectionViewDataSource {
         }
         
         self.tabBarController?.tabBar.isHidden = false
-
     }
     
     override func viewWillDisappear(_ animated: Bool) {
