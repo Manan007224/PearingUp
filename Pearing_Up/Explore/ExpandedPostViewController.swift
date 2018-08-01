@@ -82,10 +82,10 @@ class ExpandedPostViewController: UIViewController, MKMapViewDelegate {
                 let longitude = response?.boundingRegion.center.longitude
                 
                 // create the location marker for the map s
-                let annotation = MKPointAnnotation()
-                annotation.title = self.location.text
-                annotation.coordinate = CLLocationCoordinate2DMake(latitude!, longitude!)
-                self.map.addAnnotation(annotation)
+//                let annotation = MKPointAnnotation()
+//                annotation.title = self.location.text
+//                annotation.coordinate = CLLocationCoordinate2DMake(latitude!, longitude!)
+//                self.map.addAnnotation(annotation)
                 
                 let coordinate:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude!, longitude!)
                 let span = MKCoordinateSpanMake(0.1, 0.1)
@@ -93,7 +93,7 @@ class ExpandedPostViewController: UIViewController, MKMapViewDelegate {
                 self.map.setRegion(region, animated: false)
                 
                 
-                self.circle = MKCircle(center: coordinate, radius: 1000)
+                self.circle = MKCircle(center: coordinate, radius: 3000)
                 // draw circle around the picking location -- 1000 meters
                 self.map.add(self.circle)
                 
