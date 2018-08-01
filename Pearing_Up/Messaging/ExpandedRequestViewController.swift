@@ -16,6 +16,9 @@ class ExpandedRequestViewController: UIViewController {
 
     @IBOutlet weak var descriptionUI: UILabel!
     @IBOutlet weak var nameUI: UILabel!
+    @IBOutlet weak var ratingLabel: UILabel!
+    
+    
     var requestDespcription : String?
     var requestName : String?
     let url = "https://pearingup.herokuapp.com"

@@ -915,6 +915,16 @@ more line</string>
                                             <action selector="backButton:" destination="Vyx-mo-yU9" eventType="touchUpInside" id="aeb-pU-Gdj"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="4.9" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hg6-qW-chk">
+                                        <rect key="frame" x="326" y="6" width="49" height="38"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="FilledStar" translatesAutoresizingMaskIntoConstraints="NO" id="ZeT-Eq-aht">
+                                        <rect key="frame" x="383" y="13" width="23" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -949,6 +959,7 @@ more line</string>
                     <connections>
                         <outlet property="descriptionUI" destination="UTR-ah-WlX" id="0Xf-9C-vMa"/>
                         <outlet property="nameUI" destination="smy-Pc-sku" id="D0V-s4-reo"/>
+                        <outlet property="ratingLabel" destination="Hg6-qW-chk" id="z3Y-va-NzS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qGO-hz-8e9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1069,10 +1080,20 @@ more line</string>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lfq-1y-Deh">
-                                                        <rect key="frame" x="8" y="8" width="382" height="38"/>
+                                                        <rect key="frame" x="8" y="8" width="273" height="38"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                         <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="FilledStar" translatesAutoresizingMaskIntoConstraints="NO" id="RjW-ye-RwZ">
+                                                        <rect key="frame" x="359" y="15" width="23" height="25"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="4.2" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Djk-Nr-2HX">
+                                                        <rect key="frame" x="302" y="8" width="49" height="38"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -1113,6 +1134,7 @@ more line</string>
                         <outlet property="location" destination="9mk-Ez-c1T" id="PRC-Pk-9gu"/>
                         <outlet property="mainView" destination="ENc-oU-VEu" id="msl-iX-ZlR"/>
                         <outlet property="map" destination="1ZK-Pa-YNe" id="OQH-dc-3xJ"/>
+                        <outlet property="ratingLabel" destination="Djk-Nr-2HX" id="kAj-1c-K2w"/>
                         <outlet property="titleText" destination="Lfq-1y-Deh" id="E4f-BK-H4G"/>
                         <segue destination="UwV-Qf-ZFd" kind="show" identifier="applyToPost" id="plM-IE-9D1"/>
                     </connections>
@@ -1437,7 +1459,7 @@ more line</string>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4OO-jk-cyR">
-                                <rect key="frame" x="60" y="522" width="294" height="49"/>
+                                <rect key="frame" x="60" y="564" width="294" height="49"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="49" id="uxS-7k-fA7"/>
                                 </constraints>
@@ -1449,26 +1471,15 @@ more line</string>
                                     <action selector="goToYourPosts:" destination="T7x-ly-ZLS" eventType="touchUpInside" id="D0c-an-wVP"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="center" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eEt-zq-ZhZ">
-                                <rect key="frame" x="85" y="579" width="269" height="55"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
-                                <state key="normal" title="viewing history">
-                                    <color key="titleColor" red="0.51944217410000004" green="0.77020542510000001" blue="0.35725247710000002" alpha="0.64000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
-                                </state>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="z9o-DX-Cmn" firstAttribute="leading" secondItem="ajW-b6-a8p" secondAttribute="leading" id="J4r-Vx-QDz"/>
                             <constraint firstItem="z9o-DX-Cmn" firstAttribute="centerX" secondItem="4OO-jk-cyR" secondAttribute="centerX" id="NzB-mN-5RO"/>
-                            <constraint firstItem="eEt-zq-ZhZ" firstAttribute="leading" secondItem="QhE-Ub-5U2" secondAttribute="leading" constant="85" id="Nzj-CZ-5HD"/>
-                            <constraint firstItem="4OO-jk-cyR" firstAttribute="top" secondItem="z9o-DX-Cmn" secondAttribute="bottom" constant="35" id="QWc-4a-97b"/>
-                            <constraint firstItem="QhE-Ub-5U2" firstAttribute="bottom" secondItem="eEt-zq-ZhZ" secondAttribute="bottom" constant="53" id="RVr-fF-BUh"/>
+                            <constraint firstItem="4OO-jk-cyR" firstAttribute="top" secondItem="z9o-DX-Cmn" secondAttribute="bottom" constant="77" id="QWc-4a-97b"/>
                             <constraint firstAttribute="trailing" secondItem="z9o-DX-Cmn" secondAttribute="trailing" id="TWr-s7-B6d"/>
                             <constraint firstAttribute="bottom" secondItem="z9o-DX-Cmn" secondAttribute="bottom" constant="249" id="UgQ-RZ-RKo"/>
                             <constraint firstItem="z9o-DX-Cmn" firstAttribute="top" secondItem="ajW-b6-a8p" secondAttribute="top" id="aqq-Rx-4dW"/>
-                            <constraint firstItem="eEt-zq-ZhZ" firstAttribute="top" secondItem="4OO-jk-cyR" secondAttribute="bottom" constant="8" id="rtS-KL-GAA"/>
-                            <constraint firstItem="QhE-Ub-5U2" firstAttribute="trailing" secondItem="eEt-zq-ZhZ" secondAttribute="trailing" constant="60" id="yRy-ze-s61"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QhE-Ub-5U2"/>
                     </view>
@@ -2051,7 +2062,7 @@ more line</string>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                         <state key="normal" title="Rate">
-                                            <color key="titleColor" red="0.7336369157" green="0.89600324629999994" blue="0.48453497890000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" red="0.51764705882352935" green="0.76862745098039209" blue="0.35686274509803922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="rateButton:" destination="PiO-s4-Ieh" eventType="touchUpInside" id="adq-TO-al1"/>
@@ -2097,6 +2108,7 @@ more line</string>
                         <viewLayoutGuide key="safeArea" id="duc-yD-NaI"/>
                     </view>
                     <connections>
+                        <outlet property="behindMessage" destination="ydd-sg-YYE" id="cGD-rM-1zr"/>
                         <outlet property="contactNameLabel" destination="ZdJ-Dp-UBH" id="gmP-xb-mMD"/>
                         <outlet property="messageField" destination="XKT-O1-lpm" id="QfH-an-oeS"/>
                         <outlet property="tableView" destination="Usv-p3-VVW" id="DXD-Wb-aRT"/>
@@ -2522,6 +2534,7 @@ more line</string>
         </scene>
     </scenes>
     <resources>
+        <image name="FilledStar" width="50" height="50"/>
         <image name="bookmark filled" width="390" height="512"/>
         <image name="bookmark-30" width="30" height="30"/>
         <image name="bookmark-50" width="39" height="51"/>

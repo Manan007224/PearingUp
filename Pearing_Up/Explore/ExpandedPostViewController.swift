@@ -31,6 +31,7 @@ class ExpandedPostViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var descriptionText: UITextView!
     @IBOutlet weak var bookmarkButtonUI: UIButton!
     @IBOutlet weak var mainView: UIView!
+    @IBOutlet weak var ratingLabel: UILabel!
     
     
     let myGroup = DispatchGroup()

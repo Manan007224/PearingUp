@@ -16,6 +16,7 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageField: UITextField!
     @IBOutlet weak var contactNameLabel: UILabel!
+    @IBOutlet weak var behindMessage: UIView!
     
     var messageId : String!
     var messages = [Message]()
@@ -27,7 +28,13 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        behindMessage.layer.shadowRadius = 1.5
+        behindMessage.layer.masksToBounds = false
+        behindMessage.layer.shadowOpacity = 0.5
+        behindMessage.layer.shadowOffset = CGSize.zero
+        behindMessage.layer.cornerRadius = 2.0
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = UITableViewAutomaticDimension
