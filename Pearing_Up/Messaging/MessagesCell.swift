@@ -36,9 +36,13 @@ class MessagesCell: UITableViewCell {
         
             sentMessageLabel.text = message.message
             
+            sentMessageLabel.layer.masksToBounds = true
+            sentMessageLabel.layer.cornerRadius = 10.0
+            
             recievedMessageLabel.text = ""
             
             recievedMessageLabel.isHidden = true
+            
         }
         else {
             sentMessageView.isHidden = true
@@ -48,6 +52,9 @@ class MessagesCell: UITableViewCell {
             recievedMessageLabel.text = message.message
             
             recievedMessageLabel.isHidden = false
+            
+            recievedMessageLabel.layer.masksToBounds = true
+            recievedMessageLabel.layer.cornerRadius = 10.0
         }
     }
 }
