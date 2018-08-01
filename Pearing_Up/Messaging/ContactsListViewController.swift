@@ -9,6 +9,8 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import Firebase
+import FirebaseDatabase
 
 class ContactListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -52,6 +54,14 @@ class ContactListViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
+    var messageDetail = [MessageDetail]()
+    
+    var detail : MessageDetail!
+    
+    var recipient : String!
+    
+    var messageId : String!
+    
     func update_data() {
         print("Came at update_Data()")
         self.contactTableView.reloadData()
@@ -86,6 +96,25 @@ class ContactListViewController: UIViewController, UITableViewDelegate, UITableV
         super.viewDidLoad()
         self.contactTableView.dataSource = self
         self.contactTableView.delegate = self
+        
+        Database.database().reference().child("users").child(User.Data.username).child("messages").observe(.value, with: {(snapshot) in
+            if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
+                
+                self.messageDetail.removeAll()
+                
+                for data in snapshot {
+                    if let messageDict = data.value as? Dictionary<String, AnyObject> {
+                        let key = data.key
+                        
+                        let info = MessageDetail(messageKey: key, messageData: messageDict)
+                    
+                        self.messageDetail.append(info)
+                    }
+                }
+            }
+            self.contactTableView.reloadData()
+        })
+        
         //populate(uname : "manan")
         self.get_RequestData() { data in
             print("Came here")

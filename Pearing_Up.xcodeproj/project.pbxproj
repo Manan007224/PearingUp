@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		0432C144211154F400699E4F /* MessagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0432C143211154F400699E4F /* MessagesCell.swift */; };
 		0432C1462111550300699E4F /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0432C1452111550300699E4F /* Message.swift */; };
-		0432C1482111657100699E4F /* MessageDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0432C1472111657100699E4F /* MessageDetail.swift */; };
+		0432C14A21116B9F00699E4F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0432C14921116B9E00699E4F /* GoogleService-Info.plist */; };
+		0432C14C21117E1800699E4F /* MessageDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0432C14B21117E1800699E4F /* MessageDetail.swift */; };
 		0481360021114525006A7728 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048135FF21114525006A7728 /* MessageViewController.swift */; };
 		0908141D21069B3B00568A31 /* ContactsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0908141C21069B3B00568A31 /* ContactsListViewController.swift */; };
 		091B42A420FEBF1800995F87 /* yourPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091B42A320FEBF1800995F87 /* yourPostsViewController.swift */; };
@@ -26,7 +27,6 @@
 		41471F7F20ED74CC006B1591 /* SignUpViewControllerUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41471F7E20ED74CC006B1591 /* SignUpViewControllerUITest.swift */; };
 		417FA09C20ECA81000C19780 /* ExpandedRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417FA09B20ECA81000C19780 /* ExpandedRequestViewController.swift */; };
 		417FA0A020ECAEC100C19780 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417FA09F20ECAEC100C19780 /* User.swift */; };
-		4197894B211133AC00DD58D5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4197894A211133AB00DD58D5 /* GoogleService-Info.plist */; };
 		41B7479720EB303100BA6915 /* LoginViewControllerUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B7479620EB303100BA6915 /* LoginViewControllerUITest.swift */; };
 		41F06C4320F58A0B0038F9B0 /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F06C4220F58A0B0038F9B0 /* CreatePostViewController.swift */; };
 		5B5D3A35067BB15365B8A39E /* Pods_Pearing_Up.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80891CEF7889EB75F0E2F1FD /* Pods_Pearing_Up.framework */; };
@@ -61,7 +61,8 @@
 /* Begin PBXFileReference section */
 		0432C143211154F400699E4F /* MessagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesCell.swift; sourceTree = "<group>"; };
 		0432C1452111550300699E4F /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		0432C1472111657100699E4F /* MessageDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetail.swift; sourceTree = "<group>"; };
+		0432C14921116B9E00699E4F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0432C14B21117E1800699E4F /* MessageDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetail.swift; sourceTree = "<group>"; };
 		048135FF21114525006A7728 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		0908141C21069B3B00568A31 /* ContactsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsListViewController.swift; sourceTree = "<group>"; };
 		091B42A320FEBF1800995F87 /* yourPostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yourPostsViewController.swift; sourceTree = "<group>"; };
@@ -78,7 +79,6 @@
 		41471F7E20ED74CC006B1591 /* SignUpViewControllerUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewControllerUITest.swift; sourceTree = "<group>"; };
 		417FA09B20ECA81000C19780 /* ExpandedRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandedRequestViewController.swift; sourceTree = "<group>"; };
 		417FA09F20ECAEC100C19780 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		4197894A211133AB00DD58D5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		41B7478A20EB02A100BA6915 /* Pearing_UpUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Pearing_UpUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		41B7478E20EB02A100BA6915 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41B7479620EB303100BA6915 /* LoginViewControllerUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerUITest.swift; sourceTree = "<group>"; };
@@ -182,7 +182,7 @@
 				048135FF21114525006A7728 /* MessageViewController.swift */,
 				0432C143211154F400699E4F /* MessagesCell.swift */,
 				0432C1452111550300699E4F /* Message.swift */,
-				0432C1472111657100699E4F /* MessageDetail.swift */,
+				0432C14B21117E1800699E4F /* MessageDetail.swift */,
 			);
 			path = Messaging;
 			sourceTree = "<group>";
@@ -247,10 +247,10 @@
 				4197900720F84A6D00DD6282 /* Login */,
 				4197900620F84A4900DD6282 /* Explore */,
 				91E774D920D638740030121E /* AppDelegate.swift */,
-				4197894A211133AB00DD58D5 /* GoogleService-Info.plist */,
 				91E774E020D638740030121E /* Assets.xcassets */,
 				91E774E520D638740030121E /* Info.plist */,
 				728A7F0820EBC62D0051F353 /* tabBarViewController.swift */,
+				0432C14921116B9E00699E4F /* GoogleService-Info.plist */,
 			);
 			path = Pearing_Up;
 			sourceTree = "<group>";
@@ -359,8 +359,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				91E774E120D638740030121E /* Assets.xcassets in Resources */,
+				0432C14A21116B9F00699E4F /* GoogleService-Info.plist in Resources */,
 				91E774DF20D638740030121E /* Main.storyboard in Resources */,
-				4197894B211133AC00DD58D5 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,7 +462,7 @@
 				7267F0FD20EBE45C002243F1 /* postingsTableViewController.swift in Sources */,
 				41F06C4320F58A0B0038F9B0 /* CreatePostViewController.swift in Sources */,
 				410FD31220EC2C9F007A5637 /* ExpandedPostViewController.swift in Sources */,
-				0432C1482111657100699E4F /* MessageDetail.swift in Sources */,
+				0432C14C21117E1800699E4F /* MessageDetail.swift in Sources */,
 				72E9028A20FDCDE200573BE9 /* bookmarkedPostsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

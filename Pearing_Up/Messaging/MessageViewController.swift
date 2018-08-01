@@ -46,10 +46,11 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Dispose of any resources that can be recreated.
     }
     
+
     @IBAction func backButton(_ sender: Any) {
         let _ = navigationController?.popViewController(animated: true)
     }
-
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -134,11 +135,44 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
                 userMessage.setValue(message)
                 
                 loadData()
+            } else if messageId != "" {
+                let post : Dictionary<String, AnyObject> = [
+                    "message" : messageField.text as AnyObject,
+                    "sender" : recipient as AnyObject]
+                
+                let message : Dictionary<String, AnyObject> = [
+                    "lastmessage" : messageField.text as AnyObject,
+                    "recipient" : recipient as AnyObject]
+                
+                let recipientMessage : Dictionary<String, AnyObject> = [
+                    "lastmessage" : messageField.text as AnyObject,
+                    "recipient" : User.Data.username as AnyObject]
+                
+                let firebaseMessage = Database.database().reference().child("messages").child(messageId).childByAutoId()
+                
+                firebaseMessage.setValue(post)
+                
+                let recipientMsg = Database.database().reference().child("users").child(recipient).child("messages").childByAutoId()
+                
+                recipientMsg.setValue(recipientMessage)
+                
+                let userMessage = Database.database().reference().child("users").child(User.Data.username).child("messages").childByAutoId()
+                
+                userMessage.setValue(message)
+                
+                loadData()
             }
-            
             messageField.text = ""
         }
         moveToBottom()
+        printMessages()
     }
     
+    func printMessages() {
+        if(messages.count > 0) {
+            for i in (0...(messages.count - 1)) {
+                print(messages[i].sender + ": " + messages[i].message)
+            }
+        }
+    }
 }

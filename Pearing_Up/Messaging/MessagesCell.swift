@@ -34,14 +34,14 @@ class MessagesCell: UITableViewCell {
         if message.sender == User.Data.username {
             sentMessageView.isHidden = false
         
-            sentMessageLabel.text = ""
+            sentMessageLabel.text = message.message
             
-            recievedMessageLabel.text = message.message
+            recievedMessageLabel.text = ""
             
             recievedMessageLabel.isHidden = true
         }
         else {
-            sentMessageView.isHidden = false
+            sentMessageView.isHidden = true
             
             sentMessageLabel.text = ""
             

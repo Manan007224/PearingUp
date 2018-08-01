@@ -16,7 +16,9 @@ class MessageDetail {
     
     private var _messageKey: String!
     
-    private var _messageRef: DatabaseReference!
+    private var _messageRef: FIRDatabaseReference!
+    
+    var currentUser = KeychainWrapper.standard.string(forKey: "uid")
     
     var recipient: String {
         
@@ -28,7 +30,7 @@ class MessageDetail {
         return _messageKey
     }
     
-    var messageRef: DatabaseReference {
+    var messageRef: FIRDatabaseReference {
         
         return _messageRef
     }
@@ -47,7 +49,6 @@ class MessageDetail {
             _recipient = recipient
         }
         
-        _messageRef = Database.database().reference().child("recipient").child(_messageKey)
+        _messageRef = FIRDatabase.database().reference().child("recipient").child(_messageKey)
     }
 }
-
