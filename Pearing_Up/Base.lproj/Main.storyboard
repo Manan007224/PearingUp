@@ -1,22 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="AppleSDGothicNeo.ttc">
-            <string>AppleSDGothicNeo-Bold</string>
-            <string>AppleSDGothicNeo-Regular</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Home Page View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -2060,7 +2054,7 @@ more line</string>
                                             <color key="titleColor" red="0.7336369157" green="0.89600324629999994" blue="0.48453497890000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="WGN-Wb-Rpb" kind="show" identifier="messagesToRating" id="T8w-qY-ySH"/>
+                                            <action selector="rateButton:" destination="PiO-s4-Ieh" eventType="touchUpInside" id="adq-TO-al1"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Reciepiant" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZdJ-Dp-UBH">
@@ -2106,6 +2100,7 @@ more line</string>
                         <outlet property="contactNameLabel" destination="ZdJ-Dp-UBH" id="gmP-xb-mMD"/>
                         <outlet property="messageField" destination="XKT-O1-lpm" id="QfH-an-oeS"/>
                         <outlet property="tableView" destination="Usv-p3-VVW" id="DXD-Wb-aRT"/>
+                        <segue destination="WGN-Wb-Rpb" kind="show" id="zLK-ra-iHN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hqk-PL-R0J" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2523,7 +2518,7 @@ more line</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6dC-yM-CfM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7153.6231884057979" y="1987.5000000000002"/>
+            <point key="canvasLocation" x="5516" y="4357"/>
         </scene>
     </scenes>
     <resources>

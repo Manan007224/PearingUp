@@ -181,6 +181,10 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    @IBAction func rateButton(_ sender: Any) {
+        self.performSegue(withIdentifier: "", sender: self)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "messagesToRating" {
                 if let destination = segue.destination as? RatingViewController {
