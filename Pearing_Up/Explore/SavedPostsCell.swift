@@ -25,6 +25,8 @@ class SavedPostsCell: UICollectionViewCell {
     @IBAction func bookmarkButtonPressed(_ sender: UIButton!) {
         self.buttonAction?(sender)
     }
+    
+   
 }
 
 
