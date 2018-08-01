@@ -61,6 +61,8 @@ class yourPostsViewController: UIViewController, UICollectionViewDataSource {
         myGroup.notify(queue: .main) {
             print("before update")
             //print(self.postImages.count)
+            self.tableView.isUserInteractionEnabled = true
+            print("enable")
             self.update_data()
         }
     }
@@ -68,6 +70,8 @@ class yourPostsViewController: UIViewController, UICollectionViewDataSource {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if(yourPostsViewController.needsUpdate) {
+            print("disable")
+            self.tableView.isUserInteractionEnabled = false
             viewDidLoad()
         }
     }
