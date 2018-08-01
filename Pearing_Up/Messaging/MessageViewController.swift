@@ -189,7 +189,8 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     @IBAction func rateButton(_ sender: Any) {
-        self.performSegue(withIdentifier: "", sender: self)
+        
+        self.performSegue(withIdentifier: "toRating", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -197,6 +198,12 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
                 if let destination = segue.destination as? RatingViewController {
                     print("b4 " , recipient)
                     destination.person = recipient
+                    if (messages[0].sender == recipient) {
+                        destination.ratingType = "picker"
+                    }
+                    else {
+                        destination.ratingType = "owner"
+                    }
                 }
             }
         }
