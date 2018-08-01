@@ -97,7 +97,7 @@ class ExpandedRequestViewController: UIViewController {
         
         let recipientMessage : Dictionary<String, AnyObject> = [
             "lastmessage" : requestDespcription as AnyObject,
-            "recipient" : requestName! as AnyObject]
+            "recipient" : User.Data.username as AnyObject]
         
         let messageId = Database.database().reference().child("messages").childByAutoId().key
         
