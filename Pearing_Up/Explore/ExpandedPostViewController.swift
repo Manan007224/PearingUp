@@ -129,6 +129,7 @@ class ExpandedPostViewController: UIViewController {
     }
     
     @IBAction func backButton(_ sender: Any) {
+        print("back")
         _ = navigationController?.popViewController(animated: true)
     }
 

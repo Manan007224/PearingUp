@@ -141,6 +141,7 @@ class bookmarkedPostsViewController: UIViewController, UICollectionViewDataSourc
                             destination.titl = bookmarkTitles[selectedindexpath.row]
                             destination.desc = bookmarkMsgs[selectedindexpath.row]
                             destination.fruitnme = bookmarkFruits[selectedindexpath.row]
+                            destination.loca = bookmarkCities[selectedindexpath.row]
                         }
                     }
                 }

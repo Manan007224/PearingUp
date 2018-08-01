@@ -453,7 +453,7 @@ class SecondaryViewController: UIViewController, UICollectionViewDataSource {
     }
     
     @IBAction func switchViews(_ sender: Any) {
-        self.performSegue(withIdentifier: "cardToList", sender: self)
+        //self.performSegue(withIdentifier: "cardToList", sender: self)
     }
     
     func displayAlert(message: String){

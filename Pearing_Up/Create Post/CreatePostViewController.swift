@@ -88,12 +88,17 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
     
     @IBAction func CreatePost(_ sender: Any) {
         myGroup.enter()
-        
+        let characterset = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ")
         //completion handler to check if location user has entered is valid (ie. exists)
         validity(query: locationTextView.text!) {
             if(self.titleTextView.text == "" ){ //check if they have entered a title
                 print("title field required")
                 self.displayAlert(message: "title field required")
+                return
+            }
+            else if(self.titleTextView.text!.rangeOfCharacter(from: characterset.inverted) != nil){ //check if they have entered a location
+                print("Title contains special characters.")
+                self.displayAlert(message: "No special characters in title please!")
                 return
             }
             else if(self.locationTextView.text == ""){ //check if they have entered a location
