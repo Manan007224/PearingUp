@@ -36,8 +36,6 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        // createGradientLayer()
-        
-        // Do any additional setup after loading the view.
     }
     
     
@@ -65,6 +63,7 @@ class SignUpViewController: UIViewController {
         self.performSegue(withIdentifier: "signupToLanding", sender: self)
     }
     
+    // sends signup data to the server using alamofire  
     func signup(url: String, params: [String:String]){
         Alamofire.request(url, method: .post, parameters: params).responseJSON{
             response in
@@ -79,8 +78,7 @@ class SignUpViewController: UIViewController {
                 }
                 
                 self.performSegue(withIdentifier: "SignupInfo", sender: self)
-//                prepare(for: "signupInfo", sender: <#T##Any?#>)
-               
+//              prepare(for: "signupInfo", sender: <#T##Any?#>)
             }
             else {
                 print("Error Happened")
@@ -90,14 +88,13 @@ class SignUpViewController: UIViewController {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if segue.identifier == "SignupInfo" {
             
             let svc = segue.destination as! SignUpInfoController
             svc.usnm = username_holder.text!
         }
     }
-    
+    // check if entered email is valid 
     func valid_email(emailString: String) -> Bool {
         
         let email_regex = "[A-Z0-9a-z.-_]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,3}"
@@ -119,7 +116,6 @@ class SignUpViewController: UIViewController {
     }
     
     func displayAlert(message: String){
-        
         let alert_toDisplay = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
         
         alert_toDisplay.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
