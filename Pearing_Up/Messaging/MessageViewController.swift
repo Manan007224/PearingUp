@@ -194,7 +194,7 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "messagesToRating" {
+        if segue.identifier == "toRating" {
                 if let destination = segue.destination as? RatingViewController {
                     print("b4 " , recipient)
                     destination.person = recipient
