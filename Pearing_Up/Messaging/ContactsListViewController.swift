@@ -11,6 +11,7 @@ import Alamofire
 import SwiftyJSON
 import Firebase
 import FirebaseDatabase
+import FirebaseStorage
 
 class ContactListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -82,8 +83,11 @@ class ContactListViewController: UIViewController, UITableViewDelegate, UITableV
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
+        let messageDet = messageDetail[indexPath.row]
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "inboxCell", for: indexPath) as! ContactListTableViewCell
         
+        cell.configureCell(messageDetail: messageDet)
         cell.nameLabel.text = nameList[indexPath.row]
         //cell.descriptionLabel.text = descriptionList[indexPath.row]
         
@@ -144,6 +148,10 @@ class ContactListViewController: UIViewController, UITableViewDelegate, UITableV
         self.performSegue(withIdentifier: "expandRequest", sender: indexPath)
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        messageId = messageDetail[indexPath.row].messageRef.key
+    }
+    
     @IBAction func requestButton(_ sender: Any) {
         _ = navigationController?.popViewController(animated: true)
     }
@@ -158,6 +166,7 @@ class ContactListViewController: UIViewController, UITableViewDelegate, UITableV
             if let collectionCell: ContactListTableViewCell = sender as? ContactListTableViewCell {
                 if let destination = segue.destination as? MessageViewController {
                     destination.recipient = collectionCell.nameLabel.text
+                    destination.messageId = messageId
                 }
             }
         }
