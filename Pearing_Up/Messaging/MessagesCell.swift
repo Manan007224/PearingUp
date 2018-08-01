@@ -32,7 +32,6 @@ class MessagesCell: UITableViewCell {
         self.message = message
         
         if message.sender == User.Data.username {
-            print("meesage.send = user")
             sentMessageView.isHidden = false
         
             sentMessageLabel.text = message.message
@@ -46,7 +45,6 @@ class MessagesCell: UITableViewCell {
             
         }
         else {
-            print("else")
             
             sentMessageView.isHidden = true
             sentMessageLabel.isHidden = true
