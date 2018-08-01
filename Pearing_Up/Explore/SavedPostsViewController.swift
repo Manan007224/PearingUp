@@ -162,14 +162,16 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
                 let posts : JSON = temp["Posts"]
                 print(posts)
                 self.postCount = posts.count
-                for i in 0...(self.postCount-1){
-                    self.getImage( title: posts[i]["title"].stringValue) {
-                        self.postTitles.append( posts[i]["title"].stringValue )
-                        self.postAdditionalMsgs.append(posts[i]["additional_msg"].stringValue )
-                        self.postFruits.append(posts[i]["info"]["fruits"].stringValue )
-                        self.postOwners.append(posts[i]["owner"].stringValue)
-                        self.postCities.append(posts[i]["location_p"].stringValue  )
-                        self.getBookmarkedPosts()
+                if (self.postCount > 0){
+                    for i in 0...(self.postCount-1){
+                        self.getImage( title: posts[i]["title"].stringValue) {
+                            self.postTitles.append( posts[i]["title"].stringValue )
+                            self.postAdditionalMsgs.append(posts[i]["additional_msg"].stringValue )
+                            self.postFruits.append(posts[i]["info"]["fruits"].stringValue )
+                            self.postOwners.append(posts[i]["owner"].stringValue)
+                            self.postCities.append(posts[i]["location_p"].stringValue  )
+                            self.getBookmarkedPosts()
+                        }
                     }
                 }
                 self.myGroup.leave()

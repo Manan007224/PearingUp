@@ -127,7 +127,7 @@ class editPostsViewController: UIViewController,UIImagePickerControllerDelegate,
         myGroup.enter()
         deletePostRequest() {
             let info_param : [String: String] = ["fruits": self.pickedFruit]
-            let params : [String: Any] = ["owner": User.Data.username, "info": info_param, "additional_msg": self.descriptionTextView.text!,"title": self.titleTextView.text!]
+            let params : [String: Any] = ["owner": User.Data.username, "info": info_param, "additional_msg": self.descriptionTextView.text!,"title": self.titleTextView.text!.replacingOccurrences(of: " ", with: "_"), "location" : self.locationTextView.text!]
             self.makePost(params: params) {
                 yourPostsViewController.setNeedsUpdate(needsUpdate: true)
                 _ = self.navigationController?.popViewController(animated: true)

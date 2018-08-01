@@ -12,7 +12,7 @@ import SwiftyJSON
 import MapKit
 
 
-class ExpandedPostViewController: UIViewController {
+class ExpandedPostViewController: UIViewController, MKMapViewDelegate {
 
     var owner : String!
     var image : UIImage!
@@ -22,6 +22,7 @@ class ExpandedPostViewController: UIViewController {
     var fruitnme: String!
 
     @IBOutlet weak var map: MKMapView!
+    var circle : MKCircle!
     
     @IBOutlet weak var titleText: UILabel!
     @IBOutlet weak var fruitimage: UIImageView!
@@ -64,7 +65,7 @@ class ExpandedPostViewController: UIViewController {
         fruitname.text = fruitnme
         fruitimage.image = image
         location.text = loca.capitalized
-        
+        self.map.delegate = self
         
         let searchRequest = MKLocalSearchRequest()
         searchRequest.naturalLanguageQuery = location.text
@@ -90,12 +91,26 @@ class ExpandedPostViewController: UIViewController {
                 let span = MKCoordinateSpanMake(0.1, 0.1)
                 let region = MKCoordinateRegionMake(coordinate, span)
                 self.map.setRegion(region, animated: false)
+                
+                
+                self.circle = MKCircle(center: coordinate, radius: 1000)
+                // draw circle around the picking location -- 1000 meters
+                self.map.add(self.circle)
+                
             }
             
         }
     }
     
-    
+        //MARK: MKMapViewDelegate
+    func mapView(_ mapView: MKMapView , rendererFor overlay : MKOverlay) -> MKOverlayRenderer {
+        // renders a circle that will be drawn on the map around the location
+        let circleRenderer = MKCircleRenderer(overlay: overlay)
+        circleRenderer.fillColor = UIColor.blue.withAlphaComponent(0.1)
+        circleRenderer.strokeColor = UIColor.blue
+        circleRenderer.lineWidth = 1
+        return circleRenderer
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -129,6 +144,7 @@ class ExpandedPostViewController: UIViewController {
     }
     
     @IBAction func backButton(_ sender: Any) {
+        print("back")
         _ = navigationController?.popViewController(animated: true)
     }
 
