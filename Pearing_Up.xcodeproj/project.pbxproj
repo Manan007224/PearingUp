@@ -18,10 +18,12 @@
 		131AF66A21115FB40071366B /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131AF66921115FB40071366B /* RatingViewController.swift */; };
 		410FD31020EC086C007A5637 /* SendRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410FD30F20EC086C007A5637 /* SendRequestViewController.swift */; };
 		410FD31220EC2C9F007A5637 /* ExpandedPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410FD31120EC2C9F007A5637 /* ExpandedPostViewController.swift */; };
+		4119D6E621112E180008F9B1 /* ViewingHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4119D6E521112E180008F9B1 /* ViewingHistoryViewController.swift */; };
 		411CBE172106A586008BD468 /* ContactListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411CBE162106A586008BD468 /* ContactListTableViewCell.swift */; };
 		41471F7F20ED74CC006B1591 /* SignUpViewControllerUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41471F7E20ED74CC006B1591 /* SignUpViewControllerUITest.swift */; };
 		417FA09C20ECA81000C19780 /* ExpandedRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417FA09B20ECA81000C19780 /* ExpandedRequestViewController.swift */; };
 		417FA0A020ECAEC100C19780 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417FA09F20ECAEC100C19780 /* User.swift */; };
+		4197894B211133AC00DD58D5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4197894A211133AB00DD58D5 /* GoogleService-Info.plist */; };
 		41B7479720EB303100BA6915 /* LoginViewControllerUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B7479620EB303100BA6915 /* LoginViewControllerUITest.swift */; };
 		41F06C4320F58A0B0038F9B0 /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F06C4220F58A0B0038F9B0 /* CreatePostViewController.swift */; };
 		5B5D3A35067BB15365B8A39E /* Pods_Pearing_Up.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80891CEF7889EB75F0E2F1FD /* Pods_Pearing_Up.framework */; };
@@ -65,10 +67,12 @@
 		131AF66921115FB40071366B /* RatingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingViewController.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		410FD30F20EC086C007A5637 /* SendRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendRequestViewController.swift; sourceTree = "<group>"; };
 		410FD31120EC2C9F007A5637 /* ExpandedPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandedPostViewController.swift; sourceTree = "<group>"; };
+		4119D6E521112E180008F9B1 /* ViewingHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewingHistoryViewController.swift; sourceTree = "<group>"; };
 		411CBE162106A586008BD468 /* ContactListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListTableViewCell.swift; sourceTree = "<group>"; };
 		41471F7E20ED74CC006B1591 /* SignUpViewControllerUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewControllerUITest.swift; sourceTree = "<group>"; };
 		417FA09B20ECA81000C19780 /* ExpandedRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandedRequestViewController.swift; sourceTree = "<group>"; };
 		417FA09F20ECAEC100C19780 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		4197894A211133AB00DD58D5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		41B7478A20EB02A100BA6915 /* Pearing_UpUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Pearing_UpUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		41B7478E20EB02A100BA6915 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41B7479620EB303100BA6915 /* LoginViewControllerUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerUITest.swift; sourceTree = "<group>"; };
@@ -155,6 +159,7 @@
 				091B42A320FEBF1800995F87 /* yourPostsViewController.swift */,
 				091B42A720FEBFFF00995F87 /* yourPostsCell.swift */,
 				091B42A920FEC49000995F87 /* editPostsViewController.swift */,
+				4119D6E521112E180008F9B1 /* ViewingHistoryViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -241,6 +246,7 @@
 				4197900720F84A6D00DD6282 /* Login */,
 				4197900620F84A4900DD6282 /* Explore */,
 				91E774D920D638740030121E /* AppDelegate.swift */,
+				4197894A211133AB00DD58D5 /* GoogleService-Info.plist */,
 				91E774E020D638740030121E /* Assets.xcassets */,
 				91E774E520D638740030121E /* Info.plist */,
 				728A7F0820EBC62D0051F353 /* tabBarViewController.swift */,
@@ -352,6 +358,7 @@
 			files = (
 				91E774E120D638740030121E /* Assets.xcassets in Resources */,
 				91E774DF20D638740030121E /* Main.storyboard in Resources */,
+				4197894B211133AC00DD58D5 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,14 +391,18 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Pearing_Up/Pods-Pearing_Up-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -417,6 +428,7 @@
 				727C1B0B20FC73240033A53C /* PostObject.swift in Sources */,
 				091B42AA20FEC49000995F87 /* editPostsViewController.swift in Sources */,
 				916EA22320D7B6D900C1085D /* LoginViewController.swift in Sources */,
+				4119D6E621112E180008F9B1 /* ViewingHistoryViewController.swift in Sources */,
 				9164948820E7C8F700F5467D /* SavedPostsViewController.swift in Sources */,
 				91E774DC20D638740030121E /* HomePageViewController.swift in Sources */,
 				728A7F0920EBC62D0051F353 /* tabBarViewController.swift in Sources */,

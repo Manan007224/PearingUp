@@ -9,6 +9,8 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import CoreLocation
+import MapKit
 
 class MakePostViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
@@ -19,6 +21,8 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
     @IBOutlet weak var descriptionTextView: UITextField!
     @IBOutlet weak var locationTextView: UITextField!
     @IBOutlet weak var fruitPickerView: UIPickerView!
+    
+    var validLocation : Bool!
     
     var fileLocation : NSURL!
     var id : String = ""
@@ -63,46 +67,80 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     
+    func validity(query: String, completion: @escaping () -> Void) {
+        let searchRequest = MKLocalSearchRequest()
+        searchRequest.naturalLanguageQuery = locationTextView.text
+        
+        let activeSearch = MKLocalSearch(request: searchRequest)
+        activeSearch.start { (response, error) in
+            if response == nil {
+                print("location doesn't exist")
+                self.validLocation = false
+            }
+            else {
+                print("location exists")
+                self.validLocation = true
+            }
+            completion()
+        }
+        
+    }
+    
     @IBAction func CreatePost(_ sender: Any) {
         myGroup.enter()
-        if(titleTextView.text == "" ){
-            print("title field required")
-            displayAlert(message: "title field required")
-            return
-        }
-        else if(locationTextView.text == ""){
-            print("location field required")
-            displayAlert(message: "location field required")
-            return
-        }
-        else if(imageView.image == nil ){
-            print("image required")
-            displayAlert(message: " image required")
-            return
-        }
-        else{
-            //UPLOAD PICTURE
-            let imageData = UIImageJPEGRepresentation(self.imageView.image!, 0.2)!
-            upload_data(imageData : imageData) { responseId in
-                self.id = responseId.string!
-                
-                print("https://pearingup.herokuapp.com/upload/")
-                let info_param : [String: String] = ["fruits":self.pickedFruit]
-                print(self.pickedFruit)
-                let username = User.Data.username
-                
-                let title = self.titleTextView.text!.replacingOccurrences(of: " ", with: "_")
-                
-                
-                let user_params : [String: Any] = ["owner": username, "info": info_param, "additional_msg": self.descriptionTextView.text!,"title": title, "location":self.locationTextView.text!]
-                
-             
-                //UPLOAD POST
-                let url_post = "https://pearingup.herokuapp.com/uploadPostDetails/" + self.id
-                print(url_post)
-                self.makePost(url: url_post, params: user_params)
-                self.myGroup.leave()
-                self.performSegue(withIdentifier: "uploadToExplore", sender: self)
+        let characterset = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ")
+        //completion handler to check if location user has entered is valid (ie. exists)
+        validity(query: locationTextView.text!) {
+            if(self.titleTextView.text == "" ){ //check if they have entered a title
+                print("title field required")
+                self.displayAlert(message: "title field required")
+                return
+            }
+            else if(self.titleTextView.text!.rangeOfCharacter(from: characterset.inverted) != nil){ //check if they have entered a location
+                print("Title contains special characters.")
+                self.displayAlert(message: "No special characters in title please!")
+                return
+            }
+            else if(self.locationTextView.text == ""){ //check if they have entered a location
+                print("location field required")
+                self.displayAlert(message: "City field required")
+                return
+            }
+            else if(self.imageView.image == nil ){ //check if there is an image
+                print("image required")
+                self.displayAlert(message: " image required")
+                return
+            }
+            else if(!self.validLocation) { //check if location is valid
+                print("!locationvalid")
+                self.displayAlert(message: "Invalid city please enter another one!")
+                self.locationTextView.text = ""
+                return
+            }
+            else{
+                //UPLOAD PICTURE
+                let imageData = UIImageJPEGRepresentation(self.imageView.image!, 0.2)!
+                self.upload_data(imageData : imageData) { responseId in
+                    self.id = responseId.string!
+                    
+                    print("https://pearingup.herokuapp.com/upload/")
+                    let info_param : [String: String] = ["fruits":self.pickedFruit]
+                    print(self.pickedFruit)
+                    let username = User.Data.username
+                    
+                    let title = self.titleTextView.text!.replacingOccurrences(of: " ", with: "_") //bugfix: spaces crashing the posts
+                    
+                    
+                    let user_params : [String: Any] = ["owner": username, "info": info_param, "additional_msg": self.descriptionTextView.text!,"title": title, "location":self.locationTextView.text!]
+                    
+                 
+                    //UPLOAD POST
+                    let url_post = "https://pearingup.herokuapp.com/uploadPostDetails/" + self.id
+                    print(url_post)
+                    self.makePost(url: url_post, params: user_params)
+                    self.myGroup.leave()
+                    self.performSegue(withIdentifier: "uploadToExplore", sender: self)
+                }
             }
         }
     }

@@ -33,6 +33,9 @@ class bookmarkedPostsViewController: UIViewController, UICollectionViewDataSourc
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("disable")
+        self.bookmar_posts.isUserInteractionEnabled = false
+        
         bookmarkTitles = []
         bookmarkMsgs = []
         bookmarkFruits = []
@@ -47,6 +50,8 @@ class bookmarkedPostsViewController: UIViewController, UICollectionViewDataSourc
         
         getBookmarkedPosts(url: bookmarks_url)
         myGroup.notify(queue: .main){
+            self.bookmar_posts.isUserInteractionEnabled = true
+            print("enable")
             self.update_data()
         }
     }
@@ -70,6 +75,7 @@ class bookmarkedPostsViewController: UIViewController, UICollectionViewDataSourc
     func update_data(){
         self.bookmar_posts.dataSource = self
         self.bookmar_posts.reloadData()
+        
         print(self.bookmarkImages.count)
     }
     
@@ -90,6 +96,7 @@ class bookmarkedPostsViewController: UIViewController, UICollectionViewDataSourc
                         self.bookmarkOwners.append(bkPosts["result"][i]["owner"].string!)
                         self.bookmarkTitles.append(bkPosts["result"][i]["title"].string!)
                         self.bookmarkedPosts.append(bkPosts["result"][i]["title"].string!)
+                        self.bookmarkCities.append(bkPosts["result"][i]["location_p"].string!)
                         self.getBookmarkedImages(title: bkPosts["result"][i]["title"].string!)
                     }
                 }
@@ -134,6 +141,7 @@ class bookmarkedPostsViewController: UIViewController, UICollectionViewDataSourc
                             destination.titl = bookmarkTitles[selectedindexpath.row]
                             destination.desc = bookmarkMsgs[selectedindexpath.row]
                             destination.fruitnme = bookmarkFruits[selectedindexpath.row]
+                            destination.loca = bookmarkCities[selectedindexpath.row]
                         }
                     }
                 }
@@ -155,9 +163,10 @@ class bookmarkedPostsViewController: UIViewController, UICollectionViewDataSourc
         post.layer.cornerRadius = 10.0
         
         post.bookmarkCell_description.text! = self.bookmarkMsgs[indexPath.item]
-        post.bookmarkcell_title.text! = self.bookmarkTitles[indexPath.item].replacingOccurrences(of: "_", with: " ")
+        post.bookmarkcell_title.text! = (self.bookmarkTitles[indexPath.item].replacingOccurrences(of: "_", with: " ")).capitalized
         post.bookmarkCell_fruit.text! = self.bookmarkFruits[indexPath.item]
         post.bookmarkCell_Image.image = self.bookmarkImages[indexPath.item]
+        post.bookmarkCell_city.text! = (self.bookmarkCities[indexPath.item]).capitalized
         post.bookmarkCell_Image.clipsToBounds = true
         // Update whether or not post is bookmarked or not
 

@@ -162,14 +162,16 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
                 let posts : JSON = temp["Posts"]
                 print(posts)
                 self.postCount = posts.count
-                for i in 0...(self.postCount-1){
-                    self.getImage( title: posts[i]["title"].stringValue) {
-                        self.postTitles.append( posts[i]["title"].stringValue )
-                        self.postAdditionalMsgs.append(posts[i]["additional_msg"].stringValue )
-                        self.postFruits.append(posts[i]["info"]["fruits"].stringValue )
-                        self.postOwners.append(posts[i]["owner"].stringValue)
-                        self.postCities.append(posts[i]["location_p"].stringValue  )
-                        self.getBookmarkedPosts()
+                if (self.postCount > 0){
+                    for i in 0...(self.postCount-1){
+                        self.getImage( title: posts[i]["title"].stringValue) {
+                            self.postTitles.append( posts[i]["title"].stringValue )
+                            self.postAdditionalMsgs.append(posts[i]["additional_msg"].stringValue )
+                            self.postFruits.append(posts[i]["info"]["fruits"].stringValue )
+                            self.postOwners.append(posts[i]["owner"].stringValue)
+                            self.postCities.append(posts[i]["location_p"].stringValue  )
+                            self.getBookmarkedPosts()
+                        }
                     }
                 }
                 self.myGroup.leave()
@@ -377,16 +379,16 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
         if(didSearch) {
             post.post_fruit.text! = searchFruits[indexPath.item]
             post.post_description.text! = searchAdditionalMsgs[indexPath.item]
-            post.post_title.text! = searchTitles[indexPath.item].replacingOccurrences(of: "_", with: " ")
-            post.post_city.text! = searchCities[indexPath.item]
+            post.post_title.text! = (searchTitles[indexPath.item].replacingOccurrences(of: "_", with: " ")).capitalized
+            post.post_city.text! = (searchCities[indexPath.item]).capitalized
             
             post.post_image.image = searchImages[indexPath.item]
         }
         else {
             post.post_fruit.text! = postFruits[indexPath.item]
             post.post_description.text! = postAdditionalMsgs[indexPath.item]
-            post.post_title.text! = postTitles[indexPath.item].replacingOccurrences(of: "_", with: " ")
-            post.post_city.text! = postCities[indexPath.item]
+            post.post_title.text! = (postTitles[indexPath.item].replacingOccurrences(of: "_", with: " ")).capitalized
+            post.post_city.text! = (postCities[indexPath.item]).capitalized
             
             post.post_image.image = postImages[indexPath.item]
         }
@@ -452,7 +454,7 @@ class SavedPostsViewController: UIViewController, UICollectionViewDataSource{
     }
  
     @IBAction func switchViews(_ sender: Any) {
-        self.performSegue(withIdentifier: "listToCard", sender: self)
+        //self.performSegue(withIdentifier: "listToCard", sender: self)
     }
 
     func displayAlert(message: String){

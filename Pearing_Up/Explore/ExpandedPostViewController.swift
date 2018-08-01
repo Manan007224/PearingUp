@@ -60,10 +60,10 @@ class ExpandedPostViewController: UIViewController {
         
         //additional properties for labels
         descriptionText.text = desc
-        titleText.text = titl.replacingOccurrences(of: "_", with: " ")
+        titleText.text = (titl.replacingOccurrences(of: "_", with: " ")).capitalized
         fruitname.text = fruitnme
         fruitimage.image = image
-        location.text = loca
+        location.text = loca.capitalized
         
         
         let searchRequest = MKLocalSearchRequest()
@@ -129,6 +129,7 @@ class ExpandedPostViewController: UIViewController {
     }
     
     @IBAction func backButton(_ sender: Any) {
+        print("back")
         _ = navigationController?.popViewController(animated: true)
     }
 

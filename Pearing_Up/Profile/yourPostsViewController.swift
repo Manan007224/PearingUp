@@ -61,6 +61,8 @@ class yourPostsViewController: UIViewController, UICollectionViewDataSource {
         myGroup.notify(queue: .main) {
             print("before update")
             //print(self.postImages.count)
+            self.tableView.isUserInteractionEnabled = true
+            print("enable")
             self.update_data()
         }
     }
@@ -68,6 +70,8 @@ class yourPostsViewController: UIViewController, UICollectionViewDataSource {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if(yourPostsViewController.needsUpdate) {
+            print("disable")
+            self.tableView.isUserInteractionEnabled = false
             viewDidLoad()
         }
     }
@@ -97,6 +101,7 @@ class yourPostsViewController: UIViewController, UICollectionViewDataSource {
                             self.postAdditionalMsgs.append(posts[i]["additional_msg"].stringValue )
                             self.postFruits.append(posts[i]["info"]["fruits"].stringValue )
                             self.postIDs.append(posts[i]["img_id"].stringValue)
+                            self.postCities.append(posts[i]["location_p"].stringValue)
                         }
                         self.postCount = self.postCount + 1
                     }
@@ -196,10 +201,12 @@ class yourPostsViewController: UIViewController, UICollectionViewDataSource {
 //        saved_posts.layer.borderWidth = 2
         saved_posts.post_fruit.text! = postFruits[indexPath.item]
         saved_posts.post_description.text! = postAdditionalMsgs[indexPath.item]
-        saved_posts.post_title.text! = postTitles[indexPath.item].replacingOccurrences(of: "_", with: " ")
+        saved_posts.post_title.text! = (postTitles[indexPath.item].replacingOccurrences(of: "_", with: " ")).capitalized
+        saved_posts.post_city.text! = (postCities[indexPath.item]).capitalized
         saved_posts.post_image.layer.cornerRadius = 5.0
         saved_posts.post_image.clipsToBounds = true
         saved_posts.post_image.image = postImages[indexPath.item]
+        
         
         return saved_posts
     }

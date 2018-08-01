@@ -609,7 +609,7 @@ I HEREBY REMISE, RELEASE AND FOREVER DISCHARGE PearingUp from all manner of acti
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="glo-8P-M1b">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="glo-8P-M1b">
                                                     <rect key="frame" x="20" y="104" width="340" height="310"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
@@ -686,6 +686,7 @@ I HEREBY REMISE, RELEASE AND FOREVER DISCHARGE PearingUp from all manner of acti
                                 <connections>
                                     <action selector="switchViews:" destination="e3t-rz-pqt" eventType="touchUpInside" id="3rs-yL-goV"/>
                                     <action selector="switchViews:" destination="NS8-IK-E9E" eventType="touchUpInside" id="XyV-8s-Tlf"/>
+                                    <segue destination="e3t-rz-pqt" kind="show" identifier="cardToList" id="vMl-dM-95v"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -697,7 +698,6 @@ I HEREBY REMISE, RELEASE AND FOREVER DISCHARGE PearingUp from all manner of acti
                         <outlet property="behindSearchView" destination="LaE-nf-7Al" id="s9F-5E-934"/>
                         <outlet property="saved_posts" destination="6bI-nI-rUu" id="GwN-Qz-Dmk"/>
                         <outlet property="searchtext" destination="Xao-Ch-SNR" id="eGB-TN-igg"/>
-                        <segue destination="e3t-rz-pqt" kind="show" identifier="cardToList" animates="NO" id="526-PI-xKb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BdM-nB-pm5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -847,6 +847,7 @@ more line</string>
                                 <state key="normal" title="Button" image="listView"/>
                                 <connections>
                                     <action selector="switchViews:" destination="e3t-rz-pqt" eventType="touchUpInside" id="rLX-iC-5ey"/>
+                                    <segue destination="NS8-IK-E9E" kind="show" identifier="listToCard" id="8oT-9w-Obu"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -980,7 +981,7 @@ more line</string>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" indicatorStyle="white" translatesAutoresizingMaskIntoConstraints="NO" id="alq-UN-Pg7">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="951"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tOO-yG-a1j">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
@@ -1497,6 +1498,7 @@ more line</string>
                         <outlet property="pickerRatingLabel" destination="njD-74-J6P" id="AQg-hU-KLH"/>
                         <segue destination="iEl-dF-o3Q" kind="show" identifier="yourPostsSegue" id="hEW-Tg-xT3"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="logout" id="Tn1-ek-lgb"/>
+                        <segue destination="oxg-vh-sjx" kind="show" id="vcE-VD-gHZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h9E-XF-Dmw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2326,7 +2328,7 @@ more line</string>
                     </toolbar>
                     <connections>
                         <segue destination="e3t-rz-pqt" kind="relationship" relationship="rootViewController" id="Gt5-ag-1hF"/>
-                        <segue destination="NS8-IK-E9E" kind="show" id="0z2-OR-vPm"/>
+                        <segue destination="NS8-IK-E9E" kind="show" id="wqQ-DI-TTk"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xrJ-0j-dXT" userLabel="First Responder" sceneMemberID="firstResponder"/>
