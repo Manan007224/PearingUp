@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0432C144211154F400699E4F /* MessagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0432C143211154F400699E4F /* MessagesCell.swift */; };
+		0432C1462111550300699E4F /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0432C1452111550300699E4F /* Message.swift */; };
+		0432C1482111657100699E4F /* MessageDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0432C1472111657100699E4F /* MessageDetail.swift */; };
 		0481360021114525006A7728 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048135FF21114525006A7728 /* MessageViewController.swift */; };
 		0908141D21069B3B00568A31 /* ContactsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0908141C21069B3B00568A31 /* ContactsListViewController.swift */; };
 		091B42A420FEBF1800995F87 /* yourPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091B42A320FEBF1800995F87 /* yourPostsViewController.swift */; };
@@ -56,6 +59,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0432C143211154F400699E4F /* MessagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesCell.swift; sourceTree = "<group>"; };
+		0432C1452111550300699E4F /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		0432C1472111657100699E4F /* MessageDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetail.swift; sourceTree = "<group>"; };
 		048135FF21114525006A7728 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		0908141C21069B3B00568A31 /* ContactsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsListViewController.swift; sourceTree = "<group>"; };
 		091B42A320FEBF1800995F87 /* yourPostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yourPostsViewController.swift; sourceTree = "<group>"; };
@@ -174,6 +180,9 @@
 				0908141C21069B3B00568A31 /* ContactsListViewController.swift */,
 				411CBE162106A586008BD468 /* ContactListTableViewCell.swift */,
 				048135FF21114525006A7728 /* MessageViewController.swift */,
+				0432C143211154F400699E4F /* MessagesCell.swift */,
+				0432C1452111550300699E4F /* Message.swift */,
+				0432C1472111657100699E4F /* MessageDetail.swift */,
 			);
 			path = Messaging;
 			sourceTree = "<group>";
@@ -427,6 +436,7 @@
 				916EA22320D7B6D900C1085D /* LoginViewController.swift in Sources */,
 				4119D6E621112E180008F9B1 /* ViewingHistoryViewController.swift in Sources */,
 				0481360021114525006A7728 /* MessageViewController.swift in Sources */,
+				0432C144211154F400699E4F /* MessagesCell.swift in Sources */,
 				9164948820E7C8F700F5467D /* SavedPostsViewController.swift in Sources */,
 				91E774DC20D638740030121E /* HomePageViewController.swift in Sources */,
 				728A7F0920EBC62D0051F353 /* tabBarViewController.swift in Sources */,
@@ -434,6 +444,7 @@
 				091B42A820FEBFFF00995F87 /* yourPostsCell.swift in Sources */,
 				916EA22720D7B75100C1085D /* ProfileViewController.swift in Sources */,
 				916EA22520D7B71300C1085D /* SignUpViewController.swift in Sources */,
+				0432C1462111550300699E4F /* Message.swift in Sources */,
 				411CBE172106A586008BD468 /* ContactListTableViewCell.swift in Sources */,
 				72E9028820FDCDAA00573BE9 /* bookmarkedPostCell.swift in Sources */,
 				417FA09C20ECA81000C19780 /* ExpandedRequestViewController.swift in Sources */,
@@ -451,6 +462,7 @@
 				7267F0FD20EBE45C002243F1 /* postingsTableViewController.swift in Sources */,
 				41F06C4320F58A0B0038F9B0 /* CreatePostViewController.swift in Sources */,
 				410FD31220EC2C9F007A5637 /* ExpandedPostViewController.swift in Sources */,
+				0432C1482111657100699E4F /* MessageDetail.swift in Sources */,
 				72E9028A20FDCDE200573BE9 /* bookmarkedPostsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

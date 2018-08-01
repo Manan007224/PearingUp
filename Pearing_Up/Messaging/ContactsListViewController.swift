@@ -124,12 +124,11 @@ class ContactListViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "expandRequest" {        
+        if segue.identifier == "toMessages" {        
             // Push data of cell into next view
-            if let collectionCell: InboxTableViewCell = sender as? InboxTableViewCell {
-                if let destination = segue.destination as? ExpandedRequestViewController {
-                    destination.requestName = collectionCell.myLabel.text!
-                    destination.requestDespcription = collectionCell.descriptionLabel.text!
+            if let collectionCell: ContactListTableViewCell = sender as? ContactListTableViewCell {
+                if let destination = segue.destination as? MessageViewController {
+                    destination.recipient = collectionCell.nameLabel.text
                 }
             }
         }
