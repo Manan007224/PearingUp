@@ -89,15 +89,15 @@ class ExpandedRequestViewController: UIViewController {
         
         let post : Dictionary<String, AnyObject> = [
             "message" : requestDespcription as AnyObject,
-            "sender" : requestName as AnyObject]
+            "sender" : User.Data.username as AnyObject]
         
         let message : Dictionary<String, AnyObject> = [
             "lastmessage" : requestDespcription as AnyObject,
-            "recipient" : requestName as AnyObject]
+            "recipient" : User.Data.username as AnyObject]
         
         let recipientMessage : Dictionary<String, AnyObject> = [
             "lastmessage" : requestDespcription as AnyObject,
-            "recipient" : requestName as AnyObject]
+            "recipient" : requestName! as AnyObject]
         
         let messageId = Database.database().reference().child("messages").childByAutoId().key
         
@@ -105,11 +105,11 @@ class ExpandedRequestViewController: UIViewController {
         
         firebaseMessage.setValue(post)
         
-        let recipientMsg = Database.database().reference().child("users").child(requestName!).child("messages").child(messageId)
+        let recipientMsg = Database.database().reference().child("users").child(User.Data.username).child("messages").child(messageId)
         
         recipientMsg.setValue(recipientMessage)
         
-        let userMessage = Database.database().reference().child("users").child(User.Data.username).child("messages").child(messageId)
+        let userMessage = Database.database().reference().child("users").child(requestName!).child("messages").child(messageId)
         
         userMessage.setValue(message)
     }
