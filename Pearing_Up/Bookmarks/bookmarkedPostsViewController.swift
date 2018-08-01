@@ -73,6 +73,7 @@ class bookmarkedPostsViewController: UIViewController, UICollectionViewDataSourc
     }
     
     func update_data(){
+        // updates the postings
         self.bookmar_posts.dataSource = self
         self.bookmar_posts.reloadData()
         
@@ -107,7 +108,8 @@ class bookmarkedPostsViewController: UIViewController, UICollectionViewDataSourc
         }
     }
     
-    
+    // gets the images for the bookmarked posts using the 
+    // title of the bookmarked posts 
     func getBookmarkedImages(title: String){
         self.myGroup.enter()
         let urlstring = "https://pearingup.herokuapp.com/getpost/" + title
@@ -125,7 +127,8 @@ class bookmarkedPostsViewController: UIViewController, UICollectionViewDataSourc
             }
         }
     }
-    
+    // when cell is clicked the data for that cell is passed to the to the next
+    // view controller where it will displayed in more detail
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "expandBookmarkPost" {
             if let collectionCell: bookmarkedPostCell = sender as? bookmarkedPostCell {
@@ -152,7 +155,7 @@ class bookmarkedPostsViewController: UIViewController, UICollectionViewDataSourc
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.bookmarkOwners.count
     }
-    
+    // loads the data that is received from the server into the view cells
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let post = collectionView.dequeueReusableCell(withReuseIdentifier: "bookmarked_posts_cell", for: indexPath) as! bookmarkedPostCell
         
@@ -161,6 +164,7 @@ class bookmarkedPostsViewController: UIViewController, UICollectionViewDataSourc
         post.layer.shadowOpacity = 1.0
         post.layer.shadowOffset = CGSize.zero
         post.layer.cornerRadius = 10.0
+        
         
         post.bookmarkCell_description.text! = self.bookmarkMsgs[indexPath.item]
         post.bookmarkcell_title.text! = (self.bookmarkTitles[indexPath.item].replacingOccurrences(of: "_", with: " ")).capitalized
