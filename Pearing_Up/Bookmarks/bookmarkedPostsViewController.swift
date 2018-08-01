@@ -90,6 +90,7 @@ class bookmarkedPostsViewController: UIViewController, UICollectionViewDataSourc
                         self.bookmarkOwners.append(bkPosts["result"][i]["owner"].string!)
                         self.bookmarkTitles.append(bkPosts["result"][i]["title"].string!)
                         self.bookmarkedPosts.append(bkPosts["result"][i]["title"].string!)
+                        self.bookmarkCities.append(bkPosts["result"][i]["location_p"].string!)
                         self.getBookmarkedImages(title: bkPosts["result"][i]["title"].string!)
                     }
                 }
@@ -155,9 +156,10 @@ class bookmarkedPostsViewController: UIViewController, UICollectionViewDataSourc
         post.layer.cornerRadius = 10.0
         
         post.bookmarkCell_description.text! = self.bookmarkMsgs[indexPath.item]
-        post.bookmarkcell_title.text! = self.bookmarkTitles[indexPath.item].replacingOccurrences(of: "_", with: " ")
+        post.bookmarkcell_title.text! = (self.bookmarkTitles[indexPath.item].replacingOccurrences(of: "_", with: " ")).capitalized
         post.bookmarkCell_fruit.text! = self.bookmarkFruits[indexPath.item]
         post.bookmarkCell_Image.image = self.bookmarkImages[indexPath.item]
+        post.bookmarkCell_city.text! = (self.bookmarkCities[indexPath.item]).capitalized
         post.bookmarkCell_Image.clipsToBounds = true
         // Update whether or not post is bookmarked or not
 
