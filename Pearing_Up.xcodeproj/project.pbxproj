@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		048135FE21114042006A7728 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048135FD21114042006A7728 /* ChatViewController.swift */; };
+		0481360021114525006A7728 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048135FF21114525006A7728 /* MessageViewController.swift */; };
 		0908141D21069B3B00568A31 /* ContactsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0908141C21069B3B00568A31 /* ContactsListViewController.swift */; };
 		091B42A420FEBF1800995F87 /* yourPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091B42A320FEBF1800995F87 /* yourPostsViewController.swift */; };
 		091B42A820FEBFFF00995F87 /* yourPostsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091B42A720FEBFFF00995F87 /* yourPostsCell.swift */; };
@@ -56,7 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		048135FD21114042006A7728 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		048135FF21114525006A7728 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		0908141C21069B3B00568A31 /* ContactsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsListViewController.swift; sourceTree = "<group>"; };
 		091B42A320FEBF1800995F87 /* yourPostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yourPostsViewController.swift; sourceTree = "<group>"; };
 		091B42A720FEBFFF00995F87 /* yourPostsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yourPostsCell.swift; sourceTree = "<group>"; };
@@ -173,7 +173,7 @@
 				1310F2EF20EC65B7003A6591 /* InboxTableViewCell.swift */,
 				0908141C21069B3B00568A31 /* ContactsListViewController.swift */,
 				411CBE162106A586008BD468 /* ContactListTableViewCell.swift */,
-				048135FD21114042006A7728 /* ChatViewController.swift */,
+				048135FF21114525006A7728 /* MessageViewController.swift */,
 			);
 			path = Messaging;
 			sourceTree = "<group>";
@@ -426,6 +426,7 @@
 				091B42AA20FEC49000995F87 /* editPostsViewController.swift in Sources */,
 				916EA22320D7B6D900C1085D /* LoginViewController.swift in Sources */,
 				4119D6E621112E180008F9B1 /* ViewingHistoryViewController.swift in Sources */,
+				0481360021114525006A7728 /* MessageViewController.swift in Sources */,
 				9164948820E7C8F700F5467D /* SavedPostsViewController.swift in Sources */,
 				91E774DC20D638740030121E /* HomePageViewController.swift in Sources */,
 				728A7F0920EBC62D0051F353 /* tabBarViewController.swift in Sources */,
@@ -450,7 +451,6 @@
 				7267F0FD20EBE45C002243F1 /* postingsTableViewController.swift in Sources */,
 				41F06C4320F58A0B0038F9B0 /* CreatePostViewController.swift in Sources */,
 				410FD31220EC2C9F007A5637 /* ExpandedPostViewController.swift in Sources */,
-				048135FE21114042006A7728 /* ChatViewController.swift in Sources */,
 				72E9028A20FDCDE200573BE9 /* bookmarkedPostsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

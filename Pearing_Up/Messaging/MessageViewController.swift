@@ -1,5 +1,5 @@
 //
-//  ChatViewController.swift
+//  MessageViewController.swift
 //  Pearing_Up
 //
 //  Created by aaa117 on 7/31/18.
@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import Firebase
 
-class ChatViewController: UIViewController {
+class MessageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
