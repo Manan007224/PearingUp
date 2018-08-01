@@ -11,12 +11,15 @@ import UIKit
 class RatingViewController: UIViewController {
 
     var person : String!
+    var tag: Int!
+    var ratingType: String!
+    
     
     @IBOutlet weak var personLabel: UILabel!
     @IBOutlet var starButtons: [UIButton]!
     @IBOutlet weak var cell: UIView!
     @IBAction func StarButtonTapped(_ sender: UIButton) {
-        let tag = sender.tag
+        tag = sender.tag
         for button in starButtons {
             if button.tag <= tag {
                 //select button
@@ -27,13 +30,17 @@ class RatingViewController: UIViewController {
                 button.setTitle("☆", for: .normal)
             }
         }
-        print(tag)
-        
-        // ALAMOFIRE REQUEST GOES HERE
-        
-        let _ = navigationController?.popViewController(animated: true)
+
     }
     
+    @IBAction func back(_ sender: Any) {
+        let _ = navigationController?.popViewController(animated: true)
+    }
+    @IBAction func submit(_ sender: Any) {
+        // ALAMOFIRE REQUEST GOES HERE
+        print(tag)
+        let _ = navigationController?.popViewController(animated: true)
+    }
     
     
     override func viewDidLoad() {

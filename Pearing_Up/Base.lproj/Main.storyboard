@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="AppleSDGothicNeo.ttc">
+            <string>AppleSDGothicNeo-Bold</string>
+            <string>AppleSDGothicNeo-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Home Page View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -375,8 +381,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view alpha="0.64999997615814209" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LZm-Sn-zrM">
+                            <view alpha="0.64999997615814209" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LZm-Sn-zrM">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Va-jK-7MJ">
                                         <rect key="frame" x="10" y="11" width="70" height="30"/>
@@ -437,8 +444,6 @@ I HEREBY REMISE, RELEASE AND FOREVER DISCHARGE PearingUp from all manner of acti
                             <constraint firstItem="Ltz-Rw-dq3" firstAttribute="trailing" secondItem="hEw-sr-nlI" secondAttribute="trailing" id="Axm-AF-ZaM"/>
                             <constraint firstItem="Ltz-Rw-dq3" firstAttribute="leading" secondItem="OaT-Ts-zHh" secondAttribute="leadingMargin" id="ETf-z8-IzG"/>
                             <constraint firstItem="hEw-sr-nlI" firstAttribute="top" secondItem="Ltz-Rw-dq3" secondAttribute="bottom" constant="36" id="EnA-Oe-EBc"/>
-                            <constraint firstItem="Ltz-Rw-dq3" firstAttribute="centerX" secondItem="LZm-Sn-zrM" secondAttribute="centerX" id="L4f-a9-G23"/>
-                            <constraint firstItem="Ltz-Rw-dq3" firstAttribute="top" secondItem="LZm-Sn-zrM" secondAttribute="bottom" constant="93" id="SHW-5W-plP"/>
                             <constraint firstItem="Ltz-Rw-dq3" firstAttribute="centerX" secondItem="0Ja-jb-3ZQ" secondAttribute="centerX" id="Tgl-Ul-DI2"/>
                             <constraint firstItem="Ltz-Rw-dq3" firstAttribute="leading" secondItem="hEw-sr-nlI" secondAttribute="leading" id="cYN-7Q-cNi"/>
                             <constraint firstItem="Ltz-Rw-dq3" firstAttribute="centerY" secondItem="0Ja-jb-3ZQ" secondAttribute="centerY" id="tIS-eh-Qs8"/>
@@ -2112,7 +2117,7 @@ more line</string>
                         <outlet property="contactNameLabel" destination="ZdJ-Dp-UBH" id="gmP-xb-mMD"/>
                         <outlet property="messageField" destination="XKT-O1-lpm" id="QfH-an-oeS"/>
                         <outlet property="tableView" destination="Usv-p3-VVW" id="DXD-Wb-aRT"/>
-                        <segue destination="WGN-Wb-Rpb" kind="show" id="zLK-ra-iHN"/>
+                        <segue destination="WGN-Wb-Rpb" kind="show" identifier="toRating" id="zLK-ra-iHN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hqk-PL-R0J" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2511,8 +2516,48 @@ more line</string>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Dk-wR-OGO">
+                                        <rect key="frame" x="72" y="382" width="177" height="42"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.73333333329999995" green="0.89411764709999997" blue="0.48627450979999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                        <state key="normal" title="Submit">
+                                            <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="submit:" destination="WGN-Wb-Rpb" eventType="touchUpInside" id="2UM-iG-NVp"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view alpha="0.64999997615814209" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YVo-Do-rxn">
+                                <rect key="frame" x="-39" y="-11" width="416" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view alpha="0.64999997615814209" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b9p-pv-wmL">
+                                <rect key="frame" x="-2" y="0.0" width="416" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V0c-Je-JcR">
+                                        <rect key="frame" x="10" y="11" width="70" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <state key="normal" title="Back">
+                                            <color key="titleColor" red="0.51764705879999995" green="0.76862745099999996" blue="0.35686274509999999" alpha="0.64000000000000001" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="back:" destination="WGN-Wb-Rpb" eventType="touchUpInside" id="YVf-0E-c80"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2530,7 +2575,7 @@ more line</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6dC-yM-CfM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5516" y="4357"/>
+            <point key="canvasLocation" x="5515.9420289855079" y="4356.521739130435"/>
         </scene>
     </scenes>
     <resources>
@@ -2559,6 +2604,6 @@ more line</string>
         <segue reference="x0u-Wb-3zU"/>
         <segue reference="5k6-nE-wgQ"/>
         <segue reference="q2g-qN-pJH"/>
-        <segue reference="Tn1-ek-lgb"/>
+        <segue reference="nZi-Zf-xsI"/>
     </inferredMetricsTieBreakers>
 </document>
