@@ -28,7 +28,7 @@ class ContactListViewController: UIViewController, UITableViewDelegate, UITableV
         self.myGroup.leave()
     }
     
-    // Ge
+    // gets a users contacts
     func populate()
     {
         self.myGroup.enter()
@@ -40,8 +40,7 @@ class ContactListViewController: UIViewController, UITableViewDelegate, UITableV
                 print(json)
                 let requested_people = json["result"].array
                 
-                
-                print(requested_people)
+                //print(requested_people)
                 if(requested_people != nil){
                     for people in requested_people! {
                             self.nameList.append(people.string!)
@@ -57,11 +56,8 @@ class ContactListViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     var messageDetail = [MessageDetail]()
-    
     var detail : MessageDetail!
-    
     var recipient : String!
-    
     var messageId : String!
     
     func update_data() {
@@ -135,7 +131,6 @@ class ContactListViewController: UIViewController, UITableViewDelegate, UITableV
             print(self.messageDetail)
         })
         
-        //populate(uname : "manan")
         self.get_RequestData() { data in
             print("Came here")
         }
@@ -143,9 +138,6 @@ class ContactListViewController: UIViewController, UITableViewDelegate, UITableV
             self.update_data()
         }
         self.tabBarController?.tabBar.isHidden = false
-        
-        
-        // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {
