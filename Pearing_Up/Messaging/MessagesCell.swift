@@ -32,29 +32,33 @@ class MessagesCell: UITableViewCell {
         self.message = message
         
         if message.sender == User.Data.username {
+            print("meesage.send = user")
             sentMessageView.isHidden = false
         
             sentMessageLabel.text = message.message
             
-            sentMessageLabel.layer.masksToBounds = true
-            sentMessageLabel.layer.cornerRadius = 10.0
-            
             recievedMessageLabel.text = ""
             
-            recievedMessageLabel.isHidden = true
+            recievedMessageView.isHidden = true
+            
+            sentMessageView.layer.masksToBounds = true
+            sentMessageView.layer.cornerRadius = 10.0
             
         }
         else {
+            print("else")
+            
             sentMessageView.isHidden = true
+            sentMessageLabel.isHidden = true
             
             sentMessageLabel.text = ""
             
             recievedMessageLabel.text = message.message
             
-            recievedMessageLabel.isHidden = false
+            recievedMessageView.isHidden = false
             
-            recievedMessageLabel.layer.masksToBounds = true
-            recievedMessageLabel.layer.cornerRadius = 10.0
+            recievedMessageView.layer.masksToBounds = true
+            recievedMessageView.layer.cornerRadius = 10.0
         }
     }
 }

@@ -16,6 +16,7 @@ import FirebaseStorage
 class ContactListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
+    @IBOutlet weak var topbar: UIView!
     @IBOutlet weak var contactTableView: UITableView!
     
     let myGroup = DispatchGroup()
@@ -110,7 +111,11 @@ class ContactListViewController: UIViewController, UITableViewDelegate, UITableV
         super.viewDidLoad()
         self.contactTableView.dataSource = self
         self.contactTableView.delegate = self
-        
+//        topbar.layer.shadowRadius = 2.5
+//        topbar.layer.masksToBounds = false
+//        topbar.layer.shadowOpacity = 1.0
+//        topbar.layer.shadowOffset = CGSize.zero
+       // topbar.layer.cornerRadius = 4.20
         Database.database().reference().child("users").child(User.Data.username).child("messages").observe(.value, with: {(snapshot) in
             if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
                 
