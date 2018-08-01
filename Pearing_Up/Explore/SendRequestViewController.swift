@@ -12,6 +12,10 @@ import SwiftyJSON
 // View Controller Class used to send a request to pick from another user's tree
 class SendRequestViewController: UIViewController {
     
+    // variables used to store data that is received from the previous view
+    // this data is passed only so that it is stored here and when 
+    // the user goes back this data will be passed back so the previous view can 
+    // be loaded again
     var owner: String!
     var image: UIImage!
     var titl: String!
@@ -119,12 +123,6 @@ class SendRequestViewController: UIViewController {
         }))
         self.present(alert_toDisplay, animated: true, completion: nil)
     }
-    
-    
-    
-    
-    
-    
 }
 
 

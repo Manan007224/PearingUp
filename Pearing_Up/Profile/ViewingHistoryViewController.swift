@@ -4,10 +4,6 @@
 //
 //  Created by Manan Maniyar on 2018-06-30.
 //  Copyright © 2018 Manan Maniyar. All rights reserved.
-//
-/*
- data that is received
- */
 
 import UIKit
 import Alamofire

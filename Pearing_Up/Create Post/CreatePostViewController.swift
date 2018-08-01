@@ -66,7 +66,7 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
         print("Data Reloaded")
     }
     
-    
+    // checks to see if the user entered locationn is valid
     func validity(query: String, completion: @escaping () -> Void) {
         let searchRequest = MKLocalSearchRequest()
         searchRequest.naturalLanguageQuery = locationTextView.text
@@ -151,7 +151,7 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
         Alamofire.request(url, method: .post, parameters: params).responseJSON{
             response in
             if response.result.isSuccess{
-                print("---------if response result issuccess-----------")
+                print("--------response result issuccess-----------")
                 completion(JSON(response.result.value!))
             }
             else{
@@ -164,18 +164,10 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
         self.myGroup.enter()
         
         uploadData(url: url, params: params) { response in
-            // Do your stuff here
             let temp : JSON = response
-            
-            print(temp)
-            
-            // this  is the most is made successfully
-            
             if( temp["code"].exists() ){
-                print("---------if temp code exists-----------")
-                
                 if(temp["code"] == 409){
-                    self.displayAlert(message: "server errror-------------------")
+                    self.displayAlert(message: "server error: 409-------------------")
                 }
             }
             if( temp["id"].exists() ){
@@ -187,6 +179,7 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
         self.myGroup.leave()
     }
     
+    // uses alamofire to upload data to the server
     func upload_data(imageData : Data, completionHandler : @escaping (JSON)->()){
         
         self.myGroup.enter()
@@ -198,26 +191,24 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
             switch result {
             case .success(let upload, _,_ ):
                 upload.uploadProgress(closure: { (progress) in
-                    print("uploading")
+                    print("uploading post data")
                 })
                 upload.responseJSON { response in
                     let temp : JSON = JSON(response.result.value!)
-                    print("The id of the image is : ")
-                    print(temp)
+                    //print("The id of the image is : ")
+                    //print(temp)
                     completionHandler(temp["id"])
-                    
                     
                     self.myGroup.leave()
                 }
             case .failure(let encodingError):
-                print("failed")
+                print("createPost: uploading data failed")
                 print(encodingError)
-                
             }
         }
-        
     }
     
+    // allows user to choose image from library or take one with the camera
     @IBAction func addImg(_ sender: Any) {
         let picker = UIImagePickerController()
         picker.delegate = self
@@ -250,22 +241,21 @@ class MakePostViewController: UIViewController, UIImagePickerControllerDelegate,
         print("pic")
         fileLocation = info[UIImagePickerControllerImageURL] as! NSURL
         print(fileLocation)
-        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
-        imageView.image = chosenImage //4
-        dismiss(animated:true, completion: nil) //5
+        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        imageView.image = chosenImage 
+        dismiss(animated:true, completion: nil) 
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController){
         picker.dismiss(animated: true, completion: nil)
     }
     
-    
+    // creates an alert when function is called
     func displayAlert(message: String){
         
         let alert_toDisplay = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
         
         alert_toDisplay.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
-            // self.titleText.text = "yoo"
         }))
         self.present(alert_toDisplay, animated: true, completion: nil)
     }

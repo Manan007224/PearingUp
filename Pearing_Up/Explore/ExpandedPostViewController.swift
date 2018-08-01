@@ -13,7 +13,8 @@ import MapKit
 
 
 class ExpandedPostViewController: UIViewController, MKMapViewDelegate {
-
+    
+    // variables used to store data that is received from the previous view
     var owner : String!
     var image : UIImage!
     var titl: String!
@@ -37,7 +38,6 @@ class ExpandedPostViewController: UIViewController, MKMapViewDelegate {
     
     
     let myGroup = DispatchGroup()
-    
     var bookmarkedPosts : [String] = []
     
     override func viewDidLoad() {
@@ -91,6 +91,7 @@ class ExpandedPostViewController: UIViewController, MKMapViewDelegate {
 //                annotation.coordinate = CLLocationCoordinate2DMake(latitude!, longitude!)
 //                self.map.addAnnotation(annotation)
                 
+                // create a circle around the location for privacy 
                 let coordinate:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude!, longitude!)
                 let span = MKCoordinateSpanMake(0.1, 0.1)
                 let region = MKCoordinateRegionMake(coordinate, span)
@@ -102,7 +103,6 @@ class ExpandedPostViewController: UIViewController, MKMapViewDelegate {
                 self.map.add(self.circle)
                 
             }
-            
         }
     }
     
@@ -126,14 +126,16 @@ class ExpandedPostViewController: UIViewController, MKMapViewDelegate {
         
         
         bookmarkedPosts = []
+        // determines if this post is bookmaarked if it is then 
+        // draw the bookmark symbol in the view
         getBookmarkedPosts(){
             print(self.bookmarkedPosts)
             if(self.bookmarkedPosts.contains(self.titl)) {
-                print("is bookmarked")
+               //print("is bookmarked")
                 self.bookmarkButtonUI.setImage(UIImage(named: "bookmark filled"), for: .normal)
             }
             else {
-                print("is not bookmarked")
+                //print("is not bookmarked")
                 self.bookmarkButtonUI.setImage(UIImage(named: "bookmark-50"), for: .normal)
             }
         }

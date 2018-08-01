@@ -59,9 +59,7 @@ class LoginViewController: UIViewController {
             return
         }
  
-        
         // Check a valid email id using regular expressions
-        
         if(valid_email(emailString: email_holder.text!)){
             Alamofire.request(url, method: .post, parameters: params).responseJSON{
                 response in
@@ -105,11 +103,10 @@ class LoginViewController: UIViewController {
         }
         
         else {
-            print("Error in the email Address")
+           // print("Error in the email Address")
             displayAlert(message: "Please enter a valid email address.")
             return
         }
-        
     }
     
     func userSetUp() {
@@ -132,7 +129,6 @@ class LoginViewController: UIViewController {
     }
     
     func valid_email(emailString: String) -> Bool {
-        
         let email_regex = "[A-Z0-9a-z.-_]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,3}"
         
         do {
@@ -147,7 +143,6 @@ class LoginViewController: UIViewController {
             print("invalid regex: \(error.localizedDescription)")
             return false
         }
-        
         return true
     }
     
