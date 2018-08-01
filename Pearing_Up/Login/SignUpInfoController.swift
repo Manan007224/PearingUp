@@ -23,7 +23,6 @@ class SignUpInfoController: UIViewController {
     let signup_url = "https://pearingup.herokuapp.com/signup"
 
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         //signup_info_url = "https://pearingup.herokuapp.com/\(usnm)/signup_info"
@@ -41,7 +40,7 @@ class SignUpInfoController: UIViewController {
     
     func signup_info(url: URL, params:[String:String]){
         
-        // Pass the request to the server here
+        // sends the signup information to the server using alamofire
         if(user_address.text! == "" || user_city.text! == "" || user_name.text! == ""){
             displayAlert(message: "Please fill in all fields")
             return
@@ -80,7 +79,7 @@ class SignUpInfoController: UIViewController {
         self.present(alert_toDisplay, animated: true, completion: nil)
     }
     
-    
+    // checks to see if the location is valid 
     func check_location(addr: String){
         let geoCoder = CLGeocoder()
         geoCoder.geocodeAddressString(addr, completionHandler: {(plc, err) -> Void in
