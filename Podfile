@@ -9,4 +9,5 @@ target 'Pearing_Up' do
     pod 'SwiftyJSON'
     pod 'Alamofire'
     pod 'SVProgressHUD'
+    pod 'Firebase/Core'
 end

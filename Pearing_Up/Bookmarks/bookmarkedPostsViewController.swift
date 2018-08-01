@@ -33,6 +33,9 @@ class bookmarkedPostsViewController: UIViewController, UICollectionViewDataSourc
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("disable")
+        self.bookmar_posts.isUserInteractionEnabled = false
+        
         bookmarkTitles = []
         bookmarkMsgs = []
         bookmarkFruits = []
@@ -47,6 +50,8 @@ class bookmarkedPostsViewController: UIViewController, UICollectionViewDataSourc
         
         getBookmarkedPosts(url: bookmarks_url)
         myGroup.notify(queue: .main){
+            self.bookmar_posts.isUserInteractionEnabled = true
+            print("enable")
             self.update_data()
         }
     }
@@ -70,6 +75,7 @@ class bookmarkedPostsViewController: UIViewController, UICollectionViewDataSourc
     func update_data(){
         self.bookmar_posts.dataSource = self
         self.bookmar_posts.reloadData()
+        
         print(self.bookmarkImages.count)
     }
     
