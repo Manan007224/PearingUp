@@ -77,19 +77,29 @@ class ContactListViewController: UIViewController, UITableViewDelegate, UITableV
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return(nameList.count)
+        return(messageDetail.count)
     }
     
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
+        print("this is: ",messageDetail[indexPath.row].messageRef.key)
         let messageDet = messageDetail[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "inboxCell", for: indexPath) as! ContactListTableViewCell
         
         cell.configureCell(messageDetail: messageDet)
-        cell.nameLabel.text = nameList[indexPath.row]
-        //cell.descriptionLabel.text = descriptionList[indexPath.row]
+        
+    Database.database().reference().child("users").child(User.Data.username).child("messages").child(messageDetail[indexPath.row].messageRef.key).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let lastMessage = snapshot.value as? Dictionary<String, AnyObject> {
+                cell.descriptionLabel.text = lastMessage["lastmessage"] as? String
+            }
+        })
+        
+        if(nameList.count == messageDetail.count) {
+            cell.nameLabel.text = nameList[indexPath.row]
+        }
         
         return(cell)
     }
@@ -117,6 +127,7 @@ class ContactListViewController: UIViewController, UITableViewDelegate, UITableV
                 }
             }
             self.contactTableView.reloadData()
+            print(self.messageDetail)
         })
         
         //populate(uname : "manan")
@@ -148,10 +159,6 @@ class ContactListViewController: UIViewController, UITableViewDelegate, UITableV
         self.performSegue(withIdentifier: "expandRequest", sender: indexPath)
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        messageId = messageDetail[indexPath.row].messageRef.key
-    }
-    
     @IBAction func requestButton(_ sender: Any) {
         _ = navigationController?.popViewController(animated: true)
     }
@@ -166,7 +173,7 @@ class ContactListViewController: UIViewController, UITableViewDelegate, UITableV
             if let collectionCell: ContactListTableViewCell = sender as? ContactListTableViewCell {
                 if let destination = segue.destination as? MessageViewController {
                     destination.recipient = collectionCell.nameLabel.text
-                    destination.messageId = messageId
+                    destination.messageId = collectionCell.messageDetail.messageRef.key
                 }
             }
         }

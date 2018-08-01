@@ -15,6 +15,7 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageField: UITextField!
+    @IBOutlet weak var contactNameLabel: UILabel!
     
     var messageId : String!
     var messages = [Message]()
@@ -31,6 +32,10 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.dataSource = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 300
+        
+        contactNameLabel.text = recipient
+        
+        print(messageId)
         
         if (messageId != "" && messageId != nil) {
             loadData()
@@ -110,11 +115,11 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
             if messageId == nil {
                 let post : Dictionary<String, AnyObject> = [
                     "message" : messageField.text as AnyObject,
-                    "sender" : recipient as AnyObject]
+                    "sender" : User.Data.username as AnyObject]
                 
                 let message : Dictionary<String, AnyObject> = [
                     "lastmessage" : messageField.text as AnyObject,
-                    "recipient" : recipient as AnyObject]
+                    "recipient" : User.Data.username as AnyObject]
                 
                 let recipientMessage : Dictionary<String, AnyObject> = [
                     "lastmessage" : messageField.text as AnyObject,
@@ -126,11 +131,11 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
                 
                 firebaseMessage.setValue(post)
                 
-                let recipientMsg = Database.database().reference().child("users").child(recipient).child("messages").childByAutoId()
+                let recipientMsg = Database.database().reference().child("users").child(recipient).child("messages").child(messageId)
                 
                 recipientMsg.setValue(recipientMessage)
                 
-                let userMessage = Database.database().reference().child("users").child(User.Data.username).child("messages").childByAutoId()
+                let userMessage = Database.database().reference().child("users").child(User.Data.username).child("messages").child(messageId)
                 
                 userMessage.setValue(message)
                 
@@ -152,11 +157,11 @@ class MessageViewController: UIViewController, UITableViewDelegate, UITableViewD
                 
                 firebaseMessage.setValue(post)
                 
-                let recipientMsg = Database.database().reference().child("users").child(recipient).child("messages").childByAutoId()
+                let recipientMsg = Database.database().reference().child("users").child(recipient).child("messages").child(messageId)
                 
                 recipientMsg.setValue(recipientMessage)
                 
-                let userMessage = Database.database().reference().child("users").child(User.Data.username).child("messages").childByAutoId()
+                let userMessage = Database.database().reference().child("users").child(User.Data.username).child("messages").child(messageId)
                 
                 userMessage.setValue(message)
                 

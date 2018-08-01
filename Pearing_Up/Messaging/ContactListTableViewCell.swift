@@ -32,10 +32,11 @@ class ContactListTableViewCell: UITableViewCell {
     
     var userPostKey: DatabaseReference!
     
+    var messageId : String!
+    
     func configureCell(messageDetail: MessageDetail) {
         
         self.messageDetail = messageDetail
-        
         let recipientData = Database.database().reference().child("users").child(messageDetail.recipient)
     }
 }

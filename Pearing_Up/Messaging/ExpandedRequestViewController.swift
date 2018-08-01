@@ -8,6 +8,8 @@
 
 import UIKit
 import Alamofire
+import Firebase
+import FirebaseDatabase
 import SwiftyJSON
 
 class ExpandedRequestViewController: UIViewController {
@@ -48,6 +50,7 @@ class ExpandedRequestViewController: UIViewController {
         myGroup.enter()
         let accept_url : URL = URL(string: (url + "/AcceptRequest/" + User.Data.username + "/" + requestName!))!
         sendRequest(url: accept_url)
+        sendMessage()
         _ = navigationController?.popViewController(animated: true)
         myGroup.leave()
     }
@@ -80,6 +83,35 @@ class ExpandedRequestViewController: UIViewController {
                 self.myGroup.leave()
             }
         }
+    }
+    
+    func sendMessage() {
+        
+        let post : Dictionary<String, AnyObject> = [
+            "message" : requestDespcription as AnyObject,
+            "sender" : requestName as AnyObject]
+        
+        let message : Dictionary<String, AnyObject> = [
+            "lastmessage" : requestDespcription as AnyObject,
+            "recipient" : requestName as AnyObject]
+        
+        let recipientMessage : Dictionary<String, AnyObject> = [
+            "lastmessage" : requestDespcription as AnyObject,
+            "recipient" : requestName as AnyObject]
+        
+        let messageId = Database.database().reference().child("messages").childByAutoId().key
+        
+        let firebaseMessage = Database.database().reference().child("messages").child(messageId).childByAutoId()
+        
+        firebaseMessage.setValue(post)
+        
+        let recipientMsg = Database.database().reference().child("users").child(requestName!).child("messages").child(messageId)
+        
+        recipientMsg.setValue(recipientMessage)
+        
+        let userMessage = Database.database().reference().child("users").child(User.Data.username).child("messages").child(messageId)
+        
+        userMessage.setValue(message)
     }
     
     func displayAlert(message: String){
