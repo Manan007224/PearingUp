@@ -7,8 +7,8 @@
 //
 
 import UIKit
-
-
+import Alamofire
+import SwiftyJSON
 
 class ProfileViewController: UIViewController {
 
@@ -17,16 +17,51 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var ownerRatingLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     
+    let myGroup = DispatchGroup()
+    let url = "https://pearingup.herokuapp.com"
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         nameTextView.text = User.Data.username
-        locationLabel.text = User.Data.city // this does not work right now 07.25
-        // Do any additional setup after loading the view.
+        locationLabel.text = User.Data.city
+        //getRating(ratingType: "picker")
+        //getRating(ratingType: "owner")
     }
     
     override func viewDidAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
     }
+    
+    func getRating(ratingType: String){
+        self.myGroup.enter()
+        // Pass the request to the server here
+        
+        let rating_url : URL = URL(string: (url + "/rating/" + ratingType + "/" + User.Data.username))!
+        Alamofire.request(rating_url, method: .get).responseJSON{
+            response in
+            if(response.result.isSuccess) {
+                let temp : JSON  = JSON(response.result.value!)
+                print(temp)
+                if(ratingType == "owner") {
+                    self.ownerRatingLabel.text = temp["rating"].stringValue
+                }
+                else{
+                    self.pickerRatingLabel.text = temp["rating"].stringValue
+                }
+                if(temp["code"] == 302 || temp["code"] == 400 || temp["code"] == 409) {
+                    self.displayAlert(message: String(describing: temp["result"]))
+                }
+                self.myGroup.leave()
+            }
+            else {
+                print("Error")
+                print(response.error ?? "None")
+                self.myGroup.leave()
+            }
+        }
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -47,14 +82,10 @@ class ProfileViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func displayAlert(message: String){
+        
+        let alert_toDisplay = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
+        
+        self.present(alert_toDisplay, animated: true, completion: nil)
     }
-    */
-
 }

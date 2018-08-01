@@ -29,6 +29,7 @@ class ExpandedRequestViewController: UIViewController {
         super.viewDidLoad()
         self.descriptionUI.text = requestDespcription
         self.nameUI.text = requestName
+        //getRating()
         print(requestName)
         // Do any additional setup after loading the view.
     }
@@ -42,6 +43,32 @@ class ExpandedRequestViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func getRating() {
+        self.myGroup.enter()
+        // Pass the request to the server here
+        
+        let rating_url : URL = URL(string: (url + "/rating/picker/" + requestName!))!
+        print(rating_url)
+        Alamofire.request(rating_url, method: .get).responseJSON{
+            response in
+            if(response.result.isSuccess) {
+                let temp : JSON  = JSON(response.result.value!)
+                print(temp)
+                self.ratingLabel.text = temp["rating"].stringValue
+                
+                if(temp["code"] == 302 || temp["code"] == 400 || temp["code"] == 409) {
+                    self.displayAlert(message: String(describing: temp["result"]))
+                }
+                self.myGroup.leave()
+            }
+            else {
+                print("Error")
+                print(response.error ?? "None")
+                self.myGroup.leave()
+            }
+        }
     }
     
     @IBAction func backButton(_ sender: Any) {
@@ -100,7 +127,7 @@ class ExpandedRequestViewController: UIViewController {
         
         let recipientMessage : Dictionary<String, AnyObject> = [
             "lastmessage" : requestDespcription as AnyObject,
-            "recipient" : User.Data.username as AnyObject]
+            "recipient" : requestName! as AnyObject]
         
         let messageId = Database.database().reference().child("messages").childByAutoId().key
         

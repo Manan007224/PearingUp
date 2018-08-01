@@ -90,17 +90,16 @@ class ContactListViewController: UIViewController, UITableViewDelegate, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "inboxCell", for: indexPath) as! ContactListTableViewCell
         
         cell.configureCell(messageDetail: messageDet)
+    
         
     Database.database().reference().child("users").child(User.Data.username).child("messages").child(messageDetail[indexPath.row].messageRef.key).observeSingleEvent(of: .value, with: { (snapshot) in
             
             if let lastMessage = snapshot.value as? Dictionary<String, AnyObject> {
                 cell.descriptionLabel.text = lastMessage["lastmessage"] as? String
+                cell.nameLabel.text = lastMessage["recipient"] as? String
             }
         })
-        
-        if(nameList.count == messageDetail.count) {
-            cell.nameLabel.text = nameList[indexPath.row]
-        }
+
         
         return(cell)
     }

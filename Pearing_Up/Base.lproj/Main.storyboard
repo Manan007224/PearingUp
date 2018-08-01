@@ -1,22 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="AppleSDGothicNeo.ttc">
-            <string>AppleSDGothicNeo-Bold</string>
-            <string>AppleSDGothicNeo-Regular</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Home Page View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -691,6 +685,7 @@ I HEREBY REMISE, RELEASE AND FOREVER DISCHARGE PearingUp from all manner of acti
                                 <connections>
                                     <action selector="switchViews:" destination="e3t-rz-pqt" eventType="touchUpInside" id="3rs-yL-goV"/>
                                     <action selector="switchViews:" destination="NS8-IK-E9E" eventType="touchUpInside" id="XyV-8s-Tlf"/>
+                                    <segue destination="e3t-rz-pqt" kind="show" identifier="cardToList" animates="NO" id="a8f-CU-JJI"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -702,7 +697,6 @@ I HEREBY REMISE, RELEASE AND FOREVER DISCHARGE PearingUp from all manner of acti
                         <outlet property="behindSearchView" destination="LaE-nf-7Al" id="s9F-5E-934"/>
                         <outlet property="saved_posts" destination="6bI-nI-rUu" id="GwN-Qz-Dmk"/>
                         <outlet property="searchtext" destination="Xao-Ch-SNR" id="eGB-TN-igg"/>
-                        <segue destination="e3t-rz-pqt" kind="show" identifier="cardToList" animates="NO" id="526-PI-xKb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BdM-nB-pm5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -844,7 +838,7 @@ more line</string>
                                 <state key="normal" title="Button" image="listView"/>
                                 <connections>
                                     <action selector="switchViews:" destination="e3t-rz-pqt" eventType="touchUpInside" id="rLX-iC-5ey"/>
-                                    <segue destination="NS8-IK-E9E" kind="show" id="eI0-fN-be0"/>
+                                    <segue destination="NS8-IK-E9E" kind="show" animates="NO" id="eI0-fN-be0"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -2598,8 +2592,8 @@ more line</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="TgW-S0-Hq7"/>
-        <segue reference="ILV-tI-h8y"/>
-        <segue reference="526-PI-xKb"/>
+        <segue reference="6y7-IX-WaC"/>
+        <segue reference="a8f-CU-JJI"/>
         <segue reference="eI0-fN-be0"/>
         <segue reference="x0u-Wb-3zU"/>
         <segue reference="5k6-nE-wgQ"/>
