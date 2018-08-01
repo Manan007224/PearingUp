@@ -46,6 +46,7 @@ class ProfileViewController: UIViewController {
         self.performSegue(withIdentifier: "logout", sender: self)
     }
     
+
     /*
     // MARK: - Navigation
 
